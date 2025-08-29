@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Payment Successful - Thank You! | Bostify SEO Services</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+</head>
+<body>
+  <header class="header">
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <a href="../index.html">
+            <h1>Bostify</h1>
+            <span>by Sumit Sheokand</span>
+          </a>
+        </div>
+        <ul class="nav-menu">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="case-studies.html" class="nav-link">Results</a></li>
+          <li><a href="blog.html" class="nav-link">Blog</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link cta-nav">Website Audit</a></li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>🎉 Thank you — Payment Successful!</h1>
+    <p id="status">Processing your order confirmation email...</p>
+    <div style="background: #e7f3ff; border: 1px solid #bee5eb; border-radius: 8px; padding: 1rem; margin: 1rem 0;">
+      <h3 style="color: #0c5460; margin-top: 0;">What happens next?</h3>
+      <ul style="color: #0c5460; margin-bottom: 0;">
+        <li>📧 You'll receive a confirmation email within 5 minutes</li>
+        <li>📞 Our team will contact you within 24 hours to begin your SEO service</li>
+        <li>📊 For monthly subscriptions, your first report will be delivered within 7 days</li>
+        <li>🚀 For one-time audits, expect your comprehensive report within 3-5 business days</li>
+      </ul>
+    </div>
+    <p>If you don't receive an email within a few minutes, or have any questions, contact: <a href="mailto:sumitsheokand347@gmail.com" style="color: #007bff; font-weight: bold;">sumitsheokand347@gmail.com</a></p>
+  </main>
+
+  <footer><p>&copy; 2025 Bostify SEO</p></footer>
+
+<script>
+(function(){
+  // Initialize EmailJS with your public key
+  emailjs.init("1CLi83bvtJrxPnH1m"); // <-- your public key
+
+  // Helper to read query param
+  function qp(name){ const u = new URL(window.location.href); return u.searchParams.get(name) || ""; }
+
+  // Gather values: prefer query params (from PayPal), otherwise fall back to sessionStorage (from form)
+  const orderId = qp("order_id") || qp("subscription") || ("ORD-" + Math.floor(Math.random()*90000+10000));
+  const subscriptionId = qp("subscription") || "";
+  const userName = qp("name") || sessionStorage.getItem("order_name") || "Unknown";
+  const userEmail = qp("email") || sessionStorage.getItem("order_email") || "unknown@customer.com";
+  const userPhone = qp("phone") || sessionStorage.getItem("order_phone") || "Not provided";
+  const planName = qp("plan") || sessionStorage.getItem("selectedPlan") || sessionStorage.getItem("order_audit") || "Unknown Plan";
+  
+  // Handle different plan amounts
+  let orderAmount = qp("amount") || sessionStorage.getItem("order_amount") || "N/A";
+  
+  // Map plan names to amounts if not provided
+  if (orderAmount === "N/A" && planName !== "Unknown Plan") {
+    const planAmounts = {
+      "Essential Monitoring": "$799/month",
+      "Professional Monitoring": "$1500/month", 
+      "Enterprise Monitoring": "$2000/month",
+      "Complete Monitoring": "$2500/month",
+      "Basic SEO Audit": "$500",
+      "Comprehensive SEO Audit": "$1000",
+      "Enterprise SEO Audit": "$2000"
+    };
+    orderAmount = planAmounts[planName] || "N/A";
+  }
+
+  // Determine service type
+  const isSubscription = subscriptionId !== "";
+  const serviceType = isSubscription ? "Monthly SEO Subscription" : "One-time SEO Audit";
+
+  const params = {
+    order_id: orderId,
+    subscription_id: subscriptionId,
+    email: "sumitsheokand347@gmail.com",
+    user_name: userName,
+    user_email: userEmail,
+    user_phone: userPhone,
+    plan_name: planName,
+    order_amount: orderAmount,
+    service_type: serviceType
+  };
+
+  // Update status message
+  const statusEl = document.getElementById("status");
+  statusEl.innerText = isSubscription ? 
+    "Processing your subscription confirmation..." : 
+    "Processing your order confirmation email...";
+
+  console.log("Payment Success Debug:", params);
+
+  emailjs.send("service_lqo17bk", "template_noice5r", params)
+    .then(function(){
+      statusEl.innerHTML = `
+        <div style="color: #28a745; font-weight: bold; margin-bottom: 1rem;">
+          ✅ ${isSubscription ? 'Subscription' : 'Order'} confirmed! 
+        </div>
+        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+          <h3 style="margin-top: 0; color: #495057;">Order Details:</h3>
+          <p><strong>Service:</strong> ${planName}</p>
+          <p><strong>Amount:</strong> ${orderAmount}</p>
+          <p><strong>Type:</strong> ${serviceType}</p>
+          ${subscriptionId ? `<p><strong>Subscription ID:</strong> ${subscriptionId}</p>` : ''}
+          <p><strong>Customer:</strong> ${userName}</p>
+          <p><strong>Email:</strong> ${userEmail}</p>
+          <p><strong>Phone:</strong> ${userPhone}</p>
+        </div>
+        <p style="color: #6c757d;">A confirmation email has been sent to both you and our team.</p>
+      `;
+      
+      // Clear session storage
+      sessionStorage.removeItem("order_name");
+      sessionStorage.removeItem("order_email");
+      sessionStorage.removeItem("order_phone");
+      sessionStorage.removeItem("order_amount");
+      sessionStorage.removeItem("order_audit");
+      sessionStorage.removeItem("selectedPlan");
+      sessionStorage.removeItem("selectedPlanPrice");
+      sessionStorage.removeItem("selectedPlanFeatures");
+    }, function(err){
+      console.error("EmailJS error:", err);
+      statusEl.innerHTML = `
+        <div style="color: #dc3545; font-weight: bold;">
+          ⚠️ Could not send notification email automatically.
+        </div>
+        <div style="background: #f8d7da; padding: 1rem; border-radius: 8px; margin: 1rem 0; color: #721c24;">
+          <p><strong>Your payment was successful!</strong></p>
+          <p>Please contact us directly with these details:</p>
+          <ul style="text-align: left;">
+            <li><strong>Order/Subscription ID:</strong> ${orderId}</li>
+            <li><strong>Plan:</strong> ${planName}</li>
+            <li><strong>Amount:</strong> ${orderAmount}</li>
+            <li><strong>Email:</strong> sumitsheokand347@gmail.com</li>
+          </ul>
+        </div>
+      `;
+    });
+})();
+</script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

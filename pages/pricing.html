@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bostify SEO | Pricing</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  
+  <style>
+    /* Monthly Plan Section Styling */
+    .monthly-plan-section {
+      background: linear-gradient(135deg, rgba(0, 123, 255, 0.05), rgba(0, 200, 81, 0.05));
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      padding: 3rem;
+      margin: 3rem 0;
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .monthly-plan-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+      border-radius: 15px;
+      pointer-events: none;
+    }
+
+    .monthly-plan-section h2 {
+      font-size: 2.5rem;
+      color: #007bff;
+      text-align: center;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #007bff, #00c851);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+      z-index: 1;
+    }
+
+    .plan-description {
+      font-size: 1.2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #495057;
+      position: relative;
+      z-index: 1;
+    }
+
+    .monthly-order-form {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      color: #495057;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.8rem;
+      border: 2px solid rgba(0, 123, 255, 0.2);
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(5px);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 1);
+    }
+
+    .form-group select {
+      cursor: pointer;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .monthly-order-form .cta-button {
+      width: 100%;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      background: linear-gradient(135deg, #007bff, #00c851);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .monthly-order-form .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+      background: linear-gradient(135deg, #0056b3, #00a843);
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .monthly-plan-section {
+        padding: 2rem 1rem;
+        margin: 2rem 0;
+      }
+
+      .monthly-plan-section h2 {
+        font-size: 2rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .monthly-order-form {
+        padding: 1.5rem;
+      }
+    }
+
+    /* Payment Widgets Styling */
+    #monthly-widgets {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(15px);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-top: 2rem;
+      border: 1px solid rgba(0, 123, 255, 0.2);
+    }
+
+    #monthly-widgets h3 {
+      color: #007bff;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    #stripe-monthly-link {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: #6772e5;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    #stripe-monthly-link:hover {
+      background: #5469d4;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(103, 114, 229, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <h1>Bostify</h1>
+          <span>by Sumit Sheokand</span>
+        </div>
+        <ul class="nav-menu">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="pricing.html" class="nav-link active">Pricing</a></li>
+          <li><a href="monthly-audit.html" class="nav-link">Monthly Audits</a></li>
+          <li><a href="case-studies.html" class="nav-link">Results</a></li>
+          <li><a href="blog.html" class="nav-link">Blog</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link cta-nav">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero pricing-hero">
+    <div class="container">
+      <h1>Transparent SEO Pricing</h1>
+      <p>Flexible plans tailored to your business goals</p>
+    </div>
+  </section>
+
+  <!-- One-Time Services -->
+  <section class="one-time-services">
+    <div class="container">
+      <div class="section-header">
+        <h2>One-Time SEO Audits</h2>
+        <p>Comprehensive analysis of your website's SEO performance with actionable recommendations.</p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Basic SEO Audit -->
+        <div class="service-card glass-effect">
+          <div class="service-icon">🔍</div>
+          <h3>Basic SEO Audit</h3>
+          <div class="service-price">$500</div>
+          <div class="service-features">
+            <ul>
+              <li>✅ Technical SEO analysis</li>
+              <li>✅ On-page optimization review</li>
+              <li>✅ Site speed assessment</li>
+              <li>✅ Mobile-friendliness check</li>
+              <li>✅ Basic competitor analysis</li>
+              <li>✅ Prioritized action plan</li>
+            </ul>
+          </div>
+          <a href="basic-seo-audit.html" class="cta-button secondary">Order Now</a>
+        </div>
+
+        <!-- Comprehensive SEO Audit -->
+        <div class="service-card glass-effect featured">
+          <div class="service-icon">📊</div>
+          <h3>Comprehensive SEO Audit</h3>
+          <div class="service-price">$1000</div>
+          <div class="service-features">
+            <ul>
+              <li>✅ Complete technical analysis</li>
+              <li>✅ Content & keyword audit</li>
+              <li>✅ Backlink profile analysis</li>
+              <li>✅ Local SEO assessment</li>
+              <li>✅ Detailed competitor research</li>
+              <li>✅ Custom SEO strategy</li>
+              <li>✅ 1-hour consultation call</li>
+            </ul>
+          </div>
+          <a href="comprehensive-seo-audit.html" class="cta-button primary">Order Now</a>
+        </div>
+
+        <!-- Enterprise SEO Audit -->
+        <div class="service-card glass-effect">
+          <div class="service-icon">🎯</div>
+          <h3>Enterprise SEO Audit</h3>
+          <div class="service-price">$2,000</div>
+          <div class="service-features">
+            <ul>
+              <li>✅ Full-scale enterprise audit</li>
+              <li>✅ Multiple domain analysis</li>
+              <li>✅ International SEO review</li>
+              <li>✅ Advanced technical audit</li>
+              <li>✅ Team training session</li>
+              <li>✅ 90-day implementation roadmap</li>
+              <li>✅ Ongoing support for 30 days</li>
+            </ul>
+          </div>
+          <a href="enterprise-seo-audit.html" class="cta-button secondary">Order Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Monthly Plans -->
+  <section class="pricing">
+    <div class="container">
+      <div class="section-header">
+        <h2>Monthly SEO Plans</h2>
+        <p>Choose a monthly plan that fits your business needs and growth goals.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Starter Plan -->
+        <div class="pricing-card glass-effect">
+          <h3>Starter</h3>
+          <div class="price">$700<span>/month</span></div>
+          <ul>
+            <li>✅ Keyword research & tracking</li>
+            <li>✅ On-page SEO optimization</li>
+            <li>✅ Basic technical SEO fixes</li>
+            <li>✅ Monthly reporting</li>
+            <li>❌ Link building</li>
+            <li>❌ Content optimization</li>
+          </ul>
+          <a href="#monthly-form" class="cta-button secondary" onclick="showPaymentOptions('starter')">Get Started</a>
+        </div>
+
+        <!-- Growth Plan -->
+        <div class="pricing-card glass-effect featured">
+          <h3>Growth</h3>
+          <div class="price">$1,500<span>/month</span></div>
+          <ul>
+            <li>✅ Everything in Starter</li>
+            <li>✅ Content optimization</li>
+            <li>✅ Link building (5/mo)</li>
+            <li>✅ Local SEO optimization</li>
+            <li>✅ Competitor tracking</li>
+            <li>✅ Advanced reporting</li>
+          </ul>
+          <a href="#monthly-form" class="cta-button primary" onclick="showPaymentOptions('growth')">Get Started</a>
+        </div>
+
+        <!-- Enterprise Plan -->
+        <div class="pricing-card glass-effect">
+          <h3>Enterprise</h3>
+          <div class="price">$2,500<span>/month</span></div>
+          <ul>
+            <li>✅ Everything in Growth</li>
+            <li>✅ Unlimited keywords</li>
+            <li>✅ Custom content strategy</li>
+            <li>✅ Enterprise link building</li>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Not sure which plan is right for you?</h2>
+      <p>Choose a professional website audit and personalized recommendations</p>
+      <a href="contact.html" class="cta-button">View Audit Options</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <h3>Bostify SEO</h3>
+        <p>Boost your online visibility with data-driven SEO strategies.</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="case-studies.html">Case Studies</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-services">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="local-seo.html">Local SEO</a></li>
+          <li><a href="ecommerce-seo.html">E-commerce SEO</a></li>
+          <li><a href="technical-seo.html">Technical SEO</a></li>
+          <li><a href="content-optimization.html">Content Optimization</a></li>
+          <li><a href="link-building.html">Link Building</a></li>
+          <li><a href="basic-seo-audit.html">Basic SEO Audit</a></li>
+          <li><a href="comprehensive-seo-audit.html">Comprehensive SEO Audit</a></li>
+          <li><a href="enterprise-seo-audit.html">Enterprise SEO Audit</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>Email: <a href="mailto:sumitsheokand347@gmail.com">info@Bostify.com</a></p>
+        <p>Phone: +1 (905) 961-1902</p>
+        <div class="social-links">
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Bostify SEO. All rights reserved.</p>
+    </div>
+  </footer>
+
+<!-- Monthly Subscription Plan -->
+<section class="pricing monthly-subscription">
+  <div class="container">
+    <div class="monthly-plan-section">
+      <h2>Monthly SEO Plan (Recurring)</h2>
+      <p class="plan-description">Subscribe and get a monthly audit & prioritized recommendations. Price: <strong id="monthly-price">2000.00 CAD</strong> per month.</p>
+
+      <form id="monthly-form" class="monthly-order-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="monthly-name">Full Name *</label>
+            <input id="monthly-name" name="name" type="text" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="monthly-email">Email Address *</label>
+            <input id="monthly-email" name="email" type="email" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="monthly-phone">Phone Number *</label>
+            <input id="monthly-phone" name="phone" type="tel" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="monthly-company">Company Name *</label>
+            <input id="monthly-company" name="company" type="text" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="monthly-website">Website URL *</label>
+          <input id="monthly-website" name="website" type="url" required>
+        </div>
+
+        <div class="form-group">
+          <label for="monthly-traffic">Current Monthly Website Traffic *</label>
+          <select id="monthly-traffic" name="traffic" required>
+            <option value="">Select your traffic range</option>
+            <option value="0-1k">0 - 1,000 visitors</option>
+            <option value="1k-5k">1,000 - 5,000 visitors</option>
+            <option value="5k-10k">5,000 - 10,000 visitors</option>
+            <option value="10k-25k">10,000 - 25,000 visitors</option>
+            <option value="25k-50k">25,000 - 50,000 visitors</option>
+            <option value="50k-100k">50,000 - 100,000 visitors</option>
+            <option value="100k+">100,000+ visitors</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="monthly-extra-info">Additional Information</label>
+          <textarea id="monthly-extra-info" name="extraInfo" rows="4" placeholder="Tell us about your SEO goals, target audience, main competitors, or any specific requirements..."></textarea>
+        </div>
+
+        <button type="submit" class="cta-button primary">Subscribe Monthly</button>
+      </form>
+
+    <div id="monthly-widgets" style="display:none; margin-top:1rem;">
+      <div>
+        <h3>Pay with PayPal</h3>
+        <!-- PayPal subscription button will render here -->
+        <div id="paypal-subscribe-button"></div>
+      </div>
+
+      <div style="margin-top:1rem;">
+        <h3>Or subscribe with Stripe</h3>
+        <a id="stripe-monthly-link" class="cta-button" href="#" target="_blank" rel="noopener">Subscribe with Stripe</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../assets/js/config.js"></script>
+<!-- PayPal with vault and subscriptions enabled -->
+<script src="https://www.paypal.com/sdk/js?client-id=AQ8k0aDREdXnxFEkff8KN-YKSSfamT_JsozBGT2OU2Oaz7b41sx3gYDPfywmJjXJd4WvcH778BfzenC_&vault=true&intent=subscription&currency=CAD"></script>
+<script>
+(function(){
+  var cfg = window.Bostify_PAYMENT_CONFIG || {};
+  var monthlyPrice = (cfg.prices && cfg.prices.monthly) || "2000.00";
+  document.getElementById('monthly-price').innerText = monthlyPrice + " CAD";
+  document.getElementById('stripe-monthly-link').href = (cfg.stripe && cfg.stripe.monthly) || "#";
+
+  var form = document.getElementById('monthly-form');
+  var widgets = document.getElementById('monthly-widgets');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('monthly-name').value.trim();
+    var email = document.getElementById('monthly-email').value.trim();
+    if(!name || !email) return alert('Please enter name and email.');
+
+    sessionStorage.setItem('order_name', name);
+    sessionStorage.setItem('order_email', email);
+    sessionStorage.setItem('order_amount', monthlyPrice);
+    sessionStorage.setItem('order_audit', 'monthly');
+
+    widgets.style.display = 'block';
+
+    // Render PayPal subscription button (uses plan ID from config)
+    if(window.paypal && !window.paypalMonthlyRendered) {
+      var planId = (cfg.paypal && cfg.paypal.plans && cfg.paypal.plans.essential) || 'P-8TA79744TR582141LNCVCI2A';
+      if(!planId) {
+        // If no plan id configured show a notice in the button area
+        document.getElementById('paypal-subscribe-button').innerText = 'PayPal monthly plan not configured. Add plan ID in js/config.js';
+        window.paypalMonthlyRendered = true;
+        return;
+      }
+      paypal.Buttons({
+        createSubscription: function(data, actions) {
+          return actions.subscription.create({
+            'plan_id': planId
+          });
+        },
+        onApprove: function(data, actions) {
+          // data.subscriptionID
+          var subId = data.subscriptionID;
+          var orderId = subId || ("SUB-" + Math.floor(Math.random()*900000+100000));
+          var params = new URLSearchParams({
+            subscription_id: subId,
+            order_id: orderId,
+            email: sessionStorage.getItem('order_email') || '',
+            name: sessionStorage.getItem('order_name') || '',
+            amount: monthlyPrice,
+            audit: 'monthly'
+          });
+          window.location.href = "../pages/payment-success.html?" + params.toString();
+        },
+        onError: function(err){
+          console.error(err);
+          alert('Subscription error. Please try again.');
+        }
+      }).render('#paypal-subscribe-button');
+      window.paypalMonthlyRendered = true;
+    }
+  });
+})();
+
+// Show payment options function with enhanced plan details
+function showPaymentOptions(planType) {
+  // Enhanced plan details with comprehensive features
+  var planDetails = {
+    'starter': { 
+      price: '799.00', 
+      name: 'Essential Monitoring', 
+      features: [
+        'Technical SEO audit',
+        'On-page optimization check', 
+        'Performance monitoring',
+        'Monthly report',
+        'Priority recommendations',
+        'Email support'
+      ],
+      description: 'Perfect for small businesses starting their SEO journey'
+    },
+    'growth': { 
+      price: '1500.00', 
+      name: 'Professional Monitoring', 
+      features: [
+        'Everything in Essential',
+        'Comprehensive competitor analysis',
+        'Link profile monitoring',
+        'Content optimization suggestions',
+        'Keyword opportunity tracking',
+        'Monthly strategy call (30 min)',
+        'Priority email support'
+      ],
+      description: 'Ideal for growing businesses that need comprehensive SEO monitoring',
+      popular: true
+    },
+    'enterprise': { 
+      price: '2500.00', 
+      name: 'Complete Monitoring', 
+      features: [
+        'Everything in Professional',
+        'Multi-site monitoring (up to 5)',
+        'Advanced competitor intelligence',
+        'Custom dashboard access',
+        'Monthly strategy session (60 min)',
+        'Dedicated account manager',
+        'Phone & email support'
+      ],
+      description: 'Complete solution for enterprises and agencies'
+    }
+  };
+  
+  var selectedPlan = planDetails[planType] || planDetails['starter'];
+  
+  // Store comprehensive plan data for monthly audit page
+  sessionStorage.setItem('selectedPlan', selectedPlan.name);
+  sessionStorage.setItem('selectedPlanPrice', selectedPlan.price);
+  sessionStorage.setItem('selectedPlanFeatures', JSON.stringify(selectedPlan.features));
+  sessionStorage.setItem('selectedPlanDescription', selectedPlan.description);
+  sessionStorage.setItem('selectedPlanPopular', selectedPlan.popular || false);
+  
+  // Add visual feedback before redirect
+  var clickedButton = event.target;
+  var originalText = clickedButton.innerHTML;
+  clickedButton.innerHTML = '✅ Plan Selected! Redirecting...';
+  clickedButton.disabled = true;
+  
+  // Redirect to monthly audit page with animation
+  setTimeout(function() {
+    window.location.href = 'monthly-audit.html';
+  }, 800);
+}
+</script>
+<script src="../assets/js/main.js"></script>
+
+</body>
+</html>

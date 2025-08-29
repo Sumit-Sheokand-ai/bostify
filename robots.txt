@@ -1,0 +1,58 @@
+# Robots.txt for Bostify SEO Services
+# Premium configuration for maximum search engine optimization
+
+# Universal crawl settings
+User-agent: *
+Allow: /
+Crawl-delay: 1
+
+# Google-specific optimizations
+User-agent: Googlebot
+Allow: /
+Allow: *.css
+Allow: *.js
+Allow: *.json
+Allow: /assets/
+Crawl-delay: 0.5
+
+# Bing search optimization
+User-agent: Bingbot
+Allow: /
+Allow: *.css
+Allow: *.js
+Crawl-delay: 1
+
+# Yahoo search optimization
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Block sensitive areas
+Disallow: /admin/
+Disallow: /config/
+Disallow: /.env
+Disallow: /backup/
+Disallow: /logs/
+Disallow: *.log$
+Disallow: *.sql$
+
+# Block duplicate content parameters
+Disallow: /*?utm_*
+Disallow: /*?fbclid=*
+Disallow: /*?gclid=*
+Disallow: /*?ref=*
+Disallow: /*?sessionid=*
+Disallow: /*?PHPSESSID=*
+Disallow: /*?_ga*
+Disallow: /*?_gid*
+
+# Block payment processing
+Disallow: /payment-processing/
+Disallow: /*?payment=*
+Disallow: /*?checkout=*
+
+# Premium sitemap declarations
+Sitemap: https://bostify.com/sitemap.xml
+
+# Host preference for canonical domain
+Host: https://bostify.com

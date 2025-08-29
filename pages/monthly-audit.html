@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly SEO Audit Service - Ongoing Website Health Monitoring | Bostify</title>
+    <meta name="description" content="Get monthly SEO audits to continuously monitor your website's performance, track improvements, and stay ahead of competition. Professional ongoing SEO analysis.">
+    <meta name="keywords" content="monthly SEO audit, ongoing SEO monitoring, website health check, SEO maintenance, continuous optimization">
+    <meta name="author" content="Sumit Sheokand">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../assets/images/icon-basic.svg">
+    <link rel="icon" type="image/png" href="../assets/images/icon-basic.svg">
+    
+    <!-- Preload CSS for better performance -->
+    <link rel="preload" href="../assets/css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../assets/css/main.css"></noscript>
+    
+    <!-- Critical CSS - Load First -->
+    <style>
+        /* CSS Variables for Brand Colors */
+        :root {
+            --primary-green: #00c851;
+            --primary-blue: #007bff;
+            --white: #ffffff;
+            --dark-gray: #333333;
+            --light-gray: #f8f9fa;
+            --medium-gray: #6c757d;
+        }
+
+        /* Critical styles that must load first */
+        .modal {
+            position: fixed !important;
+            z-index: 10000 !important;
+            left: 0 !important;
+            top: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            background-color: rgba(0,0,0,0.5) !important;
+        }
+
+        .modal-content {
+            position: relative !important;
+            margin: 5% auto !important;
+            padding: 2rem !important;
+            width: 90% !important;
+            max-width: 600px !important;
+            background: white !important;
+            border-radius: 10px !important;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem !important;
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group label {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+        
+        #fullName,
+        #email,
+        #company,
+        #website,
+        #phone,
+        #message {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            width: 100% !important;
+            padding: 0.8rem !important;
+            border: 1px solid #ced4da !important;
+            border-radius: 5px !important;
+            background: white !important;
+        }
+
+        /* Essential Animations - Liquid Orbs */
+        .liquid-orb {
+            position: absolute !important;
+            border-radius: 50% !important;
+            background: linear-gradient(135deg, 
+                rgba(74, 144, 226, 0.3) 0%,
+                rgba(80, 201, 195, 0.2) 50%,
+                rgba(123, 104, 238, 0.3) 100%
+            ) !important;
+            filter: blur(40px) !important;
+            animation: floatOrb 6s ease-in-out infinite !important;
+            z-index: -1 !important;
+        }
+
+        .liquid-orb.orb-1 {
+            width: 300px !important;
+            height: 300px !important;
+            top: -150px !important;
+            right: -150px !important;
+            animation-delay: 0s !important;
+        }
+
+        .liquid-orb.orb-2 {
+            width: 200px !important;
+            height: 200px !important;
+            bottom: -100px !important;
+            left: -100px !important;
+            animation-delay: 2s !important;
+        }
+
+        @keyframes floatOrb {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(90deg); }
+            50% { transform: translateY(-10px) rotate(180deg); }
+            75% { transform: translateY(-15px) rotate(270deg); }
+        }
+
+        /* Essential Button Animations */
+        .cta-button {
+            transition: all 0.3s ease !important;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) !important;
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3) !important;
+        }
+
+        /* Glass Effect */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.25) !important;
+            backdrop-filter: blur(10px) !important;
+            -webkit-backdrop-filter: blur(10px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37) !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+        }
+
+        .glass-effect:hover {
+            transform: translateY(-10px) !important;
+            box-shadow: 0 15px 45px rgba(31, 38, 135, 0.5) !important;
+        }
+
+        /* Pulse Animation */
+        .pulse {
+            animation: pulse 2s infinite !important;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+    
+    <style>
+        /* Page-specific styles */
+        .monthly-audit-hero {
+            padding: 140px 0 80px !important;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green)) !important;
+            color: var(--white) !important;
+            position: relative !important;
+            overflow: hidden !important;
+            text-align: center !important;
+            min-height: 100vh !important;
+        }
+
+        .monthly-audit-hero h1 {
+            font-size: 3.5rem !important;
+            margin-bottom: 1rem !important;
+            color: white !important;
+            font-weight: 700 !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3) !important;
+        }
+
+        .monthly-audit-hero .hero-subtitle {
+            font-size: 1.5rem !important;
+            margin-bottom: 2rem !important;
+            color: rgba(255,255,255,0.9) !important;
+            font-weight: 300 !important;
+        }
+
+        .hero-features {
+            display: flex !important;
+            justify-content: center !important;
+            gap: 2rem !important;
+            margin: 2rem 0 !important;
+            flex-wrap: wrap !important;
+        }
+
+        .hero-features .feature {
+            background: rgba(255, 255, 255, 0.2) !important;
+            padding: 0.8rem 1.5rem !important;
+            border-radius: 25px !important;
+            backdrop-filter: blur(10px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+            color: white !important;
+            font-weight: 500 !important;
+            transition: transform 0.3s ease !important;
+        }
+
+        .hero-features .feature:hover {
+            transform: translateY(-5px) !important;
+            background: rgba(255, 255, 255, 0.3) !important;
+        }
+        
+        /* Modal and Form Styles */
+        .modal {
+            position: fixed !important;
+            z-index: 10000 !important;
+            left: 0 !important;
+            top: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            background-color: rgba(0,0,0,0.5) !important;
+            backdrop-filter: blur(10px) !important;
+            -webkit-backdrop-filter: blur(10px) !important;
+        }
+
+        .modal-content {
+            position: relative !important;
+            margin: 5% auto !important;
+            padding: 2rem !important;
+            width: 90% !important;
+            max-width: 600px !important;
+            max-height: 90vh !important;
+            overflow-y: auto !important;
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+            border-radius: 15px !important;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.25) !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+        }
+
+        .modal-content.glass-effect {
+            background: rgba(255, 255, 255, 0.25) !important;
+            backdrop-filter: blur(25px) !important;
+            -webkit-backdrop-filter: blur(25px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37) !important;
+        }
+
+        .modal-content::before {
+            content: '' !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%) !important;
+            border-radius: 15px !important;
+            pointer-events: none !important;
+            z-index: -1 !important;
+        }
+        
+        /* Form Styles */
+        .order-form {
+            width: 100% !important;
+            display: block !important;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem !important;
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            width: 100% !important;
+        }
+        
+        .form-group label {
+            display: block !important;
+            margin-bottom: 0.5rem !important;
+            font-weight: 600 !important;
+            color: #495057 !important;
+            visibility: visible !important;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            width: 100% !important;
+            padding: 0.8rem !important;
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+            border-radius: 8px !important;
+            font-size: 1rem !important;
+            font-family: inherit !important;
+            background: rgba(255, 255, 255, 0.8) !important;
+            backdrop-filter: blur(10px) !important;
+            -webkit-backdrop-filter: blur(10px) !important;
+            color: #495057 !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none !important;
+            border-color: rgba(0, 123, 255, 0.6) !important;
+            background: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1), 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+            transform: translateY(-1px) !important;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(73, 80, 87, 0.7) !important;
+        }
+        
+        /* Select Dropdown Styling */
+        .form-group select {
+            cursor: pointer !important;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") !important;
+            background-position: right 0.5rem center !important;
+            background-repeat: no-repeat !important;
+            background-size: 1.5em 1.5em !important;
+            padding-right: 2.5rem !important;
+            -webkit-appearance: none !important;
+            -moz-appearance: none !important;
+            appearance: none !important;
+        }
+        
+        .form-group select option {
+            background: white !important;
+            color: #495057 !important;
+            padding: 0.5rem !important;
+        }
+        
+        /* Submit Button Glass Effect */
+        .order-form .cta-button {
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.9), rgba(0, 200, 81, 0.9)) !important;
+            backdrop-filter: blur(10px) !important;
+            -webkit-backdrop-filter: blur(10px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+            color: white !important;
+            padding: 12px 30px !important;
+            border-radius: 25px !important;
+            font-weight: 600 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 1px !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3) !important;
+            margin-top: 1rem !important;
+            width: 100% !important;
+        }
+
+        .order-form .cta-button:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4) !important;
+            background: linear-gradient(135deg, rgba(0, 123, 255, 1), rgba(0, 200, 81, 1)) !important;
+        }
+
+        .order-form .cta-button:active {
+            transform: translateY(0) !important;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3) !important;
+        }
+
+        /* Close button */
+        .close {
+            color: #aaa !important;
+            float: right !important;
+            font-size: 28px !important;
+            font-weight: bold !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            position: absolute !important;
+            top: 15px !important;
+            right: 20px !important;
+            width: 30px !important;
+            height: 30px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            border-radius: 50% !important;
+            background: rgba(255, 255, 255, 0.1) !important;
+            backdrop-filter: blur(10px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: #ff4757 !important;
+            text-decoration: none !important;
+            transform: scale(1.1) rotate(90deg) !important;
+            background: rgba(255, 71, 87, 0.1) !important;
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3) !important;
+        }
+
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+            gap: 2rem !important;
+            margin-top: 3rem !important;
+        }
+
+        .pricing-card {
+            position: relative !important;
+            padding: 2rem !important;
+            border-radius: 15px !important;
+            text-align: center !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.05) !important;
+            border: 2px solid var(--primary-green) !important;
+        }
+
+        .pricing-card .plan-badge {
+            position: absolute !important;
+            top: -10px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            background: var(--primary-green) !important;
+            color: white !important;
+            padding: 0.5rem 1rem !important;
+            border-radius: 20px !important;
+            font-size: 0.8rem !important;
+            font-weight: 600 !important;
+            text-transform: uppercase !important;
+        }
+
+        .pricing-card .plan-badge.popular {
+            background: var(--primary-blue) !important;
+        }
+
+        .pricing-card .price {
+            font-size: 2.5rem !important;
+            font-weight: 700 !important;
+            color: var(--primary-blue) !important;
+            margin: 1rem 0 !important;
+        }
+
+        .pricing-card .price span {
+            font-size: 1rem !important;
+            color: var(--medium-gray) !important;
+        }
+    </style>
+    
+    <!-- PayPal SDK for Subscriptions - Enhanced Loading -->
+    <script>
+        // Enhanced PayPal SDK loading with diagnostics
+        console.log('🔍 Starting PayPal SDK load process...');
+        
+        // Create script element dynamically for better control
+        const paypalScript = document.createElement('script');
+        paypalScript.src = 'https://www.paypal.com/sdk/js?client-id=AQ8k0aDREdXnxFEkff8KN-YKSSfamT_JsozBGT2OU2Oaz7b41sx3gYDPfywmJjXJd4WvcH778BfzenC_&vault=true&intent=subscription&currency=CAD&disable-funding=credit,card&enable-funding=venmo';
+        
+        paypalScript.onload = function() {
+            console.log('✅ PayPal SDK script loaded successfully');
+            console.log('PayPal object available:', typeof paypal !== 'undefined');
+            if (typeof paypal !== 'undefined') {
+                console.log('PayPal methods:', Object.keys(paypal));
+                window.paypalSDKReady = true;
+            } else {
+                console.error('❌ PayPal object not available after script load');
+            }
+        };
+        
+        paypalScript.onerror = function(error) {
+            console.error('❌ PayPal SDK failed to load:', error);
+            console.log('Error details:', {
+                src: paypalScript.src,
+                readyState: paypalScript.readyState,
+                status: paypalScript.status
+            });
+            window.paypalSDKFailed = true;
+        };
+        
+        // Add script to head
+        document.head.appendChild(paypalScript);
+        
+        // Alternative: Also try the original method as backup
+        const backupScript = document.createElement('script');
+        backupScript.src = 'https://www.paypal.com/sdk/js?client-id=AQ8k0aDREdXnxFEkff8KN-YKSSfamT_JsozBGT2OU2Oaz7b41sx3gYDPfywmJjXJd4WvcH778BfzenC_&vault=true&intent=subscription&currency=CAD';
+        
+        setTimeout(() => {
+            if (!window.paypalSDKReady && !window.paypalSDKFailed) {
+                console.log('🔄 Trying backup PayPal SDK load...');
+                document.head.appendChild(backupScript);
+            }
+        }, 3000);
+    </script>
+    
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("1CLi83bvtJrxPnH1m"); // Replace with your EmailJS public key
+        })();
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="../index.html">
+                        <h1>Bostify</h1>
+                        <span>by Sumit Sheokand</span>
+                    </a>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li><a href="../index.html" class="nav-link">Home</a></li>
+                    <li><a href="services.html" class="nav-link">Services</a></li>
+                    <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+                    <li><a href="case-studies.html" class="nav-link">Results</a></li>
+                    <li><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="contact.html" class="nav-link cta-nav">Contact</a></li>
+                </ul>
+                
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="service-hero monthly-audit-hero">
+        <div class="liquid-orb orb-1"></div>
+        <div class="liquid-orb orb-2"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Monthly SEO Audit Service</h1>
+                <p class="hero-subtitle">Continuous monitoring and optimization to keep your website at peak performance</p>
+                
+    <!-- Selected Plan Display (Enhanced with better UI) -->
+                <div id="selectedPlanDisplay" class="selected-plan-banner" style="display: none;">
+                    <div class="selected-plan-content">
+                        <div class="plan-header">
+                            <div class="plan-checkmark">✅</div>
+                            <h3>Selected Plan: <span id="displayPlanName"></span></h3>
+                        </div>
+                        <div class="plan-details">
+                            <div class="price-display">
+                                <span class="currency">$</span>
+                                <span class="price" id="displayPlanPriceNumber"></span>
+                                <span class="period">/month</span>
+                            </div>
+                            <div class="plan-features">
+                                <h4>What's Included:</h4>
+                                <ul id="displayPlanFeaturesList"></ul>
+                            </div>
+                        </div>
+                        <div class="plan-actions">
+                            <button class="cta-button primary pulse" onclick="proceedWithSelectedPlan()">
+                                <span class="button-icon">🚀</span>
+                                Continue with <span id="planNameInButton"></span>
+                            </button>
+                            <button class="cta-button secondary outline" onclick="clearSelectedPlan()">
+                                <span class="button-icon">🔄</span>
+                                Choose Different Plan
+                            </button>
+                        </div>
+                        <div class="trust-signals">
+                            <span class="trust-item">⭐ 4.9/5 Rating</span>
+                            <span class="trust-item">🛡️ 30-Day Guarantee</span>
+                            <span class="trust-item">📞 24/7 Support</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-features">
+                    <span class="feature">📊 Monthly Health Reports</span>
+                    <span class="feature">🔍 Ongoing Monitoring</span>
+                    <span class="feature">📈 Performance Tracking</span>
+                    <span class="feature">🎯 Action Plans</span>
+                </div>
+                <a href="#pricing" class="cta-button primary large">Start Monthly Audits</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Plans -->
+    <section class="pricing monthly-pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Monthly Audit Plans</h2>
+                <p>Choose the perfect monthly audit plan for your business needs and budget.</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <!-- Basic Monthly Plan -->
+                <div class="pricing-card glass-effect">
+                    <div class="plan-badge">Basic</div>
+                    <h3>Essential Monitoring</h3>
+                    <div class="price">$799<span>/month</span></div>
+                    <div class="plan-features">
+                        <ul>
+                            <li>✅ Technical SEO audit</li>
+                            <li>✅ On-page optimization check</li>
+                            <li>✅ Performance monitoring</li>
+                            <li>✅ Monthly report</li>
+                            <li>✅ Priority recommendations</li>
+                            <li>✅ Email support</li>
+                        </ul>
+                    </div>
+                    <button class="cta-button secondary" onclick="return selectPlan('Essential Monitoring');">Select Plan</button>
+                </div>
+
+                <!-- Professional Monthly Plan -->
+                <div class="pricing-card glass-effect featured">
+                    <div class="plan-badge popular">Most Popular</div>
+                    <h3>Professional Monitoring</h3>
+                    <div class="price">$1500<span>/month</span></div>
+                    <div class="plan-features">
+                        <ul>
+                            <li>✅ Everything in Essential</li>
+                            <li>✅ Comprehensive competitor analysis</li>
+                            <li>✅ Link profile monitoring</li>
+                            <li>✅ Content optimization suggestions</li>
+                            <li>✅ Keyword opportunity tracking</li>
+                            <li>✅ Monthly strategy call (30 min)</li>
+                            <li>✅ Priority email support</li>
+                        </ul>
+                    </div>
+                    <button class="cta-button primary" onclick="return selectPlan('Professional Monitoring');">Select Plan</button>
+                </div>
+
+                <!-- Enterprise Monthly Plan -->
+                <div class="pricing-card glass-effect">
+                    <div class="plan-badge">Enterprise</div>
+                    <h3>Enterprise Monitoring</h3>
+                    <div class="price">$2000<span>/month</span></div>
+                    <div class="plan-features">
+                        <ul>
+                            <li>✅ Everything in Professional</li>
+                            <li>✅ Multi-site monitoring (up to 3)</li>
+                            <li>✅ Advanced competitor intelligence</li>
+                            <li>✅ Custom dashboard access</li>
+                            <li>✅ Monthly strategy session (45 min)</li>
+                            <li>✅ Priority support</li>
+                            <li>✅ Phone & email support</li>
+                        </ul>
+                    </div>
+                    <button class="cta-button secondary" onclick="return selectPlan('Enterprise Monitoring');">Select Plan</button>
+                </div>
+
+                <!-- Complete Monthly Plan -->
+                <div class="pricing-card glass-effect">
+                    <div class="plan-badge">Complete</div>
+                    <h3>Complete Monitoring</h3>
+                    <div class="price">$2500<span>/month</span></div>
+                    <div class="plan-features">
+                        <ul>
+                            <li>✅ Everything in Professional</li>
+                            <li>✅ Multi-site monitoring (up to 5)</li>
+                            <li>✅ Advanced competitor intelligence</li>
+                            <li>✅ Custom dashboard access</li>
+                            <li>✅ Monthly strategy session (60 min)</li>
+                            <li>✅ Dedicated account manager</li>
+                            <li>✅ Phone & email support</li>
+                        </ul>
+                    </div>
+                    <button class="cta-button secondary" onclick="return selectPlan('Complete Monitoring');">Select Plan</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Modal -->
+    <div id="orderModal" class="modal" style="display: none;">
+        <div class="modal-content glass-effect">
+            <span class="close" id="closeOrderModal">&times;</span>
+            <h2>Order Monthly Audit Service</h2>
+            
+            <form id="orderForm" class="order-form">
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="company">Company Name *</label>
+                    <input type="text" id="company" name="company" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="website">Website URL *</label>
+                    <input type="url" id="website" name="website" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="traffic">Current Monthly Website Traffic *</label>
+                    <select id="traffic" name="traffic" required>
+                        <option value="">Select your traffic range</option>
+                        <option value="0-1k">0 - 1,000 visitors</option>
+                        <option value="1k-5k">1,000 - 5,000 visitors</option>
+                        <option value="5k-10k">5,000 - 10,000 visitors</option>
+                        <option value="10k-25k">10,000 - 25,000 visitors</option>
+                        <option value="25k-50k">25,000 - 50,000 visitors</option>
+                        <option value="50k-100k">50,000 - 100,000 visitors</option>
+                        <option value="100k+">100,000+ visitors</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Additional Message *</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Tell us about your SEO goals and any specific requirements..." required></textarea>
+                </div>
+                
+                <!-- Hidden fields for selected plan -->
+                <input type="hidden" id="selectedPlan" name="selectedPlan" value="">
+                <input type="hidden" id="planPrice" name="planPrice" value="">
+                
+                <button type="submit" class="cta-button primary">Proceed to Payment</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Payment Options Modal -->
+    <div id="paymentOptionsModal" class="modal" style="display: none;">
+        <div class="modal-content glass-effect" style="text-align:center; max-width:400px;">
+            <span class="close" id="closePaymentOptions">&times;</span>
+            <h3>Choose Payment Method</h3>
+            <a id="stripe-payment-link-popup" href="#" target="_blank" class="cta-button primary" style="width: 80%; margin-bottom: 1rem;">Pay with Stripe</a>
+            <div id="paypal-subscription-button-popup" style="width: 80%; margin: 0 auto;"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <h3>Bostify</h3>
+                        <span>by Sumit Sheokand</span>
+                    </div>
+                    <p>Helping businesses rank higher on Google and get more customers through proven SEO strategies.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html#on-page">On-Page SEO</a></li>
+                        <li><a href="services.html#off-page">Off-Page SEO</a></li>
+                        <li><a href="services.html#technical">Technical SEO</a></li>
+                        <li><a href="services.html#local-seo">Local SEO</a></li>
+                        <li><a href="monthly-audit.html">Monthly Audits</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="blog.html">SEO Blog</a></li>
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: sumitsheokand347@gmail.com</p>
+                    <p>Get in touch for a consultation</p>
+                    <a href="contact.html" class="footer-cta">Contact Us</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Bostify by Sumit Sheokand. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="../index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../assets/js/main.js"></script>
+    
+    <!-- Simple Form Initialization -->
+    <script>
+        // Ensure form is always visible - simplified
+        function forceFormVisibility() {
+            console.log('Running forceFormVisibility...');
+            const formIds = ['fullName', 'email', 'company', 'website', 'phone', 'traffic', 'message'];
+            
+            formIds.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    if (element.tagName.toLowerCase() === 'select') {
+                        element.style.cssText = 'display: block !important; visibility: visible !important; opacity: 1 !important; width: 100% !important; padding: 0.8rem !important; border: 1px solid #ced4da !important; border-radius: 5px !important; background: white !important; cursor: pointer !important;';
+                    } else {
+                        element.style.cssText = 'display: block !important; visibility: visible !important; opacity: 1 !important; width: 100% !important; padding: 0.8rem !important; border: 1px solid #ced4da !important; border-radius: 5px !important; background: white !important;';
+                    }
+                    console.log('Forced visibility for:', id);
+                } else {
+                    console.log('Element not found yet:', id);
+                }
+            });
+            
+            // Make sure all form groups are visible
+            document.querySelectorAll('.form-group').forEach(group => {
+                group.style.cssText = 'display: block !important; visibility: visible !important; opacity: 1 !important; margin-bottom: 1.5rem !important;';
+            });
+            
+            console.log('Form visibility forced completed');
+        }
+        
+        // Run multiple times to ensure it works regardless of timing
+        forceFormVisibility(); // Run immediately
+        
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', forceFormVisibility);
+        } else {
+            forceFormVisibility();
+        }
+        
+        // Multiple fallback timings
+        setTimeout(forceFormVisibility, 50);
+        setTimeout(forceFormVisibility, 200);
+        setTimeout(forceFormVisibility, 500);
+        
+        // Run when window loads (everything including CSS)
+        window.addEventListener('load', forceFormVisibility);
+        
+        console.log('Form initialization script loaded');
+    </script>
+    
+    <script>
+        // You must create subscription plans in your PayPal Business account and get the Plan IDs.
+        const planDetails = {
+            'Essential Monitoring': { 
+                price: 799, 
+                planId: 'P-72525346SJ635940RNCYRP7I',
+                stripe: 'https://buy.stripe.com/fZueVfgMFbOn8G5cl99Ve03'
+            },
+            'Professional Monitoring': { 
+                price: 1500, 
+                planId: 'P-1R507775TN084534GNCYRR5A',
+                stripe: 'https://buy.stripe.com/4gM00laohcSrf4t84T9Ve04'
+            },
+            'Enterprise Monitoring': { 
+                price: 2000, 
+                planId: 'P-39E56739XW385500SNCYR2000',
+                stripe: 'https://buy.stripe.com/4gM7sNgMF19JcWlad19Ve05'
+            },
+            'Complete Monitoring': { 
+                price: 2500, 
+                planId: 'P-6GD104850B817825DNCYR3OA',
+                stripe: 'https://buy.stripe.com/9B6aEZfIB2dN8G570P9Ve06'
+            }
+        };
+
+        const modal = document.getElementById('orderModal');
+        const form = document.getElementById('orderForm');
+        const closeButton = document.getElementsByClassName('close')[0];
+
+        // Payment options modal elements
+        const paymentOptionsModal = document.getElementById('paymentOptionsModal');
+        const closePaymentOptions = document.getElementById('closePaymentOptions');
+        const stripePaymentLinkPopup = document.getElementById('stripe-payment-link-popup');
+
+        let currentOrderData = {};
+        let selectedPlanId = '';
+
+        // Simple, clean plan selection function
+        function selectPlan(planName) {
+            console.log('=== Plan Selection Started ===');
+            console.log('Plan Name:', planName);
+            
+            const details = planDetails[planName];
+            if (!details) {
+                console.error('Plan details not found');
+                alert('Plan details not found. Please try again.');
+                return false;
+            }
+            
+            selectedPlanId = details.planId;
+            console.log('Plan ID:', selectedPlanId);
+            console.log('Plan Price:', details.price);
+            console.log('Plan Details:', details);
+            
+            // Store plan details for payment processing
+            currentOrderData.selectedPlan = planName;
+            currentOrderData.planPrice = '$' + details.price + '/month';
+            
+            // Update hidden form fields immediately
+            const selectedPlanInput = document.getElementById('selectedPlan');
+            const planPriceInput = document.getElementById('planPrice');
+            
+            if (selectedPlanInput) {
+                selectedPlanInput.value = planName;
+                console.log('Set selectedPlan input to:', planName);
+            }
+            
+            if (planPriceInput) {
+                planPriceInput.value = '$' + details.price + '/month';
+                console.log('Set planPrice input to:', '$' + details.price + '/month');
+            }
+            
+            // Show modal
+            const modal = document.getElementById('orderModal');
+            if (modal) {
+                modal.style.display = 'block';
+                console.log('Modal displayed');
+            } else {
+                console.error('Modal not found');
+            }
+            
+            console.log('=== Plan Selection Completed ===');
+            return false;
+        }
+        
+        // Make function globally available
+        window.selectPlan = selectPlan;
+
+        // Setup modal event handlers with proper checks
+        function setupModalHandlers() {
+            const modal = document.getElementById('orderModal');
+            const closeButton = document.getElementById('closeOrderModal');
+            const paymentOptionsModal = document.getElementById('paymentOptionsModal');
+            const closePaymentOptions = document.getElementById('closePaymentOptions');
+            
+            if (closeButton && modal) {
+                closeButton.onclick = function() {
+                    modal.style.display = 'none';
+                    console.log('Order modal closed via close button');
+                }
+                console.log('Close button handler attached');
+            } else {
+                console.log('Close button or modal not found');
+            }
+
+            if (closePaymentOptions && paymentOptionsModal) {
+                closePaymentOptions.onclick = function() {
+                    paymentOptionsModal.style.display = 'none';
+                }
+            }
+
+            window.onclick = function(event) {
+                if (modal && event.target == modal) {
+                    modal.style.display = 'none';
+                    console.log('Order modal closed via backdrop click');
+                }
+                if (paymentOptionsModal && event.target == paymentOptionsModal) {
+                    paymentOptionsModal.style.display = 'none';
+                }
+            }
+        }
+        
+        // Setup handlers immediately and with delay
+        setupModalHandlers();
+        setTimeout(setupModalHandlers, 100);
+        setTimeout(setupModalHandlers, 500);
+
+        // Additional fallback for close button using event delegation
+        document.addEventListener('click', function(event) {
+            if (event.target && event.target.id === 'closeOrderModal') {
+                const modal = document.getElementById('orderModal');
+                if (modal) {
+                    modal.style.display = 'none';
+                    console.log('Order modal closed via delegated event');
+                }
+            }
+        });
+
+        // Also setup when DOM is fully loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', setupModalHandlers);
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Store form data
+            const formData = new FormData(this);
+            currentOrderData = Object.fromEntries(formData);
+            
+            console.log('=== FORM SUBMISSION DEBUG ===');
+            console.log('Form Data:', currentOrderData);
+            console.log('Selected Plan from form:', currentOrderData.selectedPlan);
+
+            // Set Stripe link for the selected plan
+            const planName = currentOrderData.selectedPlan;
+            if (planDetails[planName]) {
+                stripePaymentLinkPopup.href = planDetails[planName].stripe;
+                selectedPlanId = planDetails[planName].planId;
+                console.log('✅ Plan found in planDetails. Plan ID set to:', selectedPlanId);
+            } else {
+                console.error('❌ Plan not found in planDetails:', planName);
+                console.log('Available plans:', Object.keys(planDetails));
+                stripePaymentLinkPopup.href = "#";
+                selectedPlanId = '';
+            }
+
+            // Show payment options modal
+            paymentOptionsModal.style.display = 'block';
+
+            // Render PayPal button in the popup
+            renderPayPalButtonPopup();
+        });
+
+        function renderPayPalButtonPopup() {
+            console.log('🔄 RENDERING FRESH PAYPAL BUTTON');
+            console.log('Selected Plan ID:', selectedPlanId);
+            console.log('Current Order Data:', currentOrderData);
+            console.log('Available Plan Details:', planDetails);
+            
+            if (!selectedPlanId) {
+                console.error('❌ selectedPlanId is empty or undefined');
+                console.log('Attempting to get plan from currentOrderData...');
+                
+                const planName = currentOrderData.selectedPlan;
+                if (planName && planDetails[planName]) {
+                    selectedPlanId = planDetails[planName].planId;
+                    console.log('✅ Recovered plan ID from currentOrderData:', selectedPlanId);
+                } else {
+                    console.error('❌ Could not recover plan ID');
+                    showError('Plan Selection Error', 'Please select a plan first by clicking "Select Plan" button.');
+                    return;
+                }
+            }
+            
+            if (selectedPlanId.startsWith('REPLACE')) {
+                console.error('❌ Plan ID contains REPLACE placeholder:', selectedPlanId);
+                showError('PayPal Configuration Error', 'Payment system is not properly configured. Please contact support at sumitsheokand347@gmail.com');
+                return;
+            }
+            
+            console.log('✅ Using Plan ID:', selectedPlanId);
+            
+            // Show loading indicator
+            const paypalContainer = document.getElementById('paypal-subscription-button-popup');
+            paypalContainer.innerHTML = '<div class="payment-loading">🔄 Initializing PayPal...</div>';
+            
+            // Enhanced PayPal SDK checking
+            console.log('🔍 Checking PayPal SDK availability...');
+            console.log('window.paypalSDKReady:', window.paypalSDKReady);
+            console.log('window.paypalSDKFailed:', window.paypalSDKFailed);
+            console.log('typeof paypal:', typeof paypal);
+            
+            // Check if PayPal SDK failed to load
+            if (window.paypalSDKFailed) {
+                console.error('❌ PayPal SDK previously failed to load');
+                showError('PayPal Network Error', 'PayPal services are temporarily unavailable. Please check your internet connection and try again, or use the Stripe option.');
+                paypalContainer.innerHTML = `
+                    <div class="payment-fallback">
+                        <p>❌ PayPal temporarily unavailable</p>
+                        <button onclick="location.reload()" class="cta-button secondary">🔄 Reload Page</button>
+                        <p><small>Or use the Stripe payment option above</small></p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Check if PayPal SDK is loaded
+            if (typeof paypal === 'undefined') {
+                console.log('⏳ PayPal SDK not ready yet, implementing enhanced wait...');
+                paypalContainer.innerHTML = '<div class="payment-loading">⏳ Loading PayPal SDK...</div>';
+                
+                // Enhanced waiting with multiple strategies
+                let checkCount = 0;
+                const maxChecks = 30; // 15 seconds timeout
+                
+                const checkPayPal = setInterval(() => {
+                    checkCount++;
+                    console.log(`🔍 PayPal check attempt ${checkCount}/${maxChecks}`);
+                    console.log('- typeof paypal:', typeof paypal);
+                    console.log('- window.paypalSDKReady:', window.paypalSDKReady);
+                    
+                    // Update loading message
+                    if (checkCount % 4 === 0) {
+                        paypalContainer.innerHTML = `<div class="payment-loading">⏳ Loading PayPal SDK... (${Math.ceil(checkCount/2)}s)</div>`;
+                    }
+                    
+                    if (typeof paypal !== 'undefined') {
+                        console.log('✅ PayPal SDK detected and ready!');
+                        clearInterval(checkPayPal);
+                        renderPayPalButtonsNow();
+                    } else if (checkCount >= maxChecks) {
+                        console.error('❌ PayPal SDK timeout after 15 seconds');
+                        clearInterval(checkPayPal);
+                        
+                        showError('PayPal Loading Timeout', 'PayPal payment system is taking too long to load. Please refresh the page or try the Stripe option.');
+                        paypalContainer.innerHTML = `
+                            <div class="payment-fallback">
+                                <p>⏰ PayPal loading timeout</p>
+                                <button onclick="location.reload()" class="cta-button secondary">🔄 Refresh Page</button>
+                                <button onclick="window.renderPayPalButtonPopup()" class="cta-button secondary">🔄 Retry PayPal</button>
+                                <p><small>Or use the Stripe payment option above</small></p>
+                            </div>
+                        `;
+                    }
+                }, 500);
+                
+                return;
+            }
+            
+            // PayPal SDK is ready, render buttons immediately
+            console.log('🚀 PayPal SDK ready! Rendering buttons now...');
+            renderPayPalButtonsNow();
+            
+            function renderPayPalButtonsNow() {
+                console.log('🚀 Rendering PayPal buttons now...');
+                
+                try {
+                paypal.Buttons({
+                    style: {
+                        shape: 'rect',
+                        color: 'blue',
+                        layout: 'horizontal',
+                        label: 'subscribe',
+                        height: 40
+                    },
+                    createSubscription: function(data, actions) {
+                        // Track payment attempt
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'begin_checkout', {
+                                currency: 'CAD',
+                                value: planDetails[currentOrderData.selectedPlan]?.price || 0,
+                                payment_method: 'paypal'
+                            });
+                        }
+                        
+                        return actions.subscription.create({
+                            'plan_id': selectedPlanId,
+                            'application_context': {
+                                'brand_name': 'Bostify SEO Services',
+                                'user_action': 'SUBSCRIBE_NOW',
+                                'payment_method': {
+                                    'payer_selected': 'PAYPAL',
+                                    'payee_preferred': 'IMMEDIATE_PAYMENT_REQUIRED'
+                                }
+                            }
+                        }).then(function(subscriptionId) {
+                            console.log('✅ PayPal Subscription Created Successfully!');
+                            console.log('🔍 PAYMENT DEBUG INFO:');
+                            console.log('- Subscription ID:', subscriptionId);
+                            console.log('- Plan ID Used:', selectedPlanId);
+                            console.log('- Selected Plan Name:', currentOrderData.selectedPlan);
+                            console.log('- Expected Price:', planDetails[currentOrderData.selectedPlan]?.price);
+                            console.log('- Currency: CAD');
+                            console.log('');
+                            console.log('⚠️ PRICE MISMATCH ALERT:');
+                            console.log('If PayPal shows $902.87 instead of expected price,');
+                            console.log('the PayPal plan needs to be updated in your PayPal dashboard.');
+                            console.log('Current plan mapping:', {
+                                planName: currentOrderData.selectedPlan,
+                                expectedPrice: planDetails[currentOrderData.selectedPlan]?.price,
+                                planId: selectedPlanId
+                            });
+                            
+                            return subscriptionId;
+                        }).catch(error => {
+                            console.error('PayPal subscription creation error:', error);
+                            showError('Subscription Setup Error', 'Unable to initialize subscription. Please try again or use the Stripe option.');
+                            throw error;
+                        });
+                    },
+                    onApprove: function(data, actions) {
+                        try {
+                            // Track successful payment
+                            if (typeof gtag !== 'undefined') {
+                                gtag('event', 'purchase', {
+                                    transaction_id: data.subscriptionID,
+                                    value: planDetails[currentOrderData.selectedPlan]?.price || 0,
+                                    currency: 'CAD',
+                                    payment_method: 'paypal'
+                                });
+                            }
+                            
+                            currentOrderData.subscriptionID = data.subscriptionID;
+                            currentOrderData.paymentMethod = 'PayPal';
+                            currentOrderData.paymentStatus = 'approved';
+                            
+                            showSuccessMessage('Payment Successful! \ud83c\udf89', 'Your subscription is active. Processing your order details...');
+                            
+                            // Close payment modal immediately
+                            paymentOptionsModal.style.display = 'none';
+                            
+                            // Send order confirmation
+                            sendOrderEmail();
+                            
+                            // Redirect to success page after 3 seconds
+                            setTimeout(() => {
+                                window.location.href = 'payment-success.html?subscription=' + data.subscriptionID + '&plan=' + encodeURIComponent(currentOrderData.selectedPlan);
+                            }, 3000);
+                            
+                        } catch (error) {
+                            console.error('Payment approval processing error:', error);
+                            showError('Processing Error', `Payment was successful (ID: ${data.subscriptionID}), but there was an error processing your order. Please save this subscription ID and contact us at sumitsheokand347@gmail.com.`);
+                        }
+                    },
+                    onCancel: function(data) {
+                        // Track cancellation
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'checkout_cancel', {
+                                payment_method: 'paypal'
+                            });
+                        }
+                        
+                        showInfo('Payment Cancelled', 'No worries! You can complete your subscription anytime. Your plan details are saved.');
+                        paymentOptionsModal.style.display = 'none';
+                    },
+                    onError: function(err) {
+                        console.error('PayPal Button Error:', err);
+                        
+                        // Track error
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'checkout_error', {
+                                error_message: err.message || 'PayPal error',
+                                payment_method: 'paypal'
+                            });
+                        }
+                        
+                        showError('Payment System Error', 'There was a technical issue with PayPal. Please try the Stripe option or contact us directly at sumitsheokand347@gmail.com.');
+                        paymentOptionsModal.style.display = 'none';
+                    }
+                }).render('#paypal-subscription-button-popup');
+                } catch (error) {
+                    console.error('PayPal button rendering error:', error);
+                    showError('System Error', 'Unable to load PayPal payment system. Please refresh the page or try the Stripe option.');
+                    
+                    // Provide alternative contact method
+                    paypalContainer.innerHTML = `
+                        <div class="payment-fallback">
+                            <p>Having trouble? Contact us directly:</p>
+                            <a href="mailto:sumitsheokand347@gmail.com?subject=Monthly Audit Subscription&body=Hi! I'd like to subscribe to the ${currentOrderData.selectedPlan} plan." class="cta-button secondary">Email Us</a>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        function sendOrderEmail() {
+            emailjs.send('service_lqo17bk', 'template_noice5r', { // Replace with your Service & Template ID
+                to_name: 'Sumit Sheokand',
+                from_name: currentOrderData.fullName,
+                from_email: currentOrderData.email,
+                company: currentOrderData.company,
+                website: currentOrderData.website,
+                phone: currentOrderData.phone,
+                plan: currentOrderData.selectedPlan,
+                price: currentOrderData.planPrice,
+                message: currentOrderData.message,
+                subscription_id: currentOrderData.subscriptionID, // Send subscription ID
+                service_type: 'Monthly SEO Audit Subscription'
+            })
+            .then(function(response) {
+                alert('Subscription successful! We will contact you soon to get started.');
+                modal.style.display = 'none';
+                paymentOptionsModal.style.display = 'none';
+                form.reset();
+            }, function(error) {
+                console.error('EmailJS Error:', error);
+                alert('Your payment was successful, but we failed to send the confirmation email. Please contact us directly. Subscription ID: ' + currentOrderData.subscriptionID);
+            });
+        }
+
+        // Plan selection functionality from pricing page
+        function proceedWithSelectedPlan() {
+            const planName = sessionStorage.getItem('selectedPlan');
+            if (planName && planDetails[planName]) {
+                selectPlan(planName);
+            }
+        }
+
+        function clearSelectedPlan() {
+            sessionStorage.removeItem('selectedPlan');
+            sessionStorage.removeItem('selectedPlanPrice');
+            sessionStorage.removeItem('selectedPlanFeatures');
+            document.getElementById('selectedPlanDisplay').style.display = 'none';
+        }
+
+        // Plan display on page load (simplified)
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM Content Loaded - Setting up plan display');
+            
+            // Force form visibility first
+            forceFormVisibility();
+            
+            const selectedPlan = sessionStorage.getItem('selectedPlan');
+            const selectedPlanPrice = sessionStorage.getItem('selectedPlanPrice');
+            
+            if (selectedPlan && selectedPlanPrice) {
+                console.log('Found plan in session storage:', selectedPlan, selectedPlanPrice);
+                
+                const displayPlanName = document.getElementById('displayPlanName');
+                const displayPlanPriceNumber = document.getElementById('displayPlanPriceNumber');
+                const planNameInButton = document.getElementById('planNameInButton');
+                
+                if (displayPlanName) displayPlanName.textContent = selectedPlan;
+                if (displayPlanPriceNumber) displayPlanPriceNumber.textContent = selectedPlanPrice;
+                if (planNameInButton) planNameInButton.textContent = selectedPlan;
+                
+                const selectedPlanDisplay = document.getElementById('selectedPlanDisplay');
+                if (selectedPlanDisplay) {
+                    selectedPlanDisplay.style.display = 'block';
+                }
+                
+                // CRITICAL: Also populate the form fields immediately
+                setTimeout(() => {
+                    const selectedPlanInput = document.getElementById('selectedPlan');
+                    const planPriceInput = document.getElementById('planPrice');
+                    
+                    if (selectedPlanInput && !selectedPlanInput.value) {
+                        selectedPlanInput.value = selectedPlan;
+                        selectedPlanInput.style.cssText = 'display: block !important; visibility: visible !important; opacity: 1 !important; width: 100% !important; padding: 0.8rem !important; border: 2px solid #28a745 !important; color: #28a745 !important; font-weight: 600 !important; background: rgba(40, 167, 69, 0.05) !important; border-radius: 5px !important;';
+                        console.log('Pre-populated selectedPlan field');
+                    }
+                    
+                    if (planPriceInput && !planPriceInput.value) {
+                        planPriceInput.value = '$' + selectedPlanPrice + '/month';
+                        planPriceInput.style.cssText = 'display: block !important; visibility: visible !important; opacity: 1 !important; width: 100% !important; padding: 0.8rem !important; border: 2px solid #007bff !important; color: #007bff !important; font-weight: 600 !important; background: rgba(0, 123, 255, 0.05) !important; border-radius: 5px !important;';
+                        console.log('Pre-populated planPrice field');
+                    }
+                }, 50);
+            } else {
+                console.log('No plan found in session storage');
+            }
+        });
+
+        // Error Handling Helper Functions
+        function showError(title, message) {
+            showNotification('error', title, message);
+        }
+
+        function showSuccessMessage(title, message) {
+            showNotification('success', title, message);
+        }
+
+        function showInfo(title, message) {
+            showNotification('info', title, message);
+        }
+
+        function showNotification(type, title, message) {
+            // Remove existing notifications
+            const existingNotifications = document.querySelectorAll('.notification');
+            existingNotifications.forEach(n => n.remove());
+
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <div class="notification-header">
+                        <h4>${title}</h4>
+                        <button class="notification-close">&times;</button>
+                    </div>
+                    <p>${message}</p>
+                </div>
+            `;
+
+            // Add to page
+            document.body.appendChild(notification);
+
+            // Show notification
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+
+            // Auto-hide after 5 seconds (except for errors)
+            if (type !== 'error') {
+                setTimeout(() => {
+                    hideNotification(notification);
+                }, 5000);
+            }
+
+            // Close button functionality
+            const closeButton = notification.querySelector('.notification-close');
+            closeButton.addEventListener('click', () => {
+                hideNotification(notification);
+            });
+        }
+
+        function hideNotification(notification) {
+            notification.classList.remove('show');
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 300);
+        }
+        
+        // Additional PayPal SDK safety check
+        window.addEventListener('load', function() {
+            console.log('🔍 Window loaded, checking PayPal SDK...');
+            console.log('- typeof paypal:', typeof paypal);
+            console.log('- window.paypalSDKReady:', window.paypalSDKReady);
+            console.log('- window.paypalSDKFailed:', window.paypalSDKFailed);
+            
+            if (typeof paypal !== 'undefined') {
+                console.log('✅ PayPal SDK is ready after window load');
+                window.paypalSDKReady = true;
+            } else {
+                console.warn('⚠️ PayPal SDK not detected after window load');
+                // Try to diagnose the issue
+                console.log('🔍 Diagnosing PayPal SDK loading issue...');
+                
+                setTimeout(() => {
+                    if (typeof paypal === 'undefined') {
+                        console.log('❌ PayPal SDK still not available after delay');
+                        console.log('� This could be due to:');
+                        console.log('  - Network connectivity issues');
+                        console.log('  - PayPal service outage');
+                        console.log('  - Ad blocker blocking PayPal');
+                        console.log('  - Corporate firewall restrictions');
+                        console.log('  - Invalid client ID');
+                    } else {
+                        console.log('✅ PayPal SDK became available after delay');
+                        window.paypalSDKReady = true;
+                    }
+                }, 2000);
+            }
+        });
+        
+        // Global function to manually retry PayPal
+        window.retryPayPalLoad = function() {
+            console.log('🔄 Manual PayPal retry requested...');
+            window.paypalSDKReady = false;
+            window.paypalSDKFailed = false;
+            
+            // Remove existing PayPal scripts
+            const existingScripts = document.querySelectorAll('script[src*="paypal.com"]');
+            existingScripts.forEach(script => script.remove());
+            
+            // Add fresh PayPal script
+            const newScript = document.createElement('script');
+            newScript.src = 'https://www.paypal.com/sdk/js?client-id=AQ8k0aDREdXnxFEkff8KN-YKSSfamT_JsozBGT2OU2Oaz7b41sx3gYDPfywmJjXJd4WvcH778BfzenC_&vault=true&intent=subscription&currency=CAD';
+            
+            newScript.onload = function() {
+                console.log('✅ PayPal SDK reloaded successfully');
+                window.paypalSDKReady = true;
+                if (window.renderPayPalButtonPopup) {
+                    window.renderPayPalButtonPopup();
+                }
+            };
+            
+            newScript.onerror = function() {
+                console.error('❌ PayPal SDK reload failed');
+                window.paypalSDKFailed = true;
+            };
+            
+            document.head.appendChild(newScript);
+        };
+        
+        // Make renderPayPalButtonPopup globally accessible for retry
+        window.renderPayPalButtonPopup = renderPayPalButtonPopup;
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Enterprise Seo Audit</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <script src="../assets/js/config.js"></script>
+  <!-- PayPal SDK: Using real client ID -->
+  <script src="https://www.paypal.com/sdk/js?client-id=AQ8k0aDREdXnxFEkff8KN-YKSSfamT_JsozBGT2OU2Oaz7b41sx3gYDPfywmJjXJd4WvcH778BfzenC_&currency=CAD"></script>
+</head>
+<body>
+  <!-- Header to match other pages -->
+  <header class="header">
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <h1>Bostify</h1>
+          <span>by Sumit Sheokand</span>
+        </div>
+        <ul class="nav-menu">
+          <li><a href="../index.html#home" class="nav-link">Home</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="monthly-audit.html" class="nav-link">Monthly Audits</a></li>
+          <li><a href="case-studies.html" class="nav-link">Results</a></li>
+          <li><a href="blog.html" class="nav-link">Blog</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link cta-nav">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="wrap" style="margin-top: 80px; text-align: center; display: flex; flex-direction: column; align-items: center;">
+    <h1>Enterprise Seo Audit</h1>
+    <p>Purchase this audit. Price: <strong>2000 CAD</strong></p>
+
+    <section id="checkout-block" style="width: 100%; max-width: 500px;">
+      <h2>Buy Enterprise Seo Audit — 2000 CAD</h2>
+
+      <!-- Form with left-aligned labels for readability -->
+      <form id="order-form" style="text-align: left;">
+        <label for="name">Full name</label><br>
+        <input id="name" name="name" type="text" required style="width: 100%;"><br><br>
+
+        <label for="email">Email address</label><br>
+        <input id="email" name="email" type="email" required style="width: 100%;"><br><br>
+
+        <label for="phone">Phone number</label><br>
+        <input id="phone" name="phone" type="tel" required placeholder="+1 (555) 123-4567" style="width: 100%;"><br><br>
+
+        <label for="website">Website URL</label><br>
+        <input id="website" name="website" type="url" required placeholder="https://yourwebsite.com" style="width: 100%;"><br><br>
+
+        <label for="traffic">Monthly Website Traffic</label><br>
+        <select id="traffic" name="traffic" required style="width: 100%;">
+          <option value="" disabled selected>Select traffic range</option>
+          <option value="0-1000">0-1,000</option>
+          <option value="1000-5000">1,000-5,000</option>
+          <option value="5000-10000">5,000-10,000</option>
+          <option value="10000-50000">10,000-50,000</option>
+          <option value="50000+">50,000+</option>
+        </select><br><br>
+
+        <label for="message">What do you want from this audit?</label><br>
+        <textarea id="message" name="message" rows="4" required placeholder="Describe your goals or specific concerns..." style="width: 100%;"></textarea><br><br>
+
+        <button id="start-pay" type="submit" style="width: 100%;">Proceed to Payment</button>
+      </form>
+
+      <!-- After form, PayPal button and Stripe link appear here -->
+      <div id="payment-widgets" style="display:none; margin-top:1rem;">
+        <div>
+          <h3>Pay with PayPal</h3>
+          <div id="paypal-button-enterprise"></div>
+        </div>
+
+        <div style="margin-top:1rem;">
+          <h3>Pay with Card (Stripe hosted checkout)</h3>
+          <a id="stripe-link" class="cta-button" href="#" target="_blank" rel="noopener">Pay with Debit/Credit Card (Stripe)</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="text-align: center;">
+    <p>&copy; 2025 Bostify SEO</p>
+  </footer>
+
+<script>
+(function(){
+  const price = (window.Bostify_PAYMENT_CONFIG && window.Bostify_PAYMENT_CONFIG.pricing && window.Bostify_PAYMENT_CONFIG.pricing.oneTime && window.Bostify_PAYMENT_CONFIG.pricing.oneTime.enterprise && window.Bostify_PAYMENT_CONFIG.pricing.oneTime.enterprise.price) || "2000.00";
+  const stripeLink = (window.Bostify_PAYMENT_CONFIG && window.Bostify_PAYMENT_CONFIG.stripe && window.Bostify_PAYMENT_CONFIG.stripe.checkoutLinks && window.Bostify_PAYMENT_CONFIG.stripe.checkoutLinks.enterprise) || "#";
+  const adminEmail = (window.Bostify_PAYMENT_CONFIG && window.Bostify_PAYMENT_CONFIG.adminEmail) || "sumitsheokand347@gmail.com";
+  const currency = (window.Bostify_PAYMENT_CONFIG && window.Bostify_PAYMENT_CONFIG.paypal && window.Bostify_PAYMENT_CONFIG.paypal.currency) || "CAD";
+
+  const form = document.getElementById("order-form");
+  const widgets = document.getElementById("payment-widgets");
+  const stripeAnchor = document.getElementById("stripe-link");
+
+  stripeAnchor.href = stripeLink;
+
+  form.addEventListener("submit", function (ev){
+    ev.preventDefault();
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const website = document.getElementById("website").value.trim();
+    const traffic = document.getElementById("traffic").value;
+    const message = document.getElementById("message").value.trim();
+
+    if(!name || !email || !phone || !website || !traffic || !message) {
+      return alert("Please fill in all required fields.");
+    }
+
+    sessionStorage.setItem("order_name", name);
+    sessionStorage.setItem("order_email", email);
+    sessionStorage.setItem("order_phone", phone);
+    sessionStorage.setItem("order_website", website);
+    sessionStorage.setItem("order_traffic", traffic);
+    sessionStorage.setItem("order_message", message);
+    sessionStorage.setItem("order_amount", price);
+    sessionStorage.setItem("order_audit", "enterprise");
+
+    widgets.style.display = "block";
+
+    // Render PayPal button once
+    if(!window["paypalRendered_enterprise"]) {
+      paypal.Buttons({
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{ amount: { value: price, currency_code: currency } }]
+          });
+        },
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(details) {
+            const orderId = data.orderID || ("ENTERPRISE-" + Math.floor(Math.random()*90000+10000));
+            const payerName = (details.payer && details.payer.name && (details.payer.name.given_name + (details.payer.name.surname ? " " + details.payer.name.surname : ""))) || sessionStorage.getItem("order_name") || "Unknown";
+            const payerEmail = (details.payer && details.payer.email_address) || sessionStorage.getItem("order_email") || "";
+            const params = new URLSearchParams({
+              order_id: orderId,
+              name: payerName,
+              email: payerEmail,
+              phone: sessionStorage.getItem("order_phone") || "",
+              website: sessionStorage.getItem("order_website"),
+              traffic: sessionStorage.getItem("order_traffic"),
+              message: sessionStorage.getItem("order_message"),
+              amount: price,
+              audit: "enterprise"
+            });
+            window.location.href = "../pages/payment-success.html?" + params.toString();
+          });
+        },
+        onCancel: function(data) {
+          window.location.href = "../pages/payment-cancel.html";
+        },
+        onError: function(err) {
+          console.error(err);
+          alert("Payment error. Please try again.");
+        }
+      }).render('#paypal-button-enterprise');
+      window["paypalRendered_enterprise"] = true;
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
