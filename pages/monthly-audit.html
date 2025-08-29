@@ -870,6 +870,88 @@
             }
         };
 
+        // Features to display under "What's Included" for each plan
+        const planFeatures = {
+            'Essential Monitoring': [
+                'Technical SEO audit each month',
+                'On-page optimization checkups',
+                'Core Web Vitals & performance monitoring',
+                'Monthly condensed report',
+                'Prioritized action items',
+                'Email support'
+            ],
+            'Professional Monitoring': [
+                'Everything in Essential',
+                'Comprehensive competitor analysis',
+                'Link profile monitoring',
+                'Content optimization suggestions',
+                'Keyword opportunity tracking',
+                'Monthly strategy call (30 min)'
+            ],
+            'Enterprise Monitoring': [
+                'Everything in Professional',
+                'Multi-site monitoring (up to 3)',
+                'Advanced competitor intelligence',
+                'Custom dashboard access',
+                'Monthly strategy session (45 min)',
+                'Priority support'
+            ],
+            'Complete Monitoring': [
+                'Everything in Professional',
+                'Multi-site monitoring (up to 5)',
+                'Advanced competitor intelligence',
+                'Custom dashboard access',
+                'Monthly strategy session (60 min)',
+                'Dedicated account manager'
+            ]
+        };
+
+        // Helper: render selected plan banner (price, features, button labels)
+        function updateSelectedPlanBanner(planName) {
+            const banner = document.getElementById('selectedPlanDisplay');
+            if (!banner) return;
+
+            // Plan title
+            const nameEl = document.getElementById('displayPlanName');
+            if (nameEl) nameEl.textContent = planName;
+
+            // Price display
+            const priceEl = banner.querySelector('.price-display');
+            const price = planDetails[planName]?.price;
+            if (priceEl && typeof price !== 'undefined') {
+                const pretty = Number(price).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+                priceEl.innerHTML = `
+                    <span class="currency">$</span>
+                    <span class="price">${pretty}</span>
+                    <span class="period">/month</span>
+                `;
+            }
+
+            // Features list
+            const featuresBox = banner.querySelector('.plan-features');
+            const features = planFeatures[planName] || [];
+            if (featuresBox) {
+                featuresBox.innerHTML = `
+                    <h4>What's Included:</h4>
+                    <ul class="selected-plan-features">
+                        ${features.map(f => `<li>✅ ${f}</li>`).join('')}
+                    </ul>
+                `;
+            }
+
+            // Buttons
+            const continueBtn = banner.querySelector('.plan-actions .cta-button.primary');
+            if (continueBtn) {
+                continueBtn.innerHTML = `<span class="button-icon">🚀</span> Continue with ${planName}`;
+            }
+            const chooseBtn = banner.querySelector('.plan-actions .cta-button.secondary');
+            if (chooseBtn) {
+                chooseBtn.innerHTML = `<span class="button-icon">🔄</span> Choose Different Plan`;
+            }
+
+            banner.style.display = 'block';
+        }
+
         const modal = document.getElementById('orderModal');
         const form = document.getElementById('orderForm');
         const closeButton = document.getElementsByClassName('close')[0];
@@ -925,6 +1007,9 @@
             } else {
                 console.error('Modal not found');
             }
+            
+            // Also render the summary banner
+            updateSelectedPlanBanner(planName);
             
             console.log('=== Plan Selection Completed ===');
             return false;
@@ -1304,17 +1389,9 @@
                 console.log('Found plan in session storage:', selectedPlan, selectedPlanPrice);
                 
                 const displayPlanName = document.getElementById('displayPlanName');
-                const displayPlanPriceNumber = document.getElementById('displayPlanPriceNumber');
-                const planNameInButton = document.getElementById('planNameInButton');
-                
                 if (displayPlanName) displayPlanName.textContent = selectedPlan;
-                if (displayPlanPriceNumber) displayPlanPriceNumber.textContent = selectedPlanPrice;
-                if (planNameInButton) planNameInButton.textContent = selectedPlan;
-                
-                const selectedPlanDisplay = document.getElementById('selectedPlanDisplay');
-                if (selectedPlanDisplay) {
-                    selectedPlanDisplay.style.display = 'block';
-                }
+                // Render banner (fills price + features + buttons)
+                updateSelectedPlanBanner(selectedPlan);
                 
                 // CRITICAL: Also populate the form fields immediately
                 setTimeout(() => {
