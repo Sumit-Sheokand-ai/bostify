@@ -6,6 +6,169 @@
   <title>Enterprise Seo Audit</title>
   <link rel="stylesheet" href="../assets/css/main.css">
   <script src="../assets/js/config.js"></script>
+  
+  <!-- Enhanced Styling for Order Forms -->
+  <style>
+  /* CSS Variables for Brand Colors */
+  :root {
+    --primary-green: #00c851;
+    --primary-blue: #007bff;
+    --white: #ffffff;
+    --dark-gray: #333333;
+    --light-gray: #f8f9fa;
+    --medium-gray: #6c757d;
+  }
+
+  /* Enhanced Main Container */
+  .wrap {
+    margin-top: 80px !important;
+    min-height: 100vh !important;
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-green)) !important;
+    color: var(--white) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    padding: 40px 20px !important;
+  }
+
+  /* Liquid Orb Animations */
+  .liquid-orb {
+    position: absolute !important;
+    border-radius: 50% !important;
+    background: linear-gradient(135deg, 
+      rgba(74, 144, 226, 0.3) 0%,
+      rgba(80, 201, 195, 0.2) 50%,
+      rgba(123, 104, 238, 0.3) 100%
+    ) !important;
+    filter: blur(40px) !important;
+    animation: floatOrb 6s ease-in-out infinite !important;
+    z-index: -1 !important;
+  }
+
+  .liquid-orb.orb-1 {
+    width: 300px !important;
+    height: 300px !important;
+    top: -150px !important;
+    right: -150px !important;
+    animation-delay: 0s !important;
+  }
+
+  .liquid-orb.orb-2 {
+    width: 200px !important;
+    height: 200px !important;
+    bottom: -100px !important;
+    left: -100px !important;
+    animation-delay: 2s !important;
+  }
+
+  @keyframes floatOrb {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    25% { transform: translateY(-20px) rotate(90deg); }
+    50% { transform: translateY(-10px) rotate(180deg); }
+    75% { transform: translateY(-15px) rotate(270deg); }
+  }
+
+  /* Enhanced Checkout Block */
+  #checkout-block {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 20px !important;
+    padding: 2rem !important;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.25) !important;
+    color: var(--dark-gray) !important;
+    max-width: 600px !important;
+    margin: 2rem auto !important;
+  }
+
+  /* Form Styling */
+  #order-form {
+    text-align: left !important;
+  }
+
+  #order-form label {
+    display: block !important;
+    margin-bottom: 0.5rem !important;
+    font-weight: 600 !important;
+    color: #495057 !important;
+  }
+
+  #order-form input,
+  #order-form textarea,
+  #order-form select {
+    width: 100% !important;
+    padding: 0.8rem !important;
+    margin-bottom: 1rem !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 8px !important;
+    font-size: 1rem !important;
+    background: rgba(255, 255, 255, 0.8) !important;
+    backdrop-filter: blur(10px) !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    box-sizing: border-box !important;
+  }
+
+  #order-form input:focus,
+  #order-form textarea:focus,
+  #order-form select:focus {
+    outline: none !important;
+    border-color: rgba(0, 123, 255, 0.6) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1), 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    transform: translateY(-1px) !important;
+  }
+
+  /* Payment Buttons Container */
+  #payment-widgets {
+    margin-top: 2rem !important;
+    padding: 1.5rem !important;
+    background: rgba(248, 249, 250, 0.5) !important;
+    border-radius: 15px !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  }
+
+  /* Enhanced Button Styling */
+  .cta-button,
+  button {
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.9), rgba(0, 200, 81, 0.9)) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: white !important;
+    padding: 12px 30px !important;
+    border-radius: 25px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3) !important;
+    margin: 0.5rem !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+  }
+
+  .cta-button:hover,
+  button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4) !important;
+    background: linear-gradient(135deg, rgba(0, 123, 255, 1), rgba(0, 200, 81, 1)) !important;
+  }
+
+  /* Page Headers */
+  h1, h2 {
+    color: white !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3) !important;
+    margin-bottom: 1rem !important;
+  }
+
+  /* PayPal Container */
+  #paypal-button-enterprise {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(10px) !important;
+    border-radius: 10px !important;
+    padding: 1rem !important;
+    margin: 1rem 0 !important;
+  }
+  </style>
   <!-- PayPal SDK: Using real client ID -->
   <script src="https://www.paypal.com/sdk/js?client-id=AQ8k0aDREdXnxFEkff8KN-YKSSfamT_JsozBGT2OU2Oaz7b41sx3gYDPfywmJjXJd4WvcH778BfzenC_&currency=CAD"></script>
 </head>
@@ -37,15 +200,22 @@
     </nav>
   </header>
 
-  <main class="wrap" style="margin-top: 80px; text-align: center; display: flex; flex-direction: column; align-items: center;">
-    <h1>Enterprise Seo Audit</h1>
-    <p>Purchase this audit. Price: <strong>2000 CAD</strong></p>
+  <main class="wrap">
+    <!-- Animated Background Orbs -->
+    <div class="liquid-orb orb-1"></div>
+    <div class="liquid-orb orb-2"></div>
 
-    <section id="checkout-block" style="width: 100%; max-width: 500px;">
-      <h2>Buy Enterprise Seo Audit — 2000 CAD</h2>
+    <div style="display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; text-align: center;">
+      <h1>Enterprise Seo Audit</h1>
+      <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+        Purchase this audit. Price: <strong style="color:#ffd700;">2000 CAD</strong>
+      </p>
 
-      <!-- Form with left-aligned labels for readability -->
-      <form id="order-form" style="text-align: left;">
+      <section id="checkout-block" style="width: 100%; max-width: 600px;">
+        <h2>Buy Enterprise Seo Audit — 2000 CAD</h2>
+
+        <!-- Form with left-aligned labels for readability -->
+        <form id="order-form">
         <label for="name">Full name</label><br>
         <input id="name" name="name" type="text" required style="width: 100%;"><br><br>
 
@@ -71,8 +241,8 @@
         <label for="message">What do you want from this audit?</label><br>
         <textarea id="message" name="message" rows="4" required placeholder="Describe your goals or specific concerns..." style="width: 100%;"></textarea><br><br>
 
-        <button id="start-pay" type="submit" style="width: 100%;">Proceed to Payment</button>
-      </form>
+          <button id="start-pay" type="submit" class="cta-button" style="width: 100%; font-size: 1.05rem; padding: 14px;">🚀 Proceed to Secure Payment</button>
+        </form>
 
       <!-- After form, PayPal button and Stripe link appear here -->
       <div id="payment-widgets" style="display:none; margin-top:1rem;">
@@ -86,7 +256,8 @@
           <a id="stripe-link" class="cta-button" href="#" target="_blank" rel="noopener">Pay with Debit/Credit Card (Stripe)</a>
         </div>
       </div>
-    </section>
+      </section>
+    </div>
   </main>
 
   <footer style="text-align: center;">
