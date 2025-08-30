@@ -10,11 +10,11 @@
 
 window.Bostify_PAYMENT_CONFIG = {
   // Site Settings
-  siteUrl: "https://bostify.com",
+  siteUrl: "https://bostify.me",
   siteName: "Bostify",
   businessOwner: "Sumit Sheokand",
   adminEmail: "sumitsheokand347@gmail.com",
-  supportEmail: "support@Bostify.com",
+  supportEmail: "support@bostify.me",
   businessPhone: "+1(905)961-1902",
   
   // PayPal Configuration
