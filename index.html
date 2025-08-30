@@ -342,28 +342,7 @@
         });
     </script>
     
-    <!-- Enhanced Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'GA_MEASUREMENT_ID', {
-            page_title: 'Home - Bostify SEO Services',
-            page_location: window.location.href,
-            content_group1: 'SEO Services',
-            content_group2: 'Homepage',
-            custom_map: {'dimension1': 'user_type'}
-        });
-        
-        // Enhanced E-commerce tracking
-        gtag('event', 'page_view', {
-            page_title: 'Bostify - Professional SEO Services',
-            page_location: window.location.href,
-            content_group1: 'SEO Services',
-            send_to: 'GA_MEASUREMENT_ID'
-        });
-    </script>
+    <!-- Analytics is initialized globally via assets/js/main.js -->
 </head>
 <body>
     <!-- Header -->
@@ -628,6 +607,7 @@
     </footer>
 
     <!-- JavaScript -->
+    <script src="assets/js/config.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>
