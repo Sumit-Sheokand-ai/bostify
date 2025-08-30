@@ -52,7 +52,7 @@ Disallow: /*?payment=*
 Disallow: /*?checkout=*
 
 # Premium sitemap declarations
-Sitemap: https://bostify.com/sitemap.xml
+Sitemap: https://bostify.me/sitemap.xml
 
 # Host preference for canonical domain
-Host: https://bostify.com
+Host: bostify.me
