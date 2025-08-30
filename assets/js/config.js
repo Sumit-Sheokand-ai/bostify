@@ -138,8 +138,13 @@ window.Bostify_PAYMENT_CONFIG = {
   // Analytics Configuration
   analytics: {
     googleAnalytics: {
-      trackingId: "GA_TRACKING_ID", // Replace with your Google Analytics tracking ID
-      enabled: false // Enable when ready
+      trackingId: "G-Z4E591FCE0", // GA4 Measurement ID
+      enabled: true, // GA enabled site-wide
+      stream: {
+        name: "Bostify Website",
+        url: "https://www.bostify.me",
+        streamId: "12093760477"
+      }
     },
   // Facebook Pixel removed per privacy request
     hotjar: {
