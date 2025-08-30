@@ -463,12 +463,17 @@ if (!document.getElementById('animation-styles')) {
 // Google Analytics (gtag) - dynamic loader with your Measurement ID
 (function initGoogleAnalytics(){
     try {
-        var MEASUREMENT_ID = 'G-Z4E591FCE0';
-        if (!MEASUREMENT_ID) return;
+    var cfg = (window.Bostify_PAYMENT_CONFIG && window.Bostify_PAYMENT_CONFIG.analytics && window.Bostify_PAYMENT_CONFIG.analytics.googleAnalytics) || {};
+    var MEASUREMENT_ID = cfg.trackingId || 'G-Z4E591FCE0';
+    var GA_ENABLED = cfg.enabled !== false; // default true if not explicitly false
+    if (!GA_ENABLED || !MEASUREMENT_ID) return;
 
         // If gtag already present, just configure and exit
         if (typeof window.gtag === 'function') {
-            window.gtag('config', MEASUREMENT_ID);
+            window.gtag('config', MEASUREMENT_ID, {
+                page_title: document.title || undefined,
+                page_location: window.location.href
+            });
             return;
         }
 
@@ -479,13 +484,16 @@ if (!document.getElementById('animation-styles')) {
         gtag('js', new Date());
 
         // Avoid duplicate script injection
-        if (!document.querySelector('script[src*="googletagmanager.com/gtag/js"')) {
+    if (!document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) {
             var gaScript = document.createElement('script');
             gaScript.async = true;
             gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(MEASUREMENT_ID);
             gaScript.onload = function(){
                 // Configure after load (also safe to call before due to stub)
-                gtag('config', MEASUREMENT_ID);
+                gtag('config', MEASUREMENT_ID, {
+                    page_title: document.title || undefined,
+                    page_location: window.location.href
+                });
             };
             gaScript.onerror = function(err){
                 console.error('Google Analytics failed to load:', err);
@@ -493,7 +501,10 @@ if (!document.getElementById('animation-styles')) {
             document.head.appendChild(gaScript);
         } else {
             // Script tag exists; still ensure config is called
-            gtag('config', MEASUREMENT_ID);
+            gtag('config', MEASUREMENT_ID, {
+                page_title: document.title || undefined,
+                page_location: window.location.href
+            });
         }
     } catch (e) {
         console.error('GA init error:', e);
