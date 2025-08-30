@@ -4,6 +4,33 @@
 ===========================================*/
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Ensure consistent favicon and apple-touch-icon across all pages
+    (function ensureFavicons(){
+        try {
+            const head = document.head || document.getElementsByTagName('head')[0];
+            if (!head) return;
+
+            const FAVICON_HREF = '/assets/images/favicon.svg';
+            const APPLE_ICON_HREF = '/assets/images/bostify-premium-logo.svg';
+
+            // Helper to upsert a link tag
+            function upsertLink(rel, href, type){
+                let link = head.querySelector(`link[rel="${rel}"]`);
+                if (!link) {
+                    link = document.createElement('link');
+                    link.setAttribute('rel', rel);
+                    head.appendChild(link);
+                }
+                link.setAttribute('href', href);
+                if (type) link.setAttribute('type', type);
+            }
+
+            upsertLink('icon', FAVICON_HREF, 'image/svg+xml');
+            upsertLink('apple-touch-icon', APPLE_ICON_HREF);
+        } catch (e) {
+            console.warn('Favicon injection skipped:', e);
+        }
+    })();
     
     // Mobile Menu Toggle
     const hamburger = document.querySelector('.hamburger');
