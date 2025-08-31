@@ -411,13 +411,31 @@ document.addEventListener('DOMContentLoaded', function() {
     // ================================================
 
     function initMobileMenu() {
-        const hamburger = document.querySelector('.hamburger');
+        const hamburger = document.querySelector('.hamburger, .nav-toggle');
         const navMenu = document.querySelector('.nav-menu');
         
+        console.log('🔍 Looking for hamburger menu...', { hamburger, navMenu });
+        
         if (hamburger && navMenu) {
-            hamburger.addEventListener('click', function() {
+            hamburger.addEventListener('click', function(e) {
+                e.preventDefault();
                 toggleMobileMenu();
+                console.log('🍔 Hamburger clicked!');
             });
+            
+            // Add touch events for mobile feedback
+            hamburger.addEventListener('touchstart', function(e) {
+                this.style.transform = 'scale(0.95)';
+                this.style.background = 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)';
+                console.log('👆 Hamburger touched');
+            }, { passive: true });
+            
+            hamburger.addEventListener('touchend', function(e) {
+                setTimeout(() => {
+                    this.style.transform = '';
+                    this.style.background = '';
+                }, 150);
+            }, { passive: true });
             
             // Close menu when clicking on nav links with enhanced touch feedback
             const navLinks = navMenu.querySelectorAll('.nav-link');
@@ -446,45 +464,66 @@ document.addEventListener('DOMContentLoaded', function() {
                     closeMobileMenu();
                 }
             });
-        }
-
-        function toggleMobileMenu() {
-            const hamburger = document.querySelector('.hamburger');
-            const navMenu = document.querySelector('.nav-menu');
             
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            
-            animateHamburger(hamburger.classList.contains('active'));
-            
-            // Prevent body scroll when menu is open
-            document.body.style.overflow = hamburger.classList.contains('active') ? 'hidden' : '';
-        }
-
-        function closeMobileMenu() {
-            const hamburger = document.querySelector('.hamburger');
-            const navMenu = document.querySelector('.nav-menu');
-            
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            animateHamburger(false);
-            document.body.style.overflow = '';
-        }
-
-        function animateHamburger(isActive) {
-            const bars = document.querySelectorAll('.hamburger .bar');
-            if (isActive) {
-                bars[0].style.transform = 'rotate(-45deg) translate(-5px, 6px)';
-                bars[1].style.opacity = '0';
-                bars[2].style.transform = 'rotate(45deg) translate(-5px, -6px)';
-            } else {
-                bars[0].style.transform = 'none';
-                bars[1].style.opacity = '1';
-                bars[2].style.transform = 'none';
-            }
+            console.log('✅ Mobile hamburger menu initialized successfully');
+        } else {
+            console.log('❌ Hamburger or nav menu not found', { hamburger, navMenu });
         }
     }
 
+        function toggleMobileMenu() {
+            const hamburger = document.querySelector('.hamburger, .nav-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            console.log('🔄 Toggling mobile menu...', { hamburger, navMenu });
+            
+            if (hamburger && navMenu) {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                
+                const isActive = hamburger.classList.contains('active');
+                console.log('📱 Menu is now:', isActive ? 'OPEN' : 'CLOSED');
+                
+                animateHamburger(isActive);
+                
+                // Prevent body scroll when menu is open
+                document.body.style.overflow = isActive ? 'hidden' : '';
+            }
+        }
+
+        function closeMobileMenu() {
+            const hamburger = document.querySelector('.hamburger, .nav-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (hamburger && navMenu) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                animateHamburger(false);
+                document.body.style.overflow = '';
+                console.log('✅ Mobile menu closed');
+            }
+        }
+
+        function animateHamburger(isActive) {
+            const bars = document.querySelectorAll('.hamburger .bar, .nav-toggle .bar');
+            if (bars.length > 0) {
+                if (isActive) {
+                    bars[0].style.transform = 'rotate(-45deg) translate(-5px, 6px)';
+                    bars[0].style.backgroundColor = '#ff6b6b';
+                    bars[1].style.opacity = '0';
+                    bars[2].style.transform = 'rotate(45deg) translate(-5px, -6px)';
+                    bars[2].style.backgroundColor = '#ff6b6b';
+                } else {
+                    bars[0].style.transform = 'none';
+                    bars[0].style.backgroundColor = '#ffffff';
+                    bars[1].style.opacity = '1';
+                    bars[2].style.transform = 'none';
+                    bars[2].style.backgroundColor = '#ffffff';
+                }
+                console.log('🎨 Hamburger animation:', isActive ? 'X' : 'Bars');
+            }
+        }
+    
     // ================================================
     // COUNTER ANIMATIONS
     // ================================================
@@ -677,17 +716,16 @@ document.addEventListener('DOMContentLoaded', function() {
             el.textContent = currentYear;
         });
     }
-});
+    
+    // ================================================
+    // CSS KEYFRAMES INJECTION
+    // ================================================
 
-// ================================================
-// CSS KEYFRAMES INJECTION
-// ================================================
-
-const premiumAnimationCSS = `
-    /* Enhanced Scroll and Floating Animation Variables */
-    :root {
-        --premium-gradient: linear-gradient(45deg, #ff0844, #ffb199, #ff6348, #ff9472, #ff6b9d, #c44569);
-    }
+    const premiumAnimationCSS = `
+        /* Enhanced Scroll and Floating Animation Variables */
+        :root {
+            --premium-gradient: linear-gradient(45deg, #ff0844, #ffb199, #ff6348, #ff9472, #ff6b9d, #c44569);
+        }
 
     /* Scroll Float Elements */
     .scroll-float-left,
@@ -1365,8 +1403,50 @@ function testMobileButtonFunctionality() {
 setTimeout(() => {
     if (window.innerWidth <= 768 || 'ontouchstart' in window) {
         testMobileButtonFunctionality();
+        forceMobileButtonFunctionality();
     }
 }, 3000);
+
+// Force all buttons to work on mobile
+function forceMobileButtonFunctionality() {
+    const allInteractiveElements = document.querySelectorAll('button, .cta-button, .btn, .nav-link, a[href], input[type="submit"], input[type="button"]');
+    
+    allInteractiveElements.forEach((element, index) => {
+        // Ensure proper styling
+        element.style.pointerEvents = 'auto';
+        element.style.cursor = 'pointer';
+        element.style.userSelect = 'none';
+        element.style.webkitTapHighlightColor = 'transparent';
+        
+        // Add touch event listeners if missing
+        if (!element.dataset.mobileEnhanced) {
+            element.addEventListener('touchstart', function(e) {
+                this.style.transform = 'scale(0.97)';
+                this.style.transition = 'transform 0.1s ease';
+                console.log('📱 Touch detected on:', this.textContent?.trim() || `Element ${index}`);
+            }, { passive: true });
+            
+            element.addEventListener('touchend', function(e) {
+                setTimeout(() => {
+                    this.style.transform = '';
+                    this.style.transition = '';
+                }, 150);
+            }, { passive: true });
+            
+            // Ensure click events work
+            if (!element.onclick && !element.href && !element.closest('form')) {
+                element.addEventListener('click', function(e) {
+                    console.log('🖱️ Click on:', this.textContent?.trim() || `Element ${index}`);
+                    // Add default action if needed
+                });
+            }
+            
+            element.dataset.mobileEnhanced = 'true';
+        }
+    });
+    
+    console.log(`🔧 Enhanced ${allInteractiveElements.length} interactive elements for mobile`);
+}
 
 
 
@@ -1395,3 +1475,31 @@ console.log('🎨 Enhanced button effects with color gradients initialized');
 
 console.log('� Press Ctrl+Shift+C to test dramatic crack effect');
 console.log('�🔄 Visit the same page again to see broken effect naturally');
+
+}); // End of DOMContentLoaded
+
+// Mobile debugging
+if (window.innerWidth <= 768 || 'ontouchstart' in window) {
+    console.log('📱 MOBILE DEVICE DETECTED');
+    console.log('🔍 Debug info:');
+    console.log('  - Window width:', window.innerWidth);
+    console.log('  - Touch support:', 'ontouchstart' in window);
+    console.log('  - User agent:', navigator.userAgent.substring(0, 100) + '...');
+    
+    // Test button visibility after page load
+    setTimeout(() => {
+        const buttons = document.querySelectorAll('button, .cta-button, .nav-link, a[href]');
+        console.log(`📊 Found ${buttons.length} interactive elements`);
+        
+        const hamburger = document.querySelector('.hamburger, .nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        console.log('🍔 Hamburger button:', hamburger ? 'FOUND' : 'NOT FOUND');
+        console.log('📋 Navigation menu:', navMenu ? 'FOUND' : 'NOT FOUND');
+        
+        if (hamburger) {
+            console.log('🎨 Hamburger display:', window.getComputedStyle(hamburger).display);
+            console.log('🎨 Hamburger visibility:', window.getComputedStyle(hamburger).visibility);
+        }
+    }, 1000);
+}
