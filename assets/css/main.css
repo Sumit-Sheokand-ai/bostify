@@ -18,13 +18,13 @@ html {
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
-    color: #333333;
+    color: var(--text-light);
     background: 
-        radial-gradient(ellipse at top left, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at top right, rgba(118, 75, 162, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at bottom left, rgba(240, 147, 251, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at bottom right, rgba(245, 87, 108, 0.15) 0%, transparent 50%),
-        linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        radial-gradient(ellipse at top left, rgba(45, 55, 72, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at top right, rgba(26, 54, 93, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom left, rgba(55, 65, 81, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom right, rgba(30, 58, 138, 0.3) 0%, transparent 50%),
+        linear-gradient(135deg, #0f0f23 0%, #1a202c 50%, #2d3748 100%);
     background-attachment: fixed;
     overflow-x: hidden;
     position: relative;
@@ -53,52 +53,193 @@ body::before {
     75% { transform: translateX(15px) translateY(-5px); }
 }
 
-/* Enhanced CSS Variables for Premium Colors */
+/* Enhanced CSS Variables for Dark Theme */
 :root {
-    --primary-green: #00c851;
-    --primary-blue: #667eea;
-    --secondary-purple: #764ba2;
-    --accent-pink: #f093fb;
-    --accent-coral: #f5576c;
-    --accent-teal: #a8edea;
-    --accent-peach: #fed6e3;
-    --white: #ffffff;
-    --dark-gray: #1e293b;
-    --medium-gray: #64748b;
-    --light-gray: #f8fafc;
-    --glass-bg: rgba(255, 255, 255, 0.25);
-    --glass-border: rgba(255, 255, 255, 0.18);
-    --shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    /* Dark Theme Base Colors */
+    --primary-dark: #1a202c;
+    --secondary-dark: #2d3748;
+    --accent-dark: #4a5568;
+    --text-light: #e2e8f0;
+    --text-medium: #a0aec0;
+    
+    /* Page-Specific Dark Themes */
+    --home-primary: #2d3748;
+    --home-accent: #4a5568;
+    --home-highlight: #1e3a8a;
+    
+    --services-primary: #1a365d;
+    --services-accent: #2a4365;
+    --services-highlight: #3182ce;
+    
+    --about-primary: #374151;
+    --about-accent: #4b5563;
+    --about-highlight: #1e40af;
+    
+    /* Legacy color variables (updated for dark theme) */
+    --primary-green: #1a365d;
+    --primary-blue: #2d3748;
+    --secondary-purple: #374151;
+    --accent-pink: #4a5568;
+    --accent-coral: #1e3a8a;
+    --accent-teal: #2a4365;
+    --accent-peach: #4b5563;
+    --white: #f7fafc;
+    --dark-gray: #e2e8f0;
+    --medium-gray: #a0aec0;
+    --light-gray: #1a202c;
+    --glass-bg: rgba(45, 55, 72, 0.25);
+    --glass-border: rgba(160, 174, 192, 0.18);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
     --gradient-primary: linear-gradient(135deg, var(--primary-blue), var(--secondary-purple));
-    --gradient-secondary: linear-gradient(135deg, var(--accent-pink), var(--accent-coral));
+    --gradient-secondary: linear-gradient(135deg, var(--accent-dark), var(--accent-coral));
     --gradient-tertiary: linear-gradient(135deg, var(--accent-teal), var(--accent-peach));
 }
 
-/* DYNAMIC COLOR ANIMATION SYSTEM */
+/* PAGE-SPECIFIC DARK THEME VARIATIONS */
+/* Home Page - Deep Slate Theme */
+body.home-theme {
+    --page-primary: var(--home-primary);
+    --page-accent: var(--home-accent);
+    --page-highlight: var(--home-highlight);
+}
+
+/* Services Page - Navy Professional Theme */
+body.services-theme {
+    --page-primary: var(--services-primary);
+    --page-accent: var(--services-accent);
+    --page-highlight: var(--services-highlight);
+}
+
+/* About Page - Charcoal Elegant Theme */
+body.about-theme {
+    --page-primary: var(--about-primary);
+    --page-accent: var(--about-accent);
+    --page-highlight: var(--about-highlight);
+}
+
+/* Pricing Page - Midnight Premium Theme */
+body.pricing-theme {
+    --page-primary: #1e3a8a;
+    --page-accent: #2563eb;
+    --page-highlight: #1d4ed8;
+}
+
+/* Contact Page - Obsidian Clean Theme */
+body.contact-theme {
+    --page-primary: #1a202c;
+    --page-accent: #2d3748;
+    --page-highlight: #4a5568;
+}
+
+/* Blog Pages - Sophisticated Gray Theme */
+body.blog-theme {
+    --page-primary: #374151;
+    --page-accent: #4b5563;
+    --page-highlight: #6b7280;
+}
+
+/* Dynamic background gradients for different pages */
+body.home-theme .hero {
+    background: linear-gradient(135deg, #1a202c 0%, #2d3748 50%, #1e3a8a 100%);
+}
+
+body.services-theme .hero {
+    background: linear-gradient(135deg, #1a365d 0%, #2a4365 50%, #3182ce 100%);
+}
+
+body.about-theme .hero {
+    background: linear-gradient(135deg, #374151 0%, #4b5563 50%, #1e40af 100%);
+}
+
+body.pricing-theme .hero {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #1d4ed8 100%);
+}
+
+body.contact-theme .hero {
+    background: linear-gradient(135deg, #1a202c 0%, #2d3748 50%, #4a5568 100%);
+}
+
+/* DYNAMIC COLOR ANIMATION SYSTEM - Softer Palette */
 @keyframes colorFlow1 {
-    0%, 100% { color: #667eea; }
-    25% { color: #764ba2; }
-    50% { color: #f093fb; }
-    75% { color: #f5576c; }
+    0%, 100% { color: #2d3748; }
+    25% { color: #4a5568; }
+    50% { color: #1a365d; }
+    75% { color: #374151; }
 }
 
 @keyframes colorFlow2 {
-    0%, 100% { color: #a8edea; }
-    25% { color: #fed6e3; }
-    50% { color: #667eea; }
-    75% { color: #764ba2; }
+    0%, 100% { color: #1e3a8a; }
+    25% { color: #2a4365; }
+    50% { color: #4a5568; }
+    75% { color: #374151; }
 }
 
 @keyframes colorFlow3 {
-    0%, 100% { color: #f093fb; }
-    25% { color: #a8edea; }
-    50% { color: #667eea; }
-    75% { color: #f5576c; }
+    0%, 100% { color: #1a365d; }
+    25% { color: #2c5282; }
+    50% { color: #2d3748; }
+    75% { color: #1e3a8a; }
+}
+
+@keyframes colorFlow4 {
+    0%, 100% { color: #4a5568; }
+    25% { color: #374151; }
+    50% { color: #2a4365; }
+    75% { color: #1a365d; }
+}
+
+@keyframes colorFlow5 {
+    0%, 100% { color: #374151; }
+    25% { color: #1a365d; }
+    50% { color: #1e3a8a; }
+    75% { color: #2d3748; }
+}
+
+@keyframes colorFlow6 {
+    0%, 100% { color: #2a4365; }
+    25% { color: #4a5568; }
+    50% { color: #374151; }
+    75% { color: #1a365d; }
 }
 
 .dynamic-color-1 { animation: colorFlow1 8s ease-in-out infinite; }
 .dynamic-color-2 { animation: colorFlow2 10s ease-in-out infinite; }
 .dynamic-color-3 { animation: colorFlow3 12s ease-in-out infinite; }
+.dynamic-color-4 { animation: colorFlow4 9s ease-in-out infinite; }
+.dynamic-color-5 { animation: colorFlow5 11s ease-in-out infinite; }
+.dynamic-color-6 { animation: colorFlow6 7s ease-in-out infinite; }
+
+/* ENHANCED HERO TITLE DYNAMIC STYLING */
+.hero-title span {
+    display: inline-block;
+    transition: all 0.5s ease;
+    font-weight: 900;
+}
+
+/* Make dynamic colors more visible on hero title */
+.hero-title .dynamic-color-1,
+.hero-title .dynamic-color-2,
+.hero-title .dynamic-color-3,
+.hero-title .dynamic-color-4,
+.hero-title .dynamic-color-5,
+.hero-title .dynamic-color-6 {
+    text-shadow: 0 0 20px currentColor, 0 4px 15px rgba(45, 55, 72, 0.5) !important;
+    filter: brightness(1.4) saturate(1.2);
+    transform: scale(1.02);
+}
+
+/* Enhanced floating for hero words */
+.hero-title .floating {
+    animation: heroFloat 4s ease-in-out infinite;
+    transform-origin: center;
+}
+
+@keyframes heroFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+    25% { transform: translateY(-8px) rotate(1deg) scale(1.02); }
+    50% { transform: translateY(-12px) rotate(0deg) scale(1.03); }
+    75% { transform: translateY(-6px) rotate(-1deg) scale(1.01); }
+}
 
 /* SCROLL-BASED FLOATING ANIMATIONS */
 .scroll-float-left { transition: transform 0.1s ease-out; }
@@ -339,10 +480,10 @@ img {
     font-weight: 900;
     line-height: 1.1;
     margin-bottom: 1.5rem;
-    color: #ffffff;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    color: var(--text-light);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     letter-spacing: -1px;
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #e2e8f0 100%);
+    background: linear-gradient(135deg, var(--text-light) 0%, var(--text-medium) 50%, var(--accent-dark) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
