@@ -1,49 +1,306 @@
 /*===========================================
-    Bostify - MAIN JAVASCRIPT FILE
-    Interactive functionality for the website
+    Bostify - PREMIUM MAIN JAVASCRIPT FILE
+    Interactive functionality with advanced animations
 ===========================================*/
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Ensure consistent favicon and apple-touch-icon across all pages
-    (function ensureFavicons(){
-        try {
-            const head = document.head || document.getElementsByTagName('head')[0];
-            if (!head) return;
+    // Initialize all premium features
+    initPremiumAnimations();
+    initScrollEffects();
+    initDynamicColors();
+    initFloatingElements();
+    initMobileMenu();
+    initCounterAnimations();
+    initPerformanceOptimizations();
 
-            const FAVICON_HREF = '/assets/images/favicon.svg';
-            const APPLE_ICON_HREF = '/assets/images/bostify-premium-logo.svg';
+    // ================================================
+    // PREMIUM ANIMATION SYSTEM
+    // ================================================
 
-            // Helper to upsert a link tag
-            function upsertLink(rel, href, type){
-                let link = head.querySelector(`link[rel="${rel}"]`);
-                if (!link) {
-                    link = document.createElement('link');
-                    link.setAttribute('rel', rel);
-                    head.appendChild(link);
-                }
-                link.setAttribute('href', href);
-                if (type) link.setAttribute('type', type);
-            }
+    function initPremiumAnimations() {
+        // Add dynamic color classes to key elements
+        addDynamicColorClasses();
+        
+        // Add floating classes to elements
+        addFloatingClasses();
+        
+        // Initialize intersection observers for animations
+        setupIntersectionObservers();
+    }
 
-            upsertLink('icon', FAVICON_HREF, 'image/svg+xml');
-            upsertLink('apple-touch-icon', APPLE_ICON_HREF);
-        } catch (e) {
-            console.warn('Favicon injection skipped:', e);
+    function addDynamicColorClasses() {
+        // Target specific words and elements for color animation
+        const colorTargets = [
+            { selector: '.hero-title', words: ['Elite', 'Fortune', 'AI-Powered', 'Revolutionary', 'World\'s', 'SEO', 'Mastery'] },
+            { selector: '.section-title', words: ['Elite', 'Fortune', 'Premium', 'Excellence', 'Revolutionary', 'Success'] },
+            { selector: '.service-card h3', words: ['Elite', 'Revolutionary', 'AI-Powered', 'Fortune', 'Premium', 'Supreme'] },
+            { selector: '.testimonial-text', words: ['Elite', 'Fortune', 'Revolutionary', 'legendary', 'cutting-edge', 'supreme'] },
+            { selector: 'h2, h3', words: ['Elite', 'Fortune', 'Revolutionary', 'Premium', 'Excellence', 'Supreme'] }
+        ];
+
+        colorTargets.forEach(target => {
+            const elements = document.querySelectorAll(target.selector);
+            elements.forEach(element => {
+                let html = element.innerHTML;
+                target.words.forEach((word, index) => {
+                    const colorClass = `dynamic-color-${(index % 3) + 1}`;
+                    const regex = new RegExp(`\\b${word}\\b`, 'gi');
+                    html = html.replace(regex, `<span class="${colorClass}">${word}</span>`);
+                });
+                element.innerHTML = html;
+            });
+        });
+    }
+
+    function addFloatingClasses() {
+        // Add floating classes to different elements
+        const floatingElements = [
+            { selector: '.service-icon', class: 'scroll-float-up' },
+            { selector: '.stat-number', class: 'scroll-float-left' },
+            { selector: '.testimonial-stars', class: 'scroll-float-right' },
+            { selector: '.hero-image img', class: 'scroll-float-down' },
+            { selector: '.cta-button', class: 'scroll-float-up' }
+        ];
+
+        floatingElements.forEach(item => {
+            const elements = document.querySelectorAll(item.selector);
+            elements.forEach(element => {
+                element.classList.add(item.class);
+            });
+        });
+    }
+
+    // ================================================
+    // SCROLL-BASED ANIMATION SYSTEM
+    // ================================================
+
+    function initScrollEffects() {
+        let lastScrollTop = 0;
+        let scrollDirection = 'down';
+        
+        window.addEventListener('scroll', throttle(function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollPercent = scrollTop / (document.documentElement.scrollHeight - window.innerHeight);
+            
+            // Determine scroll direction
+            scrollDirection = scrollTop > lastScrollTop ? 'down' : 'up';
+            lastScrollTop = scrollTop;
+            
+            // Apply floating effects
+            applyFloatingEffects(scrollDirection, scrollPercent);
+            
+            // Update header based on scroll
+            updateHeaderOnScroll(scrollTop);
+            
+        }, 16)); // ~60fps
+    }
+
+    function applyFloatingEffects(direction, scrollPercent) {
+        const intensity = Math.sin(scrollPercent * Math.PI * 4) * 15; // Wave effect
+        
+        // Left floating elements
+        const leftElements = document.querySelectorAll('.scroll-float-left');
+        leftElements.forEach(element => {
+            const baseTransform = direction === 'down' ? intensity : -intensity;
+            element.style.transform = `translateX(${baseTransform}px) rotate(${intensity * 0.1}deg)`;
+        });
+
+        // Right floating elements  
+        const rightElements = document.querySelectorAll('.scroll-float-right');
+        rightElements.forEach(element => {
+            const baseTransform = direction === 'down' ? -intensity : intensity;
+            element.style.transform = `translateX(${baseTransform}px) rotate(${-intensity * 0.1}deg)`;
+        });
+
+        // Up floating elements
+        const upElements = document.querySelectorAll('.scroll-float-up');
+        upElements.forEach(element => {
+            const baseTransform = direction === 'down' ? -intensity * 0.5 : intensity * 0.5;
+            element.style.transform = `translateY(${baseTransform}px) rotate(${intensity * 0.05}deg)`;
+        });
+
+        // Down floating elements
+        const downElements = document.querySelectorAll('.scroll-float-down');
+        downElements.forEach(element => {
+            const baseTransform = direction === 'down' ? intensity * 0.3 : -intensity * 0.3;
+            element.style.transform = `translateY(${baseTransform}px) rotate(${-intensity * 0.05}deg)`;
+        });
+    }
+
+    // ================================================
+    // DYNAMIC COLOR SYSTEM
+    // ================================================
+
+    function initDynamicColors() {
+        // Enhanced color animation with scroll-based variations
+        let colorIndex = 0;
+        
+        setInterval(() => {
+            updateDynamicColors(colorIndex);
+            colorIndex = (colorIndex + 1) % 4;
+        }, 4000); // Change colors every 4 seconds
+    }
+
+    function updateDynamicColors(index) {
+        const colorSets = [
+            ['#667eea', '#764ba2', '#f093fb', '#f5576c'],
+            ['#a8edea', '#fed6e3', '#667eea', '#764ba2'],
+            ['#f093fb', '#a8edea', '#667eea', '#f5576c'],
+            ['#764ba2', '#f5576c', '#a8edea', '#fed6e3']
+        ];
+        
+        const currentColors = colorSets[index];
+        
+        // Update CSS custom properties for smooth transitions
+        document.documentElement.style.setProperty('--dynamic-color-1', currentColors[0]);
+        document.documentElement.style.setProperty('--dynamic-color-2', currentColors[1]);
+        document.documentElement.style.setProperty('--dynamic-color-3', currentColors[2]);
+        document.documentElement.style.setProperty('--dynamic-color-4', currentColors[3]);
+    }
+
+    // ================================================
+    // FLOATING PARTICLE SYSTEM
+    // ================================================
+
+    function initFloatingElements() {
+        createFloatingParticles();
+        createLiquidOrbs();
+    }
+
+    function createFloatingParticles() {
+        const particleContainer = document.createElement('div');
+        particleContainer.className = 'floating-particles';
+        particleContainer.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        `;
+        
+        // Create 15 floating particles
+        for (let i = 0; i < 15; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.cssText = `
+                position: absolute;
+                width: ${Math.random() * 6 + 3}px;
+                height: ${Math.random() * 6 + 3}px;
+                background: linear-gradient(45deg, #667eea, #764ba2);
+                border-radius: 50%;
+                opacity: ${Math.random() * 0.4 + 0.1};
+                left: ${Math.random() * 100}%;
+                top: ${Math.random() * 100}%;
+                animation: floatParticle ${Math.random() * 25 + 15}s linear infinite;
+            `;
+            particleContainer.appendChild(particle);
         }
-    })();
-    
-    // Mobile Menu Toggle
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-    
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', function() {
+        
+        document.body.appendChild(particleContainer);
+    }
+
+    function createLiquidOrbs() {
+        const orbContainer = document.createElement('div');
+        orbContainer.className = 'liquid-orbs';
+        orbContainer.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        `;
+        
+        // Create 3 liquid orbs
+        const orbConfigs = [
+            { size: 250, colors: 'linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.15))', position: { top: '-125px', right: '-125px' } },
+            { size: 180, colors: 'linear-gradient(135deg, rgba(240, 147, 251, 0.2), rgba(245, 87, 108, 0.15))', position: { bottom: '-90px', left: '-90px' } },
+            { size: 200, colors: 'linear-gradient(135deg, rgba(168, 237, 234, 0.2), rgba(254, 214, 227, 0.15))', position: { top: '60%', left: '80%' } }
+        ];
+        
+        orbConfigs.forEach((config, i) => {
+            const orb = document.createElement('div');
+            orb.className = `liquid-orb orb-${i + 1}`;
+            orb.style.cssText = `
+                position: absolute;
+                width: ${config.size}px;
+                height: ${config.size}px;
+                background: ${config.colors};
+                border-radius: 50%;
+                filter: blur(40px);
+                animation: floatOrb ${8 + i * 2}s ease-in-out infinite;
+                animation-delay: ${i * 2}s;
+            `;
+            
+            // Apply position
+            Object.keys(config.position).forEach(key => {
+                orb.style[key] = config.position[key];
+            });
+            
+            orbContainer.appendChild(orb);
+        });
+        
+        document.body.appendChild(orbContainer);
+    }
+
+    // ================================================
+    // MOBILE MENU SYSTEM
+    // ================================================
+
+    function initMobileMenu() {
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', function() {
+                toggleMobileMenu();
+            });
+            
+            // Close menu when clicking on nav links
+            const navLinks = navMenu.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    closeMobileMenu();
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!hamburger.contains(e.target) && !navMenu.contains(e.target) && navMenu.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            });
+        }
+
+        function toggleMobileMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
             
-            // Animate hamburger bars
-            const bars = hamburger.querySelectorAll('.bar');
-            if (hamburger.classList.contains('active')) {
+            animateHamburger(hamburger.classList.contains('active'));
+            
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = hamburger.classList.contains('active') ? 'hidden' : '';
+        }
+
+        function closeMobileMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            animateHamburger(false);
+            document.body.style.overflow = '';
+        }
+
+        function animateHamburger(isActive) {
+            const bars = document.querySelectorAll('.hamburger .bar');
+            if (isActive) {
                 bars[0].style.transform = 'rotate(-45deg) translate(-5px, 6px)';
                 bars[1].style.opacity = '0';
                 bars[2].style.transform = 'rotate(45deg) translate(-5px, -6px)';
@@ -52,416 +309,296 @@ document.addEventListener('DOMContentLoaded', function() {
                 bars[1].style.opacity = '1';
                 bars[2].style.transform = 'none';
             }
-        });
-        
-        // Close menu when clicking on nav links
-        const navLinks = navMenu.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                const bars = hamburger.querySelectorAll('.bar');
-                bars[0].style.transform = 'none';
-                bars[1].style.opacity = '1';
-                bars[2].style.transform = 'none';
-            });
-        });
-    }
-    
-    // Smooth Scrolling for anchor links
-    const scrollToLinks = document.querySelectorAll('a[href^="#"], .scroll-to');
-    scrollToLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (href.startsWith('#')) {
-                e.preventDefault();
-                const targetElement = document.querySelector(href);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            }
-        });
-    });
-    
-    // Form Validation and Submission
-    const auditForm = document.getElementById('audit-form');
-    const successMessage = document.getElementById('success-message');
-    
-    if (auditForm) {
-        auditForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            if (validateForm()) {
-                submitForm();
-            }
-        });
-    }
-    
-    // Form Validation Function
-    function validateForm() {
-        const requiredFields = auditForm.querySelectorAll('input[required], textarea[required]');
-        let isValid = true;
-        
-        requiredFields.forEach(field => {
-            const value = field.value.trim();
-            const fieldGroup = field.closest('.form-group');
-            
-            // Remove previous error styles
-            field.classList.remove('error');
-            const existingError = fieldGroup.querySelector('.error-message');
-            if (existingError) {
-                existingError.remove();
-            }
-            
-            // Check if field is empty
-            if (!value) {
-                showFieldError(field, 'This field is required');
-                isValid = false;
-            } else {
-                // Validate email format
-                if (field.type === 'email' && !isValidEmail(value)) {
-                    showFieldError(field, 'Please enter a valid email address');
-                    isValid = false;
-                }
-                
-                // Validate URL format
-                if (field.type === 'url' && !isValidURL(value)) {
-                    showFieldError(field, 'Please enter a valid website URL');
-                    isValid = false;
-                }
-            }
-        });
-        
-        return isValid;
-    }
-    
-    // Show Field Error
-    function showFieldError(field, message) {
-        field.classList.add('error');
-        const errorElement = document.createElement('span');
-        errorElement.className = 'error-message';
-        errorElement.textContent = message;
-        field.closest('.form-group').appendChild(errorElement);
-    }
-    
-    // Email Validation
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
-    
-    // URL Validation
-    function isValidURL(url) {
-        try {
-            new URL(url);
-            return true;
-        } catch {
-            return false;
         }
     }
-    
-    // Form Submission Function
-    function submitForm() {
-        const submitButton = auditForm.querySelector('button[type="submit"]');
-        const buttonText = submitButton.querySelector('.button-text');
-        const buttonLoading = submitButton.querySelector('.button-loading');
-        
-        // Show loading state
-        submitButton.disabled = true;
-        buttonText.style.display = 'none';
-        buttonLoading.style.display = 'inline';
-        
-        // Collect form data
-        const formData = new FormData(auditForm);
-        const formDataObj = {};
-        
-        for (let [key, value] of formData.entries()) {
-            formDataObj[key] = value;
-        }
-        
-        // Simulate API call (replace with actual form submission)
-        setTimeout(() => {
-            // In a real implementation, you would send this data to your server
-            // For now, we'll just show the success message
-            
-            console.log('Form submitted with data:', formDataObj);
-            
-            // Send email using a service like EmailJS or your backend API
-            sendFormData(formDataObj);
-            
-            // Hide form and show success message
-            auditForm.style.display = 'none';
-            successMessage.style.display = 'block';
-            
-            // Scroll to success message
-            successMessage.scrollIntoView({ behavior: 'smooth' });
-            
-        }, 2000); // 2 second delay to simulate processing
-    }
-    
-    // Enhanced Form Data Submission with Premium Features
-    function sendFormData(data) {
-        // Premium EmailJS configuration with error handling
-        if (typeof emailjs !== 'undefined') {
-            // Add user tracking for analytics
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'form_submit', {
-                    event_category: 'engagement',
-                    event_label: 'contact_form',
-                    value: 1
-                });
-            }
-            
-            // Enhanced EmailJS send function
-        emailjs.send(
-                'service_lqo17bk',  
-                'template_noice5r', 
-                {
-            to_email: 'sumitsheokand347@gmail.com',
-                    from_name: data.name || 'Website Visitor',
-                    from_email: data.email || 'No email provided',
-                    website: data.website || 'Not specified',
-                    phone: data.phone || 'Not provided',
-                    business_type: data['business-type'] || 'Not specified',
-                    business_goals: data['business-goals'] || 'Not specified',
-                    current_traffic: data['current-traffic'] || 'Not specified',
-                    budget: data.budget || 'Not specified',
-                    newsletter: data.newsletter ? 'Yes' : 'No',
-                    submission_date: new Date().toLocaleString(),
-                    message: `New SEO audit request from ${data.name || 'Website Visitor'}`
-                }
-            ).then(
-                function(response) {
-                    console.log('✅ Email sent successfully!', response.status, response.text);
-                },
-                function(error) {
-                    console.error('❌ Failed to send email:', error);
-                    // Fallback: Show user a message to contact directly
-                    showEmailFallback();
-                }
-            );
-        } else {
-            console.log('EmailJS not loaded. Form data logged:', data);
-            // Fallback: Show user a message to contact directly
-            showEmailFallback();
-        }
-    }
-    
-    // Fallback function when email service is not available
-    function showEmailFallback() {
-        const successMessage = document.getElementById('success-message');
-        if (successMessage) {
-            const fallbackHTML = `
-                <div class="success-content">
-                    <div class="success-icon">📧</div>
-                    <h3>Almost There!</h3>
-                    <p>Thanks for your interest in our SEO services! Please send your details directly to:</p>
-                    <p><strong><a href="mailto:sumitsheokand347@gmail.com">sumitsheokand347@gmail.com</a></strong></p>
-                    <p>Or call us to schedule your free consultation.</p>
-                    <div class="success-actions">
-                        <a href="mailto:sumitsheokand347@gmail.com?subject=SEO Audit Request&body=Hi Sumit,%0D%0A%0D%0AI'm interested in your SEO services. Here are my details:%0D%0A%0D%0AWebsite: %0D%0ABusiness Type: %0D%0ACurrent Goals: %0D%0A%0D%0ALooking forward to hearing from you!" class="cta-button primary">Send Email Now</a>
-                    </div>
-                </div>
-            `;
-            successMessage.innerHTML = fallbackHTML;
-        }
-    }
-    
-    // Schedule Call Handler
-    const scheduleCallButton = document.getElementById('schedule-call');
-    if (scheduleCallButton) {
-        scheduleCallButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Replace this with actual Calendly or scheduling link
-            alert('Please email sumitsheokand347@gmail.com to schedule your free consultation call. A scheduling link will be provided soon!');
-            
-            // In production, you might redirect to Calendly:
-           window.open('https://calendly.com/sumitsheokand347/30min', '_blank');
-        });
-    }
-    
-    // Scroll animations for elements coming into view
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-            }
-        });
-    }, observerOptions);
-    
-    // Observe elements for animation
-    const animateElements = document.querySelectorAll('.glass-effect, .service-card, .testimonial-card, .pricing-card');
-    animateElements.forEach(el => {
-        observer.observe(el);
-    });
-    
-    // Counter Animation for Statistics
-    function animateCounters() {
+
+    // ================================================
+    // COUNTER ANIMATIONS
+    // ================================================
+
+    function initCounterAnimations() {
         const counters = document.querySelectorAll('.stat-number, .trust-number');
         
         counters.forEach(counter => {
-            const target = parseInt(counter.textContent.replace(/\D/g, ''));
-            const increment = target / 100;
+            const originalText = counter.textContent;
+            const target = parseInt(originalText.replace(/\D/g, ''));
+            if (isNaN(target)) return;
+            
+            const duration = 2500; // 2.5 seconds
+            const increment = target / (duration / 16); // 60fps
             let current = 0;
+            let hasAnimated = false;
             
             const updateCounter = () => {
                 if (current < target) {
                     current += increment;
-                    if (counter.textContent.includes('%')) {
-                        counter.textContent = Math.ceil(current) + '%';
-                    } else if (counter.textContent.includes('+')) {
-                        counter.textContent = Math.ceil(current) + '+';
+                    const value = Math.ceil(current);
+                    
+                    if (originalText.includes('%')) {
+                        counter.textContent = value + '%';
+                    } else if (originalText.includes('+')) {
+                        counter.textContent = value + '+';
+                    } else if (originalText.includes('K')) {
+                        counter.textContent = value + 'K';
                     } else {
-                        counter.textContent = Math.ceil(current);
+                        counter.textContent = value;
                     }
                     requestAnimationFrame(updateCounter);
                 } else {
-                    counter.textContent = counter.textContent; // Reset to original
+                    counter.textContent = originalText;
                 }
             };
             
-            // Start animation when element is in view
             const counterObserver = new IntersectionObserver(function(entries) {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
+                    if (entry.isIntersecting && !hasAnimated) {
+                        hasAnimated = true;
                         updateCounter();
                         counterObserver.unobserve(entry.target);
                     }
                 });
-            });
+            }, { threshold: 0.5 });
             
             counterObserver.observe(counter);
         });
     }
-    
-    // Initialize counter animations
-    animateCounters();
-    
-    // FAQ Toggle Functionality (if needed)
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(item => {
-        const question = item.querySelector('h3');
-        if (question) {
-            question.style.cursor = 'pointer';
-            question.addEventListener('click', function() {
-                const answer = item.querySelector('p');
-                if (answer.style.display === 'none') {
-                    answer.style.display = 'block';
-                    question.textContent = question.textContent.replace('+', '-');
-                } else {
-                    answer.style.display = 'none';
-                    question.textContent = question.textContent.replace('-', '+');
+
+    // ================================================
+    // UTILITY FUNCTIONS
+    // ================================================
+
+    function throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        }
+    }
+
+    function setupIntersectionObservers() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                    
+                    // Add staggered animation delay for grids
+                    if (entry.target.closest('.services-grid, .testimonials-grid')) {
+                        const siblings = Array.from(entry.target.parentNode.children);
+                        const index = siblings.indexOf(entry.target);
+                        entry.target.style.animationDelay = `${index * 0.15}s`;
+                    }
                 }
             });
-        }
-    });
-    
-    // Dynamic year in footer
-    const currentYearElements = document.querySelectorAll('.current-year');
-    const currentYear = new Date().getFullYear();
-    currentYearElements.forEach(el => {
-        el.textContent = currentYear;
-    });
-    
-    // Header scroll effect
-    let lastScrollTop = 0;
-    const header = document.querySelector('.header');
-    
-    window.addEventListener('scroll', function() {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        }, observerOptions);
+
+        const animateElements = document.querySelectorAll('.glass-effect, .service-card, .testimonial-card, .stat, .cta-content');
+        animateElements.forEach(el => {
+            observer.observe(el);
+        });
+    }
+
+    function updateHeaderOnScroll(scrollTop) {
+        const header = document.querySelector('.header');
+        if (!header) return;
         
-        if (scrollTop > lastScrollTop && scrollTop > 100) {
-            // Scrolling down
-            header.style.transform = 'translateY(-100%)';
-        } else {
-            // Scrolling up
-            header.style.transform = 'translateY(0)';
-        }
-        
-        lastScrollTop = scrollTop;
-    });
-    
-    // Add scroll event for header background
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
+        if (scrollTop > 100) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
         }
-    });
-    
-    // Performance optimization: Preload critical images
-    function preloadImages() {
-        const criticalImages = [
-            'https://images.unsplash.com/photo-1460925895917-afdab827c52f',
-            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d',
-            'https://images.unsplash.com/photo-1494790108755-2616b612b786'
-        ];
-        
-        criticalImages.forEach(src => {
-            const img = new Image();
-            img.src = src;
+    }
+
+    // ================================================
+    // SMOOTH SCROLLING
+    // ================================================
+
+    function initSmoothScrolling() {
+        const scrollToLinks = document.querySelectorAll('a[href^="#"], .scroll-to');
+        scrollToLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#') && href.length > 1) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(href);
+                    if (targetElement) {
+                        const headerHeight = document.querySelector('.header')?.offsetHeight || 80;
+                        const targetPosition = targetElement.offsetTop - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
         });
     }
-    
-    // Initialize preloading
-    preloadImages();
-    
-    // Error handling for images
-    const images = document.querySelectorAll('img');
-    images.forEach(img => {
-        img.addEventListener('error', function() {
-            // Replace with a better placeholder if image fails to load
-            this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjhmOWZhIiBzdHJva2U9IiNkZGQiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSIgZmlsbD0iIzk5OSI+SW1hZ2UgTG9hZGluZy4uLjwvdGV4dD48L3N2Zz4=';
-            this.alt = 'Image loading placeholder';
+
+    // Initialize smooth scrolling
+    initSmoothScrolling();
+
+    // ================================================
+    // PERFORMANCE OPTIMIZATION MODULE
+    // ================================================
+
+    function initPerformanceOptimizations() {
+        initLazyLoading();
+        preloadCriticalResources();
+        setCurrentYear();
+    }
+
+    function initLazyLoading() {
+        const images = document.querySelectorAll('img[loading="lazy"], img[data-src]');
+        
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                            img.removeAttribute('data-src');
+                        }
+                        img.classList.add('loaded');
+                        observer.unobserve(img);
+                    }
+                });
+            });
             
-            // Try loading a fallback image after a short delay
-            setTimeout(() => {
-                if (this.src.includes('data:image/svg+xml')) {
-                    // Use a generic business/SEO related image as fallback
-                    this.src = 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80';
-                    this.alt = 'SEO Analytics and Digital Marketing';
-                }
-            }, 1000);
+            images.forEach(img => imageObserver.observe(img));
+        }
+    }
+
+    function preloadCriticalResources() {
+        const criticalResources = [
+            'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap'
+        ];
+        
+        criticalResources.forEach(href => {
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.href = href;
+            link.as = 'style';
+            link.onload = function() {
+                this.onload = null;
+                this.rel = 'stylesheet';
+            };
+            document.head.appendChild(link);
         });
-    });
+    }
+
+    function setCurrentYear() {
+        const currentYearElements = document.querySelectorAll('.current-year');
+        const currentYear = new Date().getFullYear();
+        currentYearElements.forEach(el => {
+            el.textContent = currentYear;
+        });
+    }
 });
 
-// Additional CSS animations (add these to main.css if needed)
-const animationCSS = `
+// ================================================
+// CSS KEYFRAMES INJECTION
+// ================================================
+
+const premiumAnimationCSS = `
+    /* Enhanced Color Animation Variables */
+    :root {
+        --dynamic-color-1: #667eea;
+        --dynamic-color-2: #764ba2;
+        --dynamic-color-3: #f093fb;
+        --dynamic-color-4: #f5576c;
+    }
+
+    /* Dynamic Color Classes */
+    .dynamic-color-1 { 
+        color: var(--dynamic-color-1) !important; 
+        transition: color 1.5s ease-in-out;
+    }
+    .dynamic-color-2 { 
+        color: var(--dynamic-color-2) !important; 
+        transition: color 1.5s ease-in-out;
+    }
+    .dynamic-color-3 { 
+        color: var(--dynamic-color-3) !important; 
+        transition: color 1.5s ease-in-out;
+    }
+
+    /* Scroll Float Elements */
+    .scroll-float-left,
+    .scroll-float-right,
+    .scroll-float-up,
+    .scroll-float-down {
+        transition: transform 0.1s ease-out;
+    }
+
+    /* Floating Particles Animation */
+    @keyframes floatParticle {
+        0% { 
+            transform: translateY(100vh) translateX(0) rotate(0deg); 
+            opacity: 0;
+        }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { 
+            transform: translateY(-100px) translateX(50px) rotate(360deg); 
+            opacity: 0;
+        }
+    }
+
+    /* Liquid Orb Animation */
+    @keyframes floatOrb {
+        0%, 100% { 
+            transform: translateY(0px) translateX(0px) rotate(0deg); 
+        }
+        25% { 
+            transform: translateY(-30px) translateX(20px) rotate(90deg); 
+        }
+        50% { 
+            transform: translateY(-15px) translateX(-15px) rotate(180deg); 
+        }
+        75% { 
+            transform: translateY(-25px) translateX(10px) rotate(270deg); 
+        }
+    }
+
+    /* Enhanced Intersection Animations */
     .animate-in {
-        animation: fadeInUp 0.6s ease-out forwards;
+        animation: fadeInUp 0.8s ease-out forwards;
     }
     
     @keyframes fadeInUp {
         from {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(40px) scale(0.95);
         }
         to {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
     }
-    
+
+    /* Enhanced Header Scroll Effect */
     .header.scrolled {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.95) !important;
+        backdrop-filter: blur(25px) !important;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1) !important;
     }
     
     .header {
-        transition: transform 0.3s ease, background 0.3s ease;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
-    
+
+    /* Enhanced Mobile Menu */
     .hamburger.active .bar:nth-child(1) {
         transform: rotate(-45deg) translate(-5px, 6px);
     }
@@ -475,214 +612,100 @@ const animationCSS = `
     }
     
     .bar {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Enhanced Glass Effects */
+    .glass-effect:hover {
+        transform: translateY(-8px) scale(1.02) !important;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    /* Staggered Grid Animations */
+    .services-grid .service-card,
+    .testimonials-grid .testimonial-card {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease-out;
+    }
+
+    .services-grid .service-card.animate-in,
+    .testimonials-grid .testimonial-card.animate-in {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Enhanced Hover Effects */
+    .service-card:hover .service-icon {
+        transform: scale(1.1) rotate(5deg);
+        transition: transform 0.3s ease;
+    }
+
+    .testimonial-card:hover .testimonial-stars {
+        transform: scale(1.1);
+        text-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
         transition: all 0.3s ease;
+    }
+
+    .stat:hover {
+        transform: translateY(-10px) scale(1.05);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+    }
+
+    .cta-button:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .scroll-float-left,
+        .scroll-float-right,
+        .scroll-float-up,
+        .scroll-float-down {
+            transform: none !important;
+        }
+
+        .floating-particles .particle {
+            width: 3px !important;
+            height: 3px !important;
+        }
+
+        .liquid-orb {
+            width: 120px !important;
+            height: 120px !important;
+        }
+    }
+
+    /* Reduced Motion Support */
+    @media (prefers-reduced-motion: reduce) {
+        .dynamic-color-1,
+        .dynamic-color-2,
+        .dynamic-color-3,
+        .scroll-float-left,
+        .scroll-float-right,
+        .scroll-float-up,
+        .scroll-float-down {
+            animation: none !important;
+            transform: none !important;
+            transition: none !important;
+        }
+
+        .floating-particles,
+        .liquid-orbs {
+            display: none !important;
+        }
+
+        .animate-in {
+            animation: none !important;
+        }
     }
 `;
 
-// Add animation styles to document
-if (!document.getElementById('animation-styles')) {
+// Inject premium animation styles
+if (!document.getElementById('premium-animation-styles')) {
     const styleSheet = document.createElement('style');
-    styleSheet.id = 'animation-styles';
-    styleSheet.textContent = animationCSS;
+    styleSheet.id = 'premium-animation-styles';
+    styleSheet.textContent = premiumAnimationCSS;
     document.head.appendChild(styleSheet);
 }
-
-// Google Analytics (gtag) - dynamic loader with your Measurement ID
-(function initGoogleAnalytics(){
-    try {
-    var cfg = (window.Bostify_PAYMENT_CONFIG && window.Bostify_PAYMENT_CONFIG.analytics && window.Bostify_PAYMENT_CONFIG.analytics.googleAnalytics) || {};
-    var MEASUREMENT_ID = cfg.trackingId || 'G-Z4E591FCE0';
-    var GA_ENABLED = cfg.enabled !== false; // default true if not explicitly false
-    if (!GA_ENABLED || !MEASUREMENT_ID) return;
-
-        // If gtag already present, just configure and exit
-        if (typeof window.gtag === 'function') {
-            window.gtag('config', MEASUREMENT_ID, {
-                page_title: document.title || undefined,
-                page_location: window.location.href
-            });
-            return;
-        }
-
-        // Prepare dataLayer and gtag stub before loading script
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){ dataLayer.push(arguments); }
-        window.gtag = gtag;
-        gtag('js', new Date());
-
-        // Avoid duplicate script injection
-    if (!document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) {
-            var gaScript = document.createElement('script');
-            gaScript.async = true;
-            gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(MEASUREMENT_ID);
-            gaScript.onload = function(){
-                // Configure after load (also safe to call before due to stub)
-                gtag('config', MEASUREMENT_ID, {
-                    page_title: document.title || undefined,
-                    page_location: window.location.href
-                });
-            };
-            gaScript.onerror = function(err){
-                console.error('Google Analytics failed to load:', err);
-            };
-            document.head.appendChild(gaScript);
-        } else {
-            // Script tag exists; still ensure config is called
-            gtag('config', MEASUREMENT_ID, {
-                page_title: document.title || undefined,
-                page_location: window.location.href
-            });
-        }
-    } catch (e) {
-        console.error('GA init error:', e);
-    }
-})();
-
-// Cookie consent (simple implementation)
-function showCookieConsent() {
-    if (!localStorage.getItem('cookieConsent')) {
-        const banner = document.createElement('div');
-        banner.innerHTML = `
-            <div style="position: fixed; bottom: 0; left: 0; right: 0; background: #333; color: white; padding: 1rem; text-align: center; z-index: 10000;">
-                <p style="margin: 0 0 1rem 0;">This website uses cookies to ensure you get the best experience. 
-                <a href="#" style="color: #00c851;">Learn more</a></p>
-                <button id="accept-cookies" style="background: #00c851; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">Accept</button>
-            </div>
-        `;
-        document.body.appendChild(banner);
-        
-        document.getElementById('accept-cookies').addEventListener('click', function() {
-            localStorage.setItem('cookieConsent', 'true');
-            banner.remove();
-        });
-    }
-}
-
-// Show cookie consent after 2 seconds
-setTimeout(showCookieConsent, 2000);
-
-// ================================================
-// PERFORMANCE OPTIMIZATION MODULE
-// ================================================
-
-// Lazy Loading Implementation
-function initLazyLoading() {
-    const images = document.querySelectorAll('img[loading="lazy"], img[data-src]');
-    
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    if (img.dataset.src) {
-                        img.src = img.dataset.src;
-                        img.removeAttribute('data-src');
-                    }
-                    img.classList.add('loaded');
-                    observer.unobserve(img);
-                }
-            });
-        });
-        
-        images.forEach(img => imageObserver.observe(img));
-    } else {
-        // Fallback for older browsers
-        images.forEach(img => {
-            if (img.dataset.src) {
-                img.src = img.dataset.src;
-                img.removeAttribute('data-src');
-            }
-        });
-    }
-}
-
-// Core Web Vitals Monitoring
-function monitorPerformance() {
-    if ('PerformanceObserver' in window) {
-        try {
-            // Largest Contentful Paint (LCP)
-            const lcpObserver = new PerformanceObserver((list) => {
-                const entries = list.getEntries();
-                const lastEntry = entries[entries.length - 1];
-                console.log('LCP:', lastEntry.startTime);
-                
-                // Send to analytics if available
-                if (typeof gtag === 'function') {
-                    gtag('event', 'page_performance', {
-                        metric: 'LCP',
-                        value: Math.round(lastEntry.startTime)
-                    });
-                }
-            });
-            lcpObserver.observe({entryTypes: ['largest-contentful-paint']});
-            
-            // First Input Delay (FID)
-            const fidObserver = new PerformanceObserver((list) => {
-                const entries = list.getEntries();
-                entries.forEach(entry => {
-                    const fid = entry.processingStart - entry.startTime;
-                    console.log('FID:', fid);
-                    
-                    if (typeof gtag === 'function') {
-                        gtag('event', 'page_performance', {
-                            metric: 'FID',
-                            value: Math.round(fid)
-                        });
-                    }
-                });
-            });
-            fidObserver.observe({entryTypes: ['first-input']});
-            
-        } catch (error) {
-            console.log('Performance monitoring not supported');
-        }
-    }
-}
-
-// Resource Preloading
-function preloadCriticalResources() {
-    const criticalResources = [
-        { href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap', as: 'style' },
-        { href: '/assets/css/main.css', as: 'style' }
-    ];
-    
-    criticalResources.forEach(resource => {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.href = resource.href;
-        link.as = resource.as;
-        if (resource.as === 'style') {
-            link.onload = function() {
-                this.onload = null;
-                this.rel = 'stylesheet';
-            };
-        }
-        document.head.appendChild(link);
-    });
-}
-
-// Service Worker Registration
-function registerServiceWorker() {
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-                console.log('ServiceWorker registered:', registration);
-            })
-            .catch(error => {
-                console.log('ServiceWorker registration failed:', error);
-            });
-    }
-}
-
-// Initialize performance optimizations
-function initPerformanceOptimizations() {
-    initLazyLoading();
-    monitorPerformance();
-    preloadCriticalResources();
-    // Removed service worker registration to prevent popup
-    // registerServiceWorker();
-}
-
-// Initialize performance optimizations when DOM is ready
-document.addEventListener('DOMContentLoaded', initPerformanceOptimizations);
-
