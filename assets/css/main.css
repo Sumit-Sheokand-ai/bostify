@@ -1801,269 +1801,33 @@ img {
     font-size: 1.1rem;
 }
 
-/* ================================================ */
-/* BROKEN BUTTON EFFECT FOR RETURNING USERS */
-/* ================================================ */
 
-/* Broken button state - activated when user returns to same page */
-.cta-button.broken {
-    position: relative;
-    background: linear-gradient(45deg, 
-        #4a4a4a 0%, #6b6b6b 25%, #3a3a3a 50%, 
-        #5a5a5a 75%, #2a2a2a 100%) !important;
-    color: #cccccc !important;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
-    animation: brokenGlitch 3s ease infinite, gradientShift 8s ease infinite;
-    overflow: visible !important;
-}
 
-/* Create the actual broken pieces */
-.cta-button.broken::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 50%;
-    bottom: 0;
-    background: inherit;
-    clip-path: polygon(
-        0% 0%, 
-        45% 0%, 
-        48% 15%, 
-        52% 25%, 
-        46% 40%, 
-        50% 55%, 
-        47% 70%, 
-        51% 85%, 
-        45% 100%, 
-        0% 100%
-    );
-    transform: translateX(-2px) rotate(-1deg);
-    animation: leftPieceCrack 2s ease-out forwards, brokenGlitch 3s ease infinite;
-    z-index: 2;
-    border-radius: inherit;
-}
 
-/* Right broken piece */
-.cta-button.broken::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    right: 0;
-    bottom: 0;
-    background: inherit;
-    clip-path: polygon(
-        55% 0%, 
-        100% 0%, 
-        100% 100%, 
-        49% 100%, 
-        53% 85%, 
-        47% 70%, 
-        54% 55%, 
-        48% 40%, 
-        52% 25%, 
-        46% 15%, 
-        50% 0%
-    );
-    transform: translateX(2px) rotate(1deg);
-    animation: rightPieceCrack 2s ease-out forwards, brokenGlitch 3s ease infinite;
-    z-index: 2;
-    border-radius: inherit;
-}
 
-/* Hide original button background when broken */
-.cta-button.broken {
-    background: transparent !important;
-    color: transparent !important;
-    text-shadow: none !important;
-}
 
-/* Show crack line */
-.cta-button.broken .crack-line {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(to bottom, 
-        rgba(255,255,255,0.3) 0%,
-        rgba(0,0,0,0.8) 20%,
-        rgba(255,255,255,0.2) 40%,
-        rgba(0,0,0,0.9) 60%,
-        rgba(255,255,255,0.1) 80%,
-        rgba(0,0,0,0.7) 100%
-    );
-    transform: translateX(-1px);
-    z-index: 3;
-    animation: crackGlow 2s ease infinite;
-}
 
-/* Broken pieces animations */
-@keyframes leftPieceCrack {
-    0% { 
-        transform: translateX(0) rotate(0deg);
-        opacity: 1;
-        filter: brightness(1);
-    }
-    25% { 
-        transform: translateX(-1px) rotate(-0.5deg);
-        opacity: 0.95;
-        filter: brightness(0.9);
-    }
-    50% { 
-        transform: translateX(-3px) rotate(-2deg);
-        opacity: 0.9;
-        filter: brightness(0.8);
-    }
-    75% { 
-        transform: translateX(-4px) rotate(-2.5deg);
-        opacity: 0.85;
-        filter: brightness(0.7);
-    }
-    100% { 
-        transform: translateX(-8px) rotate(-4deg);
-        opacity: 0.8;
-        filter: brightness(0.6);
-    }
-}
 
-@keyframes rightPieceCrack {
-    0% { 
-        transform: translateX(0) rotate(0deg);
-        opacity: 1;
-        filter: brightness(1);
-    }
-    25% { 
-        transform: translateX(1px) rotate(0.5deg);
-        opacity: 0.95;
-        filter: brightness(0.9);
-    }
-    50% { 
-        transform: translateX(3px) rotate(2deg);
-        opacity: 0.9;
-        filter: brightness(0.8);
-    }
-    75% { 
-        transform: translateX(4px) rotate(2.5deg);
-        opacity: 0.85;
-        filter: brightness(0.7);
-    }
-    100% { 
-        transform: translateX(8px) rotate(4deg);
-        opacity: 0.8;
-        filter: brightness(0.6);
-    }
-}
 
-@keyframes crackGlow {
-    0%, 100% { 
-        opacity: 0.3;
-        box-shadow: 0 0 5px rgba(255,255,255,0.2);
-    }
-    50% { 
-        opacity: 0.8;
-        box-shadow: 0 0 15px rgba(255,255,255,0.5);
-    }
-}
 
-/* Floating debris effect */
-.cta-button.broken .debris {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: #666;
-    border-radius: 50%;
-    animation: debrisFall 3s ease-out infinite;
-}
 
-.cta-button.broken .debris:nth-child(1) {
-    top: 20%;
-    left: 48%;
-    animation-delay: 0.2s;
-}
 
-.cta-button.broken .debris:nth-child(2) {
-    top: 40%;
-    left: 52%;
-    animation-delay: 0.8s;
-}
 
-.cta-button.broken .debris:nth-child(3) {
-    top: 60%;
-    left: 49%;
-    animation-delay: 1.2s;
-}
 
-@keyframes debrisFall {
-    0% { 
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-    }
-    100% { 
-        transform: translateY(50px) rotate(360deg);
-        opacity: 0;
-    }
-}
 
-/* Glitch animation for broken button */
-@keyframes brokenGlitch {
-    0%, 100% { filter: brightness(1) contrast(1); }
-    20% { filter: brightness(0.8) contrast(1.2) hue-rotate(-10deg); }
-    40% { filter: brightness(1.1) contrast(0.9) hue-rotate(5deg); }
-    60% { filter: brightness(0.9) contrast(1.1) hue-rotate(-5deg); }
-    80% { filter: brightness(1.05) contrast(0.95) hue-rotate(3deg); }
-}
 
-/* Broken button hover effect */
-.cta-button.broken:hover::before {
-    transform: translateX(-12px) rotate(-6deg) !important;
-    filter: brightness(0.5) !important;
-    transition: all 0.3s ease !important;
-}
 
-.cta-button.broken:hover::after {
-    transform: translateX(12px) rotate(6deg) !important;
-    filter: brightness(0.5) !important;
-    transition: all 0.3s ease !important;
-}
 
-/* Enhanced crack line glow on hover */
-.cta-button.broken:hover .crack-line {
-    width: 4px !important;
-    box-shadow: 0 0 20px rgba(255,255,255,0.8) !important;
-    background: linear-gradient(to bottom, 
-        rgba(255,100,100,0.8) 0%,
-        rgba(255,255,255,0.9) 20%,
-        rgba(0,0,0,0.9) 40%,
-        rgba(255,200,100,0.8) 60%,
-        rgba(255,255,255,0.7) 80%,
-        rgba(100,100,255,0.8) 100%
-    ) !important;
-}
 
-/* Broken button active effect - pieces fall apart more */
-.cta-button.broken:active::before {
-    animation: leftPieceCrack 0.3s ease-out, leftPieceShatter 0.5s ease-out 0.3s forwards;
-}
 
-.cta-button.broken:active::after {
-    animation: rightPieceCrack 0.3s ease-out, rightPieceShatter 0.5s ease-out 0.3s forwards;
-}
 
-@keyframes leftPieceShatter {
-    to { 
-        transform: translateX(-15px) translateY(10px) rotate(-15deg);
-        opacity: 0.3;
-    }
-}
 
-@keyframes rightPieceShatter {
-    to { 
-        transform: translateX(15px) translateY(10px) rotate(15deg);
-        opacity: 0.3;
-    }
-}
+
+
+
+
+
+
 
 /* ================================================ */
 /* ADDITIONAL PREMIUM WEBSITE EFFECTS */
@@ -2333,13 +2097,7 @@ a:focus {
         animation: ultraSmoothGradient 6s ease-in-out infinite !important;
     }
     
-    /* Mobile broken button effects - optimized */
-    .cta-button.broken {
-        background: linear-gradient(270deg, 
-            #8B0000, #2F4F4F, #4B0082, #8B4513, #2F2F2F
-        ) !important;
-        animation: brokenGlitch 1s ease-out infinite alternate !important;
-    }
+
     
     /* Mobile-optimized crack effects */
     .crack-line {
