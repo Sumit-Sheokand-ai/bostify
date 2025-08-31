@@ -419,9 +419,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 toggleMobileMenu();
             });
             
-            // Close menu when clicking on nav links
+            // Close menu when clicking on nav links with enhanced touch feedback
             const navLinks = navMenu.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
+                // Add touch feedback for mobile
+                link.addEventListener('touchstart', function(e) {
+                    this.style.transform = 'translateY(-2px) scale(1.02)';
+                    this.style.background = 'rgba(102, 126, 234, 0.3)';
+                });
+                
+                link.addEventListener('touchend', function(e) {
+                    setTimeout(() => {
+                        this.style.transform = '';
+                        this.style.background = '';
+                    }, 150);
+                });
+                
                 link.addEventListener('click', () => {
                     closeMobileMenu();
                 });
@@ -858,24 +871,39 @@ if (!document.getElementById('premium-animation-styles')) {
 // ================================================
 
 function initBrokenButtonEffect() {
+    console.log('🔧 Initializing broken button effect system...');
+    
     // Track page visits and button interactions
-    const pageKey = `bostify_page_${window.location.pathname}`;
-    const buttonClickKey = `bostify_button_clicks_${window.location.pathname}`;
+    const pageKey = `boostify_page_${window.location.pathname}`;
+    const buttonClickKey = `boostify_button_clicks_${window.location.pathname}`;
+    const visitCountKey = `boostify_visit_count_${window.location.pathname}`;
     
     // Get previous visit data
     const lastVisit = localStorage.getItem(pageKey);
     const buttonClicks = parseInt(localStorage.getItem(buttonClickKey) || '0');
+    const visitCount = parseInt(localStorage.getItem(visitCountKey) || '0');
     const currentTime = Date.now();
     
-    // Mark current visit
-    localStorage.setItem(pageKey, currentTime);
+    // Increment visit count
+    const newVisitCount = visitCount + 1;
+    localStorage.setItem(visitCountKey, newVisitCount.toString());
+    localStorage.setItem(pageKey, currentTime.toString());
     
-    // Check if user is returning to the same page (within 24 hours)
-    const isReturningUser = lastVisit && (currentTime - parseInt(lastVisit)) < 86400000; // 24 hours
+    console.log(`📊 Visit data - Count: ${newVisitCount}, Button clicks: ${buttonClicks}, Last visit: ${lastVisit}`);
     
-    // Apply broken effect if user is returning or has clicked buttons multiple times
-    if (isReturningUser || buttonClicks > 2) {
+    // Check if user is returning (2nd+ visit OR within 24 hours OR clicked buttons multiple times)
+    const isReturningUser = newVisitCount > 1 || 
+                           (lastVisit && (currentTime - parseInt(lastVisit)) < 86400000) || 
+                           buttonClicks > 2;
+    
+    console.log(`🔍 Returning user check: ${isReturningUser}`);
+    
+    // Apply broken effect if conditions are met
+    if (isReturningUser) {
+        console.log('✅ Applying broken effect for returning user');
         applyBrokenEffect();
+    } else {
+        console.log('👋 First-time visitor - effects will trigger on return');
     }
     
     // Track button clicks
@@ -1013,15 +1041,18 @@ function applyBrokenEffect() {
 
 function trackButtonClicks() {
     const buttons = document.querySelectorAll('.cta-button');
-    const buttonClickKey = `bostify_button_clicks_${window.location.pathname}`;
+    const buttonClickKey = `boostify_button_clicks_${window.location.pathname}`;
     
     buttons.forEach(button => {
         button.addEventListener('click', function() {
             const currentClicks = parseInt(localStorage.getItem(buttonClickKey) || '0');
             localStorage.setItem(buttonClickKey, (currentClicks + 1).toString());
             
+            console.log(`🖱️ Button clicked! Total clicks: ${currentClicks + 1}`);
+            
             // Apply broken effect after 3 clicks on same page
             if (currentClicks + 1 > 2) {
+                console.log('🔥 Multiple clicks detected - triggering broken effect');
                 setTimeout(() => {
                     applyBrokenEffect();
                 }, 500);
@@ -1030,32 +1061,71 @@ function trackButtonClicks() {
     });
 }
 
+// Test function to manually trigger broken effect
+function testBrokenEffect() {
+    console.log('🧪 Testing broken button effect manually...');
+    applyBrokenEffect();
+}
+
+// Test function for dramatic crack effect
+function testDramaticCrack() {
+    console.log('🧪 Testing dramatic crack effect...');
+    const button = document.querySelector('.cta-button');
+    if (button) {
+        const rect = button.getBoundingClientRect();
+        createShatterEffect(button, rect.left + rect.width/2, rect.top + rect.height/2);
+    }
+}
+
 // Enhanced button hover effects with color transitions
 function initEnhancedButtonEffects() {
     const buttons = document.querySelectorAll('.cta-button');
+    const isMobile = window.innerWidth <= 768;
     
     buttons.forEach(button => {
-        // Add color transition on mouse enter
-        button.addEventListener('mouseenter', function() {
-            if (!button.classList.contains('broken')) {
-                button.style.filter = 'hue-rotate(45deg) saturate(1.2) brightness(1.1)';
-                button.style.transform = 'translateY(-3px) scale(1.02)';
-            }
-        });
+        // Mobile-optimized touch events
+        if (isMobile) {
+            // Use touchstart for immediate feedback on mobile
+            button.addEventListener('touchstart', function(e) {
+                if (!button.classList.contains('broken')) {
+                    button.style.filter = 'hue-rotate(45deg) saturate(1.2) brightness(1.1)';
+                    button.style.transform = 'translateY(-2px) scale(1.01)';
+                }
+            });
+            
+            button.addEventListener('touchend', function(e) {
+                if (!button.classList.contains('broken')) {
+                    button.style.filter = '';
+                    button.style.transform = '';
+                }
+            });
+            
+            // Prevent double-tap zoom on buttons
+            button.addEventListener('touchend', function(e) {
+                e.preventDefault();
+            });
+        } else {
+            // Desktop hover effects
+            button.addEventListener('mouseenter', function() {
+                if (!button.classList.contains('broken')) {
+                    button.style.filter = 'hue-rotate(45deg) saturate(1.2) brightness(1.1)';
+                    button.style.transform = 'translateY(-3px) scale(1.02)';
+                }
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                if (!button.classList.contains('broken')) {
+                    button.style.filter = '';
+                    button.style.transform = '';
+                }
+            });
+        }
         
-        // Reset on mouse leave
-        button.addEventListener('mouseleave', function() {
-            if (!button.classList.contains('broken')) {
-                button.style.filter = '';
-                button.style.transform = '';
-            }
-        });
-        
-        // Enhanced click effect with color burst
+        // Enhanced click effect with color burst (works for both touch and click)
         button.addEventListener('click', function(e) {
             if (!button.classList.contains('broken')) {
                 // Create color burst effect
-                createColorBurst(e.target, e.clientX, e.clientY);
+                createColorBurst(e.target, e.clientX || e.touches[0].clientX, e.clientY || e.touches[0].clientY);
             }
         });
     });
@@ -1064,36 +1134,42 @@ function initEnhancedButtonEffects() {
 function createColorBurst(button, x, y) {
     const burst = document.createElement('div');
     const rect = button.getBoundingClientRect();
+    const isMobile = window.innerWidth <= 768;
+    
+    const burstSize = isMobile ? 3 : 4;
+    const particleCount = isMobile ? 4 : 6;
+    const animationDuration = isMobile ? 0.6 : 0.8;
     
     burst.style.cssText = `
         position: fixed;
         left: ${x}px;
         top: ${y}px;
-        width: 4px;
-        height: 4px;
+        width: ${burstSize}px;
+        height: ${burstSize}px;
         background: radial-gradient(circle, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
         border-radius: 50%;
         pointer-events: none;
         z-index: 9999;
-        animation: colorBurstExpand 0.8s ease-out forwards;
+        animation: colorBurstExpand ${animationDuration}s ease-out forwards;
     `;
     
     document.body.appendChild(burst);
     
-    // Create multiple burst particles
-    for (let i = 0; i < 6; i++) {
+    // Create multiple burst particles - mobile optimized
+    for (let i = 0; i < particleCount; i++) {
         setTimeout(() => {
             const particle = burst.cloneNode();
-            particle.style.left = (x + (Math.random() - 0.5) * 50) + 'px';
-            particle.style.top = (y + (Math.random() - 0.5) * 50) + 'px';
+            const spreadRange = isMobile ? 30 : 50;
+            particle.style.left = (x + (Math.random() - 0.5) * spreadRange) + 'px';
+            particle.style.top = (y + (Math.random() - 0.5) * spreadRange) + 'px';
             particle.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
             document.body.appendChild(particle);
             
-            setTimeout(() => particle.remove(), 800);
-        }, i * 50);
+            setTimeout(() => particle.remove(), isMobile ? 600 : 800);
+        }, i * (isMobile ? 30 : 50));
     }
     
-    setTimeout(() => burst.remove(), 800);
+    setTimeout(() => burst.remove(), isMobile ? 600 : 800);
 }
 
 // Enhanced shatter effect for broken buttons
@@ -1101,33 +1177,40 @@ function createShatterEffect(button, x, y) {
     const rect = button.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
+    const isMobile = window.innerWidth <= 768;
+    
+    // Mobile optimization: fewer particles, smaller size
+    const particleCount = isMobile ? 6 : 12;
     
     // Create shatter particles from click point
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         
         // Random particle shapes (triangular debris)
         const shapes = ['🔹', '🔸', '▪️', '▫️', '◾', '◽'];
         const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
         
+        const particleSize = isMobile ? Math.random() * 6 + 3 : Math.random() * 8 + 4;
+        const animationDuration = isMobile ? Math.random() * 1.5 + 0.8 : Math.random() * 2 + 1;
+        
         particle.style.cssText = `
             position: fixed;
             left: ${x}px;
             top: ${y}px;
-            font-size: ${Math.random() * 8 + 4}px;
+            font-size: ${particleSize}px;
             color: #666;
             pointer-events: none;
             z-index: 9999;
-            animation: shatterParticle ${Math.random() * 2 + 1}s ease-out forwards;
+            animation: shatterParticle ${animationDuration}s ease-out forwards;
         `;
         
         particle.textContent = randomShape;
         
         // Random direction from click point
-        const angle = (Math.PI * 2 * i) / 12;
-        const velocity = Math.random() * 100 + 50;
+        const angle = (Math.PI * 2 * i) / particleCount;
+        const velocity = isMobile ? Math.random() * 60 + 30 : Math.random() * 100 + 50;
         const endX = x + Math.cos(angle) * velocity;
-        const endY = y + Math.sin(angle) * velocity + Math.random() * 50;
+        const endY = y + Math.sin(angle) * velocity + Math.random() * (isMobile ? 30 : 50);
         
         particle.style.setProperty('--endX', endX + 'px');
         particle.style.setProperty('--endY', endY + 'px');
@@ -1135,11 +1218,13 @@ function createShatterEffect(button, x, y) {
         
         document.body.appendChild(particle);
         
-        setTimeout(() => particle.remove(), 2000);
+        setTimeout(() => particle.remove(), isMobile ? 1200 : 2000);
     }
     
-    // Create crack effect from center to click point
-    createCrackEffect(centerX, centerY, x, y);
+    // Create crack effect from center to click point (desktop only for performance)
+    if (!isMobile) {
+        createCrackEffect(centerX, centerY, x, y);
+    }
 }
 
 function createCrackEffect(startX, startY, endX, endY) {
@@ -1263,6 +1348,18 @@ document.addEventListener('keydown', function(e) {
         testDramaticCrack();
     }
 });
+
+console.log('🎨 Enhanced button effects with color gradients and broken state initialized');
+console.log('💡 Press Ctrl+Shift+B to test broken button effect');
+console.log('🔥 Press Ctrl+Shift+C to test dramatic crack effect');
+console.log('🔄 Visit the same page again to see broken effect naturally');
+
+// AUTO-TEST FOR DEBUGGING - SIMULATE RETURN VISIT AFTER 5 SECONDS
+setTimeout(() => {
+    console.log('🧪 Auto-testing broken effect after 5 seconds for verification...');
+    console.log('🔧 Force-triggering broken effect for testing purposes');
+    applyBrokenEffect();
+}, 5000);
 
 console.log('🎨 Enhanced button effects with color gradients and broken state initialized');
 console.log('💡 Press Ctrl+Shift+B to test broken button effect');
