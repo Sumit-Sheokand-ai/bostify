@@ -4,22 +4,22 @@
  */
 
 const CACHE_NAME = 'bostify-v1.0.0';
-const OFFLINE_PAGE = '/offline.html';
+const OFFLINE_PAGE = './offline.html';
 
 // Resources to cache immediately
 const PRECACHE_URLS = [
-  '/',
-  '/index.html',
-  '/pages/services.html',
-  '/pages/pricing.html',
-  '/pages/monthly-audit.html',
-  '/pages/contact.html',
-  '/assets/css/main.css',
-  '/assets/js/main.js',
-  '/assets/js/config.js',
-  '/offline.html',
-  '/sitemap.xml',
-  '/robots.txt'
+  './',
+  './index.html',
+  './pages/services.html',
+  './pages/pricing.html',
+  './pages/monthly-audit.html',
+  './pages/contact.html',
+  './assets/css/main.css',
+  './assets/js/main.js',
+  './assets/js/config.js',
+  './offline.html',
+  './sitemap.xml',
+  './robots.txt'
 ];
 
 // Install event - cache essential resources
