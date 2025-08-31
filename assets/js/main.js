@@ -877,44 +877,53 @@ if (!document.getElementById('premium-animation-styles')) {
 // Enhanced button hover effects with color transitions
 function initEnhancedButtonEffects() {
     const buttons = document.querySelectorAll('.cta-button');
-    const isMobile = window.innerWidth <= 768;
+    const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
     
     buttons.forEach(button => {
-        // Mobile-optimized touch events
+        // Universal click handler that works on both mobile and desktop
+        button.addEventListener('click', function(e) {
+            // Create color burst effect
+            createColorBurst(e.target, e.clientX || e.touches?.[0]?.clientX || 0, e.clientY || e.touches?.[0]?.clientY || 0);
+        });
+        
         if (isMobile) {
-            // Use touchstart for immediate feedback on mobile
+            // Mobile-specific touch events for immediate feedback
             button.addEventListener('touchstart', function(e) {
+                e.preventDefault(); // Prevent unwanted behaviors
                 button.style.filter = 'hue-rotate(45deg) saturate(1.2) brightness(1.1)';
                 button.style.transform = 'translateY(-2px) scale(1.01)';
-            });
+                button.style.transition = 'all 0.1s ease';
+            }, { passive: false });
             
             button.addEventListener('touchend', function(e) {
+                setTimeout(() => {
+                    button.style.filter = '';
+                    button.style.transform = '';
+                    button.style.transition = '';
+                }, 150);
+            });
+            
+            // Handle touch cancel (when finger moves off button)
+            button.addEventListener('touchcancel', function(e) {
                 button.style.filter = '';
                 button.style.transform = '';
+                button.style.transition = '';
             });
             
-            // Prevent double-tap zoom on buttons
-            button.addEventListener('touchend', function(e) {
-                e.preventDefault();
-            });
         } else {
             // Desktop hover effects
             button.addEventListener('mouseenter', function() {
                 button.style.filter = 'hue-rotate(45deg) saturate(1.2) brightness(1.1)';
                 button.style.transform = 'translateY(-3px) scale(1.02)';
+                button.style.transition = 'all 0.2s ease';
             });
             
             button.addEventListener('mouseleave', function() {
                 button.style.filter = '';
                 button.style.transform = '';
+                button.style.transition = '';
             });
         }
-        
-        // Enhanced click effect with color burst (works for both touch and click)
-        button.addEventListener('click', function(e) {
-            // Create color burst effect
-            createColorBurst(e.target, e.clientX || e.touches[0].clientX, e.clientY || e.touches[0].clientY);
-        });
     });
 }
 
@@ -1099,6 +1108,265 @@ if (!document.getElementById('color-burst-styles')) {
 
 // Initialize enhanced button effects
 initEnhancedButtonEffects();
+
+// Initialize mobile navigation enhancements
+function initMobileNavigation() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
+    
+    if (isMobile) {
+        navLinks.forEach(link => {
+            // Enhanced touch feedback for navigation links
+            link.addEventListener('touchstart', function(e) {
+                this.classList.add('touched');
+                this.style.background = 'linear-gradient(135deg, rgba(102, 126, 234, 0.6) 0%, rgba(118, 75, 162, 0.6) 100%) !important';
+                this.style.transform = 'translateY(-2px) scale(1.02)';
+                this.style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.5)';
+                this.style.transition = 'all 0.1s ease';
+            }, { passive: true });
+            
+            link.addEventListener('touchend', function(e) {
+                this.classList.remove('touched');
+                setTimeout(() => {
+                    this.style.background = '';
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                    this.style.transition = '';
+                }, 200);
+                
+                // Close mobile menu after clicking a link
+                if (navMenu && navMenu.classList.contains('active')) {
+                    setTimeout(() => {
+                        navMenu.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }, 300);
+                }
+            });
+            
+            link.addEventListener('touchcancel', function(e) {
+                this.classList.remove('touched');
+                this.style.background = '';
+                this.style.transform = '';
+                this.style.boxShadow = '';
+                this.style.transition = '';
+            });
+            
+            // Enhanced click feedback
+            link.addEventListener('click', function(e) {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 100);
+            });
+        });
+        
+        // Enhanced hamburger menu
+        if (navToggle) {
+            navToggle.addEventListener('touchstart', function(e) {
+                this.style.transform = 'scale(0.95)';
+                this.style.background = 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)';
+                this.style.boxShadow = 'inset 0 2px 10px rgba(0, 0, 0, 0.3)';
+            }, { passive: true });
+            
+            navToggle.addEventListener('touchend', function(e) {
+                setTimeout(() => {
+                    this.style.transform = '';
+                    this.style.background = '';
+                    this.style.boxShadow = '';
+                }, 150);
+            }, { passive: true });
+        }
+        
+        console.log('📱 Enhanced mobile navigation with visual feedback initialized');
+    }
+}
+
+initMobileNavigation();
+
+// Function to ensure all buttons are clickable and accessible
+function ensureButtonFunctionality() {
+    const allButtons = document.querySelectorAll('button, .cta-button, .nav-link, a[href]');
+    
+    allButtons.forEach((button, index) => {
+        // Ensure all buttons have proper attributes
+        if (!button.hasAttribute('tabindex')) {
+            button.setAttribute('tabindex', '0');
+        }
+        
+        // Add keyboard accessibility
+        button.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
+        });
+        
+        // Ensure buttons have visible focus states
+        button.addEventListener('focus', function() {
+            this.style.outline = '2px solid #667eea';
+            this.style.outlineOffset = '2px';
+        });
+        
+        button.addEventListener('blur', function() {
+            this.style.outline = '';
+            this.style.outlineOffset = '';
+        });
+        
+        // Add aria-label if missing
+        if (!button.hasAttribute('aria-label') && !button.textContent.trim()) {
+            button.setAttribute('aria-label', `Interactive button ${index + 1}`);
+        }
+    });
+    
+    console.log(`✅ Enhanced ${allButtons.length} interactive elements for mobile accessibility`);
+}
+
+// Initialize button functionality
+ensureButtonFunctionality();
+
+// Mobile-specific enhancements
+function initMobileEnhancements() {
+    const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
+    
+    if (isMobile) {
+        // Prevent zoom on form inputs
+        const inputs = document.querySelectorAll('input, textarea, select');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                document.querySelector('meta[name="viewport"]')?.setAttribute('content', 
+                    'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+            });
+            
+            input.addEventListener('blur', function() {
+                document.querySelector('meta[name="viewport"]')?.setAttribute('content', 
+                    'width=device-width, initial-scale=1.0');
+            });
+        });
+        
+        // Add visual feedback for touch interactions
+        document.addEventListener('touchstart', function(e) {
+            const target = e.target.closest('button, .cta-button, .nav-link, a');
+            if (target) {
+                target.style.opacity = '0.8';
+            }
+        }, { passive: true });
+        
+        document.addEventListener('touchend', function(e) {
+            const target = e.target.closest('button, .cta-button, .nav-link, a');
+            if (target) {
+                setTimeout(() => {
+                    target.style.opacity = '';
+                }, 150);
+            }
+        }, { passive: true });
+        
+        console.log('📱 Mobile enhancements activated');
+    }
+}
+
+initMobileEnhancements();
+
+// Debug function for mobile button issues
+function debugMobileButtons() {
+    const buttons = document.querySelectorAll('button, .cta-button, a[href]');
+    const issues = [];
+    
+    buttons.forEach((button, index) => {
+        const rect = button.getBoundingClientRect();
+        const computedStyle = window.getComputedStyle(button);
+        
+        // Check if button is too small for touch
+        if (rect.width < 44 || rect.height < 44) {
+            issues.push(`Button ${index + 1}: Too small (${rect.width}x${rect.height}px)`);
+        }
+        
+        // Check if button has proper pointer events
+        if (computedStyle.pointerEvents === 'none') {
+            issues.push(`Button ${index + 1}: Pointer events disabled`);
+        }
+        
+        // Check if button is hidden
+        if (computedStyle.display === 'none' || computedStyle.visibility === 'hidden') {
+            issues.push(`Button ${index + 1}: Hidden`);
+        }
+        
+        // Check if button has click handler
+        const hasClickHandler = button.onclick || 
+                              button.getAttribute('onclick') || 
+                              button.href ||
+                              button.closest('form');
+        
+        if (!hasClickHandler) {
+            issues.push(`Button ${index + 1}: No click handler`);
+        }
+    });
+    
+    if (issues.length > 0) {
+        console.log('🐛 Mobile Button Issues Found:', issues);
+    } else {
+        console.log('✅ All buttons appear to be mobile-ready');
+    }
+    
+    console.log(`📊 Total buttons found: ${buttons.length}`);
+    return issues;
+}
+
+// Run debug after page load
+setTimeout(debugMobileButtons, 2000);
+
+// Test all button functionality on mobile
+function testMobileButtonFunctionality() {
+    const buttons = document.querySelectorAll('button, .cta-button, .nav-link, a[href]');
+    let workingButtons = 0;
+    let issues = [];
+    
+    buttons.forEach((button, index) => {
+        const buttonText = button.textContent?.trim() || button.innerText?.trim() || `Button ${index + 1}`;
+        
+        // Test if button responds to touch
+        try {
+            // Simulate touch event
+            const touchEvent = new TouchEvent('touchstart', { bubbles: true });
+            button.dispatchEvent(touchEvent);
+            
+            // Check if button has proper event listeners
+            const hasEvents = button.onclick || 
+                            button.href || 
+                            button.closest('form') ||
+                            button.getAttribute('onclick') ||
+                            getEventListeners?.(button)?.click?.length > 0;
+            
+            if (hasEvents) {
+                workingButtons++;
+                console.log(`✅ ${buttonText}: Working`);
+            } else {
+                issues.push(`❌ ${buttonText}: No click handler`);
+            }
+        } catch (error) {
+            issues.push(`⚠️ ${buttonText}: Touch event error - ${error.message}`);
+        }
+    });
+    
+    console.log(`📊 Mobile Button Test Results:`);
+    console.log(`   Working buttons: ${workingButtons}/${buttons.length}`);
+    
+    if (issues.length > 0) {
+        console.log(`   Issues found:`, issues);
+    } else {
+        console.log(`   🎉 All buttons appear to be working correctly!`);
+    }
+    
+    return { working: workingButtons, total: buttons.length, issues };
+}
+
+// Auto-test button functionality after mobile enhancements
+setTimeout(() => {
+    if (window.innerWidth <= 768 || 'ontouchstart' in window) {
+        testMobileButtonFunctionality();
+    }
+}, 3000);
 
 
 
