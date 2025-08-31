@@ -513,15 +513,27 @@ img {
     align-items: center;
 }
 
+/* CLEAN NAVIGATION STYLES - NO UNWANTED BORDERS OR HIGHLIGHTS */
 .nav-link {
     font-weight: 500;
     color: var(--dark-gray);
     transition: all 0.3s ease;
     position: relative;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    background: none;
+    box-shadow: none;
 }
 
 .nav-link:hover {
     color: var(--primary-blue);
+}
+
+.nav-link:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
 }
 
 .nav-link.cta-nav {
@@ -531,10 +543,18 @@ img {
     border-radius: 25px;
     font-size: 0.9rem;
     font-weight: 600;
+    border: none;
+    outline: none;
 }
 
 .nav-link.cta-nav:hover {
     transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.nav-link.cta-nav:focus {
+    outline: none;
+    border: none;
     box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
 }
 
@@ -1220,18 +1240,44 @@ img {
         border-radius: 12px !important;
         transition: all 0.3s ease !important;
         display: block !important;
-        margin: 0 !important;
+        margin: 0.5rem 0 !important;
         font-weight: 600 !important;
         text-decoration: none !important;
-        background: rgba(255, 255, 255, 0.05) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        background: rgba(255, 255, 255, 0.08) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        position: relative !important;
+        overflow: hidden !important;
+        /* Ensure touch targets are large enough */
+        min-height: 48px !important;
     }
 
-    .nav-link:hover {
-        background: rgba(160, 174, 192, 0.3) !important;
-        transform: translateY(-2px) !important;
+    .nav-link:hover,
+    .nav-link:active,
+    .nav-link:focus {
+        background: rgba(102, 126, 234, 0.2) !important;
+        transform: translateY(-2px) scale(1.02) !important;
         color: #ffffff !important;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3) !important;
+        border-color: rgba(255, 255, 255, 0.3) !important;
+    }
+
+    /* Add ripple effect for mobile touch */
+    .nav-link::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 0.3s ease;
+    }
+
+    .nav-link:active::before {
+        width: 100%;
+        height: 100%;
     }
 
     .cta-nav {
@@ -1239,6 +1285,16 @@ img {
         color: white !important;
         margin-top: 1rem !important;
         border: none !important;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3) !important;
+    }
+
+    .cta-nav:hover,
+    .cta-nav:active,
+    .cta-nav:focus {
+        background: linear-gradient(135deg, #5a6fd8 0%, #6a4c93 100%) !important;
+        transform: translateY(-3px) scale(1.03) !important;
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4) !important;
+        color: white !important;
     }
 }
 
@@ -1443,12 +1499,13 @@ img {
     }
 }
 
-/* FOCUS STYLES */
+/* FOCUS STYLES - REMOVED OUTLINES TO PREVENT UNWANTED BORDERS */
 a:focus,
 button:focus,
 .cta-button:focus {
-    outline: 3px solid var(--primary-blue);
-    outline-offset: 2px;
+    outline: none;
+    border: none;
+    box-shadow: none;
 }
 
 /* UTILITY CLASSES */
@@ -2256,6 +2313,46 @@ a:focus {
         -webkit-backdrop-filter: blur(5px) !important;
     }
     
+    /* MOBILE BUTTON OPTIMIZATIONS - ENHANCED EFFECTS */
+    .cta-button {
+        padding: 15px 25px !important;
+        font-size: 1rem !important;
+        min-height: 48px !important; /* Touch-friendly size */
+        touch-action: manipulation; /* Optimize for touch */
+        -webkit-tap-highlight-color: transparent; /* Remove tap highlight */
+    }
+    
+    /* Enhanced mobile gradient animation - lighter for performance */
+    .cta-button {
+        background: linear-gradient(270deg,
+            #FF6B6B, #4ECDC4, #45B7D1, #96CEB4, #FFEAA7,
+            #DDA0DD, #98D8C8, #F7DC6F, #BB8FCE, #85C1E9,
+            #F8C471, #82E0AA, #F1948A, #85C1E9, #F7DC6F
+        ) !important;
+        background-size: 300% 300% !important;
+        animation: ultraSmoothGradient 6s ease-in-out infinite !important;
+    }
+    
+    /* Mobile broken button effects - optimized */
+    .cta-button.broken {
+        background: linear-gradient(270deg, 
+            #8B0000, #2F4F4F, #4B0082, #8B4513, #2F2F2F
+        ) !important;
+        animation: brokenGlitch 1s ease-out infinite alternate !important;
+    }
+    
+    /* Mobile-optimized crack effects */
+    .crack-line {
+        height: 1px !important;
+        background: linear-gradient(90deg, 
+            transparent 0%, 
+            rgba(255,255,255,0.6) 20%, 
+            rgba(0,0,0,0.8) 50%, 
+            rgba(255,255,255,0.4) 80%, 
+            transparent 100%
+        ) !important;
+    }
+    
     /* Disable heavy animations on mobile */
     .parallax-text {
         animation: none;
@@ -2272,8 +2369,19 @@ a:focus {
         display: none; /* Hide floating orbs on mobile for performance */
     }
     
+    /* Mobile particle effects - reduced */
+    .color-burst-particle {
+        width: 3px !important;
+        height: 3px !important;
+    }
+    
+    .shatter-particle {
+        width: 2px !important;
+        height: 2px !important;
+    }
+    
+    /* Mobile key phrase optimization */
     .key-phrase {
-        /* Ultra smooth animation for mobile */
         animation: ultraSmoothGradient 10s ease-in-out infinite;
         font-size: 2.2rem;
         padding: 0.3rem 0.6rem;
@@ -3123,12 +3231,13 @@ a:focus {
     width: 100% !important;
 }
 
-/* Focus styles for keyboard navigation */
+/* Focus styles for keyboard navigation - CLEANED UP TO REMOVE UNWANTED BORDERS */
 a:focus,
 button:focus,
 .cta-button:focus {
-    outline: 3px solid var(--primary-blue);
-    outline-offset: 2px;
+    outline: none;
+    border: none;
+    box-shadow: none;
 }
 
 /* Print styles */
