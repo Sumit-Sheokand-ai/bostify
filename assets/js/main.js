@@ -866,216 +866,13 @@ if (!document.getElementById('premium-animation-styles')) {
     document.head.appendChild(styleSheet);
 }
 
-// ================================================
-// BROKEN BUTTON EFFECT FOR RETURNING USERS
-// ================================================
 
-function initBrokenButtonEffect() {
-    console.log('🔧 Initializing broken button effect system...');
-    
-    // Track page visits and button interactions
-    const pageKey = `boostify_page_${window.location.pathname}`;
-    const buttonClickKey = `boostify_button_clicks_${window.location.pathname}`;
-    const visitCountKey = `boostify_visit_count_${window.location.pathname}`;
-    
-    // Get previous visit data
-    const lastVisit = localStorage.getItem(pageKey);
-    const buttonClicks = parseInt(localStorage.getItem(buttonClickKey) || '0');
-    const visitCount = parseInt(localStorage.getItem(visitCountKey) || '0');
-    const currentTime = Date.now();
-    
-    // Increment visit count
-    const newVisitCount = visitCount + 1;
-    localStorage.setItem(visitCountKey, newVisitCount.toString());
-    localStorage.setItem(pageKey, currentTime.toString());
-    
-    console.log(`📊 Visit data - Count: ${newVisitCount}, Button clicks: ${buttonClicks}, Last visit: ${lastVisit}`);
-    
-    // Check if user is returning (2nd+ visit OR within 24 hours OR clicked buttons multiple times)
-    const isReturningUser = newVisitCount > 1 || 
-                           (lastVisit && (currentTime - parseInt(lastVisit)) < 86400000) || 
-                           buttonClicks > 2;
-    
-    console.log(`🔍 Returning user check: ${isReturningUser}`);
-    
-    // Apply broken effect if conditions are met
-    if (isReturningUser) {
-        console.log('✅ Applying broken effect for returning user');
-        applyBrokenEffect();
-    } else {
-        console.log('👋 First-time visitor - effects will trigger on return');
-    }
-    
-    // Track button clicks
-    trackButtonClicks();
-}
 
-function applyBrokenEffect() {
-    console.log('🔨 Applying broken button effects for returning user');
-    
-    setTimeout(() => {
-        const buttons = document.querySelectorAll('.cta-button');
-        
-        buttons.forEach((button, index) => {
-            // Stagger the broken effect application
-            setTimeout(() => {
-                button.classList.add('broken');
-                
-                // Create crack line element
-                const crackLine = document.createElement('div');
-                crackLine.className = 'crack-line';
-                button.appendChild(crackLine);
-                
-                // Create debris elements
-                for (let i = 0; i < 3; i++) {
-                    const debris = document.createElement('div');
-                    debris.className = 'debris';
-                    button.appendChild(debris);
-                }
-                
-                // Store original button content
-                const originalText = button.textContent;
-                const originalHTML = button.innerHTML;
-                
-                // Create broken text overlay that appears on the pieces
-                const leftPiece = document.createElement('div');
-                leftPiece.style.cssText = `
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 50%;
-                    bottom: 0;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    color: #cccccc;
-                    font-weight: inherit;
-                    font-size: inherit;
-                    z-index: 4;
-                    pointer-events: none;
-                    overflow: hidden;
-                `;
-                
-                const rightPiece = document.createElement('div');
-                rightPiece.style.cssText = `
-                    position: absolute;
-                    top: 0;
-                    left: 50%;
-                    right: 0;
-                    bottom: 0;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    color: #cccccc;
-                    font-weight: inherit;
-                    font-size: inherit;
-                    z-index: 4;
-                    pointer-events: none;
-                    overflow: hidden;
-                `;
-                
-                // Split text for broken effect
-                const brokenTexts = [
-                    '⚡ SYS ERR',
-                    '💥 OVERLOAD', 
-                    '🔧 MAINT',
-                    '⚠️ DAMAGE',
-                    '🔨 BROKEN',
-                    '💔 CRACK'
-                ];
-                
-                const brokenText = brokenTexts[Math.floor(Math.random() * brokenTexts.length)];
-                const textParts = brokenText.split(' ');
-                
-                if (textParts.length >= 2) {
-                    leftPiece.textContent = textParts[0];
-                    rightPiece.textContent = textParts.slice(1).join(' ');
-                } else {
-                    const halfIndex = Math.ceil(brokenText.length / 2);
-                    leftPiece.textContent = brokenText.substring(0, halfIndex);
-                    rightPiece.textContent = brokenText.substring(halfIndex);
-                }
-                
-                // Clear original content and add pieces
-                button.innerHTML = '';
-                button.appendChild(crackLine);
-                button.appendChild(leftPiece);
-                button.appendChild(rightPiece);
-                
-                // Add debris
-                for (let i = 0; i < 3; i++) {
-                    const debris = document.createElement('div');
-                    debris.className = 'debris';
-                    button.appendChild(debris);
-                }
-                
-                // Store original content for restoration
-                button.setAttribute('data-original-html', originalHTML);
-                
-                // Restore original content after 5 seconds
-                setTimeout(() => {
-                    if (Math.random() < 0.7) { // 70% chance to restore
-                        button.innerHTML = originalHTML;
-                        // Keep the broken class for visual effects
-                        // but restore functionality
-                    }
-                }, 5000);
-                
-                // Enhanced broken button click effect
-                button.addEventListener('click', function(e) {
-                    // Add shatter effect on click
-                    button.style.animation = 'bulletImpact 0.6s ease-out, brokenGlitch 0.8s ease-out';
-                    
-                    // Create shatter particles at click point
-                    createShatterEffect(e.target, e.clientX, e.clientY);
-                    
-                    setTimeout(() => {
-                        button.style.animation = '';
-                    }, 1400);
-                });
-                
-            }, index * 800); // Longer stagger for dramatic effect
-        });
-    }, 1500); // Longer delay for suspense
-}
 
-function trackButtonClicks() {
-    const buttons = document.querySelectorAll('.cta-button');
-    const buttonClickKey = `boostify_button_clicks_${window.location.pathname}`;
-    
-    buttons.forEach(button => {
-        button.addEventListener('click', function() {
-            const currentClicks = parseInt(localStorage.getItem(buttonClickKey) || '0');
-            localStorage.setItem(buttonClickKey, (currentClicks + 1).toString());
-            
-            console.log(`🖱️ Button clicked! Total clicks: ${currentClicks + 1}`);
-            
-            // Apply broken effect after 3 clicks on same page
-            if (currentClicks + 1 > 2) {
-                console.log('🔥 Multiple clicks detected - triggering broken effect');
-                setTimeout(() => {
-                    applyBrokenEffect();
-                }, 500);
-            }
-        });
-    });
-}
 
-// Test function to manually trigger broken effect
-function testBrokenEffect() {
-    console.log('🧪 Testing broken button effect manually...');
-    applyBrokenEffect();
-}
 
-// Test function for dramatic crack effect
-function testDramaticCrack() {
-    console.log('🧪 Testing dramatic crack effect...');
-    const button = document.querySelector('.cta-button');
-    if (button) {
-        const rect = button.getBoundingClientRect();
-        createShatterEffect(button, rect.left + rect.width/2, rect.top + rect.height/2);
-    }
-}
+
+
 
 // Enhanced button hover effects with color transitions
 function initEnhancedButtonEffects() {
@@ -1087,17 +884,13 @@ function initEnhancedButtonEffects() {
         if (isMobile) {
             // Use touchstart for immediate feedback on mobile
             button.addEventListener('touchstart', function(e) {
-                if (!button.classList.contains('broken')) {
-                    button.style.filter = 'hue-rotate(45deg) saturate(1.2) brightness(1.1)';
-                    button.style.transform = 'translateY(-2px) scale(1.01)';
-                }
+                button.style.filter = 'hue-rotate(45deg) saturate(1.2) brightness(1.1)';
+                button.style.transform = 'translateY(-2px) scale(1.01)';
             });
             
             button.addEventListener('touchend', function(e) {
-                if (!button.classList.contains('broken')) {
-                    button.style.filter = '';
-                    button.style.transform = '';
-                }
+                button.style.filter = '';
+                button.style.transform = '';
             });
             
             // Prevent double-tap zoom on buttons
@@ -1107,26 +900,20 @@ function initEnhancedButtonEffects() {
         } else {
             // Desktop hover effects
             button.addEventListener('mouseenter', function() {
-                if (!button.classList.contains('broken')) {
-                    button.style.filter = 'hue-rotate(45deg) saturate(1.2) brightness(1.1)';
-                    button.style.transform = 'translateY(-3px) scale(1.02)';
-                }
+                button.style.filter = 'hue-rotate(45deg) saturate(1.2) brightness(1.1)';
+                button.style.transform = 'translateY(-3px) scale(1.02)';
             });
             
             button.addEventListener('mouseleave', function() {
-                if (!button.classList.contains('broken')) {
-                    button.style.filter = '';
-                    button.style.transform = '';
-                }
+                button.style.filter = '';
+                button.style.transform = '';
             });
         }
         
         // Enhanced click effect with color burst (works for both touch and click)
         button.addEventListener('click', function(e) {
-            if (!button.classList.contains('broken')) {
-                // Create color burst effect
-                createColorBurst(e.target, e.clientX || e.touches[0].clientX, e.clientY || e.touches[0].clientY);
-            }
+            // Create color burst effect
+            createColorBurst(e.target, e.clientX || e.touches[0].clientX, e.clientY || e.touches[0].clientY);
         });
     });
 }
@@ -1172,7 +959,7 @@ function createColorBurst(button, x, y) {
     setTimeout(() => burst.remove(), isMobile ? 600 : 800);
 }
 
-// Enhanced shatter effect for broken buttons
+// Enhanced shatter effect for buttons
 function createShatterEffect(button, x, y) {
     const rect = button.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
@@ -1310,15 +1097,10 @@ if (!document.getElementById('color-burst-styles')) {
     document.head.appendChild(burstStyleSheet);
 }
 
-// Initialize broken button effects
-initBrokenButtonEffect();
+// Initialize enhanced button effects
 initEnhancedButtonEffects();
 
-// Test function for broken button effect (remove in production)
-function testBrokenEffect() {
-    console.log('🔧 Testing enhanced broken button effect with zigzag cracking...');
-    applyBrokenEffect();
-}
+
 
 // Immediate test for dramatic crack effect
 function testDramaticCrack() {
@@ -1330,8 +1112,6 @@ function testDramaticCrack() {
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
         
-        button.classList.add('broken');
-        
         // Create instant dramatic effect
         setTimeout(() => {
             createShatterEffect(button, centerX, centerY);
@@ -1339,29 +1119,11 @@ function testDramaticCrack() {
     });
 }
 
-// Add test triggers - press Ctrl+Shift+B to test broken effect, Ctrl+Shift+C for dramatic crack
-document.addEventListener('keydown', function(e) {
-    if (e.ctrlKey && e.shiftKey && e.key === 'B') {
-        testBrokenEffect();
-    }
-    if (e.ctrlKey && e.shiftKey && e.key === 'C') {
-        testDramaticCrack();
-    }
-});
+console.log('🎨 Enhanced button effects with color gradients initialized');
 
-console.log('🎨 Enhanced button effects with color gradients and broken state initialized');
-console.log('💡 Press Ctrl+Shift+B to test broken button effect');
-console.log('🔥 Press Ctrl+Shift+C to test dramatic crack effect');
-console.log('🔄 Visit the same page again to see broken effect naturally');
 
-// AUTO-TEST FOR DEBUGGING - SIMULATE RETURN VISIT AFTER 5 SECONDS
-setTimeout(() => {
-    console.log('🧪 Auto-testing broken effect after 5 seconds for verification...');
-    console.log('🔧 Force-triggering broken effect for testing purposes');
-    applyBrokenEffect();
-}, 5000);
 
-console.log('🎨 Enhanced button effects with color gradients and broken state initialized');
-console.log('💡 Press Ctrl+Shift+B to test broken button effect');
+
+
 console.log('� Press Ctrl+Shift+C to test dramatic crack effect');
 console.log('�🔄 Visit the same page again to see broken effect naturally');
