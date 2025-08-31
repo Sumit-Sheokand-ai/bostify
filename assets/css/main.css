@@ -280,7 +280,81 @@ body.contact-theme .hero {
     }
 }
 
-/* Mobile-specific enhancements */
+/* Mobile-specific enhancements for all interactive elements */
+@media (max-width: 768px) {
+    /* Ensure all buttons are touch-friendly */
+    button, .cta-button, .btn, input[type="submit"], input[type="button"] {
+        min-height: 48px !important;
+        min-width: 120px !important;
+        padding: 12px 20px !important;
+        font-size: 16px !important;
+        border-radius: 8px !important;
+        cursor: pointer !important;
+        user-select: none !important;
+        -webkit-tap-highlight-color: transparent !important;
+        transition: all 0.2s ease !important;
+    }
+    
+    /* Enhanced touch feedback for all buttons */
+    button:active, .cta-button:active, .btn:active {
+        transform: scale(0.97) !important;
+        transition: transform 0.1s ease !important;
+    }
+    
+    /* Make links more touch-friendly */
+    a {
+        min-height: 44px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 8px 12px !important;
+        border-radius: 6px !important;
+        transition: all 0.2s ease !important;
+        -webkit-tap-highlight-color: transparent !important;
+    }
+    
+    /* Enhanced ripple effect for all interactive elements */
+    button, .cta-button, .btn, a {
+        position: relative !important;
+        overflow: hidden !important;
+    }
+    
+    button::after, .cta-button::after, .btn::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.4s, height 0.4s;
+        pointer-events: none;
+    }
+    
+    button:active::after, .cta-button:active::after, .btn:active::after {
+        width: 200px;
+        height: 200px;
+    }
+    
+    /* Improve form inputs on mobile */
+    input, textarea, select {
+        min-height: 48px !important;
+        padding: 12px !important;
+        font-size: 16px !important; /* Prevents zoom on iOS */
+        border-radius: 8px !important;
+        border: 2px solid rgba(255, 255, 255, 0.2) !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        color: #fff !important;
+    }
+    
+    input:focus, textarea:focus, select:focus {
+        border-color: #667eea !important;
+        outline: none !important;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3) !important;
+    }
+}
 @media (max-width: 768px) {
     .hero-title .key-phrase {
         background-size: 800% 100%;
@@ -1236,29 +1310,45 @@ img {
     .nav-link {
         font-size: 1.4rem !important;
         color: #ffffff !important;
-        padding: 1.2rem 2rem !important;
+        padding: 1.4rem 2rem !important;
         border-radius: 12px !important;
         transition: all 0.3s ease !important;
         display: block !important;
         margin: 0.5rem 0 !important;
         font-weight: 600 !important;
         text-decoration: none !important;
-        background: rgba(255, 255, 255, 0.08) !important;
-        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%) !important;
+        border: 2px solid rgba(255, 255, 255, 0.2) !important;
         position: relative !important;
         overflow: hidden !important;
         /* Ensure touch targets are large enough */
-        min-height: 48px !important;
+        min-height: 52px !important;
+        min-width: 200px !important;
+        text-align: center !important;
+        /* Add visual depth */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+        backdrop-filter: blur(10px) !important;
+        cursor: pointer !important;
+        user-select: none !important;
     }
 
     .nav-link:hover,
     .nav-link:active,
     .nav-link:focus {
-        background: rgba(102, 126, 234, 0.2) !important;
-        transform: translateY(-2px) scale(1.02) !important;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.4) 0%, rgba(118, 75, 162, 0.4) 100%) !important;
+        transform: translateY(-3px) scale(1.03) !important;
         color: #ffffff !important;
-        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3) !important;
-        border-color: rgba(255, 255, 255, 0.3) !important;
+        box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4) !important;
+        border-color: rgba(255, 255, 255, 0.5) !important;
+        transition: all 0.2s ease !important;
+    }
+    
+    /* Mobile touch states for navigation - Enhanced visibility */
+    .nav-link:active,
+    .nav-link.touched {
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.6) 0%, rgba(118, 75, 162, 0.6) 100%) !important;
+        transform: translateY(-1px) scale(1.01) !important;
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5) !important;
     }
 
     /* Add ripple effect for mobile touch */
@@ -1273,6 +1363,7 @@ img {
         border-radius: 50%;
         transform: translate(-50%, -50%);
         transition: all 0.3s ease;
+        pointer-events: none;
     }
 
     .nav-link:active::before {
@@ -1286,6 +1377,8 @@ img {
         margin-top: 1rem !important;
         border: none !important;
         box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3) !important;
+        position: relative;
+        overflow: hidden;
     }
 
     .cta-nav:hover,
@@ -1295,6 +1388,12 @@ img {
         transform: translateY(-3px) scale(1.03) !important;
         box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4) !important;
         color: white !important;
+    }
+    
+    /* Enhanced mobile touch feedback for CTA nav */
+    .cta-nav:active {
+        transform: translateY(-1px) scale(1.01) !important;
+        background: linear-gradient(135deg, #4a5fd0 0%, #5a3d85 100%) !important;
     }
 }
 
@@ -2069,6 +2168,15 @@ a:focus {
         transform: translateZ(0);
     }
     
+    /* Ensure all interactive elements are touch-friendly */
+    a, button, .cta-button, .nav-link, [role="button"] {
+        min-height: 44px !important;
+        min-width: 44px !important;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+        cursor: pointer;
+    }
+    
     /* Reduce blur effects on mobile for better readability */
     .service-card,
     .testimonial-card,
@@ -2084,6 +2192,58 @@ a:focus {
         min-height: 48px !important; /* Touch-friendly size */
         touch-action: manipulation; /* Optimize for touch */
         -webkit-tap-highlight-color: transparent; /* Remove tap highlight */
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    /* Mobile active/touch states instead of hover */
+    .cta-button:active,
+    .cta-button:focus {
+        transform: translateY(-3px) scale(1.02) !important;
+        filter: hue-rotate(45deg) saturate(1.2) brightness(1.1) !important;
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4) !important;
+        transition: all 0.2s ease !important;
+    }
+    
+    /* Visible feedback for all button states on mobile */
+    .cta-button:active {
+        background: linear-gradient(270deg,
+            #FF8E8E, #5FEDE4, #50C7E1, #A6DEB4, #FFECB7,
+            #E5A0E5, #A8E8D8, #F9E47F, #C59FCE, #95D1F9
+        ) !important;
+        animation: none !important;
+    }
+    
+    /* Add touch ripple effect */
+    .cta-button::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 0.4s ease;
+        pointer-events: none;
+    }
+    
+    .cta-button:active::after {
+        width: 300px;
+        height: 300px;
+    }
+    
+    /* Make sure buttons are always visible and accessible */
+    .cta-button {
+        position: relative;
+        z-index: 10;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .cta-button:active {
+        border-color: rgba(255, 255, 255, 0.6) !important;
     }
     
     /* Enhanced mobile gradient animation - lighter for performance */
