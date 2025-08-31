@@ -4,6 +4,9 @@
 ===========================================*/
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize dark theme based on page
+    initPageTheme();
+    
     // Initialize all premium features
     initPremiumAnimations();
     initScrollEffects();
@@ -14,42 +17,114 @@ document.addEventListener('DOMContentLoaded', function() {
     initPerformanceOptimizations();
 
     // ================================================
+    // DARK THEME SYSTEM
+    // ================================================
+    
+    function initPageTheme() {
+        // Detect current page and apply appropriate theme
+        const path = window.location.pathname;
+        const body = document.body;
+        
+        // Remove any existing theme classes
+        body.classList.remove('home-theme', 'services-theme', 'about-theme', 'pricing-theme', 'contact-theme', 'blog-theme');
+        
+        if (path.includes('services') || path.includes('basic-seo') || path.includes('comprehensive-seo') || path.includes('enterprise-seo')) {
+            body.classList.add('services-theme');
+            console.log('🎨 Applied services dark theme');
+        } else if (path.includes('about')) {
+            body.classList.add('about-theme');
+            console.log('🎨 Applied about dark theme');
+        } else if (path.includes('pricing')) {
+            body.classList.add('pricing-theme');
+            console.log('🎨 Applied pricing dark theme');
+        } else if (path.includes('contact')) {
+            body.classList.add('contact-theme');
+            console.log('🎨 Applied contact dark theme');
+        } else if (path.includes('blog') || path.includes('case-studies')) {
+            body.classList.add('blog-theme');
+            console.log('🎨 Applied blog dark theme');
+        } else {
+            body.classList.add('home-theme');
+            console.log('🎨 Applied home dark theme');
+        }
+    }
+
+    // ================================================
     // PREMIUM ANIMATION SYSTEM
     // ================================================
 
     function initPremiumAnimations() {
+        console.log('🚀 Initializing Premium Animation System...');
+        
         // Add dynamic color classes to key elements
         addDynamicColorClasses();
         
         // Add floating classes to elements
         addFloatingClasses();
         
+        // Apply floating effects immediately
+        applyFloatingEffects();
+        
         // Initialize intersection observers for animations
         setupIntersectionObservers();
+        
+        // Force re-application after DOM fully settles
+        setTimeout(() => {
+            console.log('🔄 Secondary animation pass...');
+            addDynamicColorClasses();
+            addFloatingClasses();
+            applyFloatingEffects();
+            
+            // Log current state for debugging
+            const heroTitle = document.querySelector('.hero-title');
+            if (heroTitle) {
+                console.log('🎯 Hero title content:', heroTitle.innerHTML);
+                console.log('🎨 Dynamic color elements found:', document.querySelectorAll('.dynamic-color-1, .dynamic-color-2, .dynamic-color-3, .dynamic-color-4, .dynamic-color-5, .dynamic-color-6').length);
+            }
+        }, 1000);
     }
 
     function addDynamicColorClasses() {
+        console.log('🎨 Starting dynamic color class application...');
+        
         // Target specific words and elements for color animation
         const colorTargets = [
-            { selector: '.hero-title', words: ['Elite', 'Fortune', 'AI-Powered', 'Revolutionary', 'World\'s', 'SEO', 'Mastery'] },
-            { selector: '.section-title', words: ['Elite', 'Fortune', 'Premium', 'Excellence', 'Revolutionary', 'Success'] },
-            { selector: '.service-card h3', words: ['Elite', 'Revolutionary', 'AI-Powered', 'Fortune', 'Premium', 'Supreme'] },
+            { selector: '.hero-title', words: ['Revolutionary', 'SEO', 'Mastery', 'Industry-Transforming', 'Search', 'Dominance'] },
+            { selector: '.gradient-text', words: ['Fortune', '500', 'Excellence'] },
+            { selector: '.hero-subtitle', words: ['Elite', 'Fortune', 'revolutionary', 'legendary', 'AI-powered', 'cutting-edge', 'unprecedented'] },
+            { selector: '.section-title, h2', words: ['Elite', 'Revolutionary', 'Premium', 'Excellence', 'Supreme', 'Mastery'] },
+            { selector: '.service-card h3', words: ['AI-Powered', 'Revolutionary', 'Fortune', 'Premium', 'Supreme', 'Elite'] },
             { selector: '.testimonial-text', words: ['Elite', 'Fortune', 'Revolutionary', 'legendary', 'cutting-edge', 'supreme'] },
-            { selector: 'h2, h3', words: ['Elite', 'Fortune', 'Revolutionary', 'Premium', 'Excellence', 'Supreme'] }
+            { selector: 'h1, h2, h3', words: ['Elite', 'Fortune', 'Revolutionary', 'Premium', 'Excellence', 'Supreme', 'Mastery'] }
         ];
 
         colorTargets.forEach(target => {
             const elements = document.querySelectorAll(target.selector);
-            elements.forEach(element => {
+            console.log(`🎯 Found ${elements.length} elements for selector: ${target.selector}`);
+            
+            elements.forEach((element, elementIndex) => {
                 let html = element.innerHTML;
+                const originalHtml = html;
+                
                 target.words.forEach((word, index) => {
-                    const colorClass = `dynamic-color-${(index % 3) + 1}`;
+                    // Use 6 different color classes for more variety
+                    const colorClass = `dynamic-color-${(index % 6) + 1}`;
                     const regex = new RegExp(`\\b${word}\\b`, 'gi');
-                    html = html.replace(regex, `<span class="${colorClass}">${word}</span>`);
+                    
+                    if (regex.test(html)) {
+                        html = html.replace(regex, `<span class="${colorClass}">${word}</span>`);
+                        console.log(`✅ Applied ${colorClass} to word: ${word} in ${target.selector}`);
+                    }
                 });
-                element.innerHTML = html;
+                
+                if (html !== originalHtml) {
+                    element.innerHTML = html;
+                    console.log(`🔄 Updated element ${elementIndex} in ${target.selector}`);
+                }
             });
         });
+        
+        console.log('🎨 Dynamic color class application completed!');
     }
 
     function addFloatingClasses() {
@@ -59,7 +134,15 @@ document.addEventListener('DOMContentLoaded', function() {
             { selector: '.stat-number', class: 'scroll-float-left' },
             { selector: '.testimonial-stars', class: 'scroll-float-right' },
             { selector: '.hero-image img', class: 'scroll-float-down' },
-            { selector: '.cta-button', class: 'scroll-float-up' }
+            { selector: '.cta-button', class: 'scroll-float-up' },
+            { selector: '.dynamic-color-1', class: 'scroll-float-left' },
+            { selector: '.dynamic-color-2', class: 'scroll-float-right' },
+            { selector: '.dynamic-color-3', class: 'scroll-float-up' },
+            { selector: '.dynamic-color-4', class: 'scroll-float-down' },
+            { selector: '.dynamic-color-5', class: 'scroll-float-left' },
+            { selector: '.dynamic-color-6', class: 'scroll-float-right' },
+            { selector: '.section-title', class: 'scroll-float-up' },
+            { selector: '.hero-subtitle', class: 'scroll-float-down' }
         ];
 
         floatingElements.forEach(item => {
@@ -96,34 +179,43 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function applyFloatingEffects(direction, scrollPercent) {
-        const intensity = Math.sin(scrollPercent * Math.PI * 4) * 15; // Wave effect
+        const intensity = Math.sin(scrollPercent * Math.PI * 6) * 12; // More gentle wave effect
+        const rotation = Math.sin(scrollPercent * Math.PI * 8) * 3; // Subtle rotation
         
         // Left floating elements
         const leftElements = document.querySelectorAll('.scroll-float-left');
-        leftElements.forEach(element => {
+        leftElements.forEach((element, index) => {
             const baseTransform = direction === 'down' ? intensity : -intensity;
-            element.style.transform = `translateX(${baseTransform}px) rotate(${intensity * 0.1}deg)`;
+            const delay = index * 0.1; // Stagger the animations
+            const offsetIntensity = intensity + Math.sin((scrollPercent + delay) * Math.PI * 4) * 5;
+            element.style.transform = `translateX(${baseTransform + offsetIntensity}px) rotate(${rotation}deg)`;
         });
 
         // Right floating elements  
         const rightElements = document.querySelectorAll('.scroll-float-right');
-        rightElements.forEach(element => {
+        rightElements.forEach((element, index) => {
             const baseTransform = direction === 'down' ? -intensity : intensity;
-            element.style.transform = `translateX(${baseTransform}px) rotate(${-intensity * 0.1}deg)`;
+            const delay = index * 0.1;
+            const offsetIntensity = intensity + Math.sin((scrollPercent + delay) * Math.PI * 4) * 5;
+            element.style.transform = `translateX(${baseTransform - offsetIntensity}px) rotate(${-rotation}deg)`;
         });
 
         // Up floating elements
         const upElements = document.querySelectorAll('.scroll-float-up');
-        upElements.forEach(element => {
-            const baseTransform = direction === 'down' ? -intensity * 0.5 : intensity * 0.5;
-            element.style.transform = `translateY(${baseTransform}px) rotate(${intensity * 0.05}deg)`;
+        upElements.forEach((element, index) => {
+            const baseTransform = direction === 'down' ? -intensity * 0.7 : intensity * 0.7;
+            const delay = index * 0.1;
+            const offsetIntensity = intensity + Math.sin((scrollPercent + delay) * Math.PI * 5) * 4;
+            element.style.transform = `translateY(${baseTransform + offsetIntensity}px) rotate(${rotation * 0.5}deg)`;
         });
 
         // Down floating elements
         const downElements = document.querySelectorAll('.scroll-float-down');
-        downElements.forEach(element => {
-            const baseTransform = direction === 'down' ? intensity * 0.3 : -intensity * 0.3;
-            element.style.transform = `translateY(${baseTransform}px) rotate(${-intensity * 0.05}deg)`;
+        downElements.forEach((element, index) => {
+            const baseTransform = direction === 'down' ? intensity * 0.4 : -intensity * 0.4;
+            const delay = index * 0.1;
+            const offsetIntensity = intensity + Math.sin((scrollPercent + delay) * Math.PI * 3) * 3;
+            element.style.transform = `translateY(${baseTransform - offsetIntensity}px) rotate(${-rotation * 0.5}deg)`;
         });
     }
 
