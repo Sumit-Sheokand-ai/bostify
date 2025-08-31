@@ -852,3 +852,419 @@ if (!document.getElementById('premium-animation-styles')) {
     styleSheet.textContent = premiumAnimationCSS;
     document.head.appendChild(styleSheet);
 }
+
+// ================================================
+// BROKEN BUTTON EFFECT FOR RETURNING USERS
+// ================================================
+
+function initBrokenButtonEffect() {
+    // Track page visits and button interactions
+    const pageKey = `bostify_page_${window.location.pathname}`;
+    const buttonClickKey = `bostify_button_clicks_${window.location.pathname}`;
+    
+    // Get previous visit data
+    const lastVisit = localStorage.getItem(pageKey);
+    const buttonClicks = parseInt(localStorage.getItem(buttonClickKey) || '0');
+    const currentTime = Date.now();
+    
+    // Mark current visit
+    localStorage.setItem(pageKey, currentTime);
+    
+    // Check if user is returning to the same page (within 24 hours)
+    const isReturningUser = lastVisit && (currentTime - parseInt(lastVisit)) < 86400000; // 24 hours
+    
+    // Apply broken effect if user is returning or has clicked buttons multiple times
+    if (isReturningUser || buttonClicks > 2) {
+        applyBrokenEffect();
+    }
+    
+    // Track button clicks
+    trackButtonClicks();
+}
+
+function applyBrokenEffect() {
+    console.log('🔨 Applying broken button effects for returning user');
+    
+    setTimeout(() => {
+        const buttons = document.querySelectorAll('.cta-button');
+        
+        buttons.forEach((button, index) => {
+            // Stagger the broken effect application
+            setTimeout(() => {
+                button.classList.add('broken');
+                
+                // Create crack line element
+                const crackLine = document.createElement('div');
+                crackLine.className = 'crack-line';
+                button.appendChild(crackLine);
+                
+                // Create debris elements
+                for (let i = 0; i < 3; i++) {
+                    const debris = document.createElement('div');
+                    debris.className = 'debris';
+                    button.appendChild(debris);
+                }
+                
+                // Store original button content
+                const originalText = button.textContent;
+                const originalHTML = button.innerHTML;
+                
+                // Create broken text overlay that appears on the pieces
+                const leftPiece = document.createElement('div');
+                leftPiece.style.cssText = `
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 50%;
+                    bottom: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #cccccc;
+                    font-weight: inherit;
+                    font-size: inherit;
+                    z-index: 4;
+                    pointer-events: none;
+                    overflow: hidden;
+                `;
+                
+                const rightPiece = document.createElement('div');
+                rightPiece.style.cssText = `
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    right: 0;
+                    bottom: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #cccccc;
+                    font-weight: inherit;
+                    font-size: inherit;
+                    z-index: 4;
+                    pointer-events: none;
+                    overflow: hidden;
+                `;
+                
+                // Split text for broken effect
+                const brokenTexts = [
+                    '⚡ SYS ERR',
+                    '💥 OVERLOAD', 
+                    '🔧 MAINT',
+                    '⚠️ DAMAGE',
+                    '🔨 BROKEN',
+                    '💔 CRACK'
+                ];
+                
+                const brokenText = brokenTexts[Math.floor(Math.random() * brokenTexts.length)];
+                const textParts = brokenText.split(' ');
+                
+                if (textParts.length >= 2) {
+                    leftPiece.textContent = textParts[0];
+                    rightPiece.textContent = textParts.slice(1).join(' ');
+                } else {
+                    const halfIndex = Math.ceil(brokenText.length / 2);
+                    leftPiece.textContent = brokenText.substring(0, halfIndex);
+                    rightPiece.textContent = brokenText.substring(halfIndex);
+                }
+                
+                // Clear original content and add pieces
+                button.innerHTML = '';
+                button.appendChild(crackLine);
+                button.appendChild(leftPiece);
+                button.appendChild(rightPiece);
+                
+                // Add debris
+                for (let i = 0; i < 3; i++) {
+                    const debris = document.createElement('div');
+                    debris.className = 'debris';
+                    button.appendChild(debris);
+                }
+                
+                // Store original content for restoration
+                button.setAttribute('data-original-html', originalHTML);
+                
+                // Restore original content after 5 seconds
+                setTimeout(() => {
+                    if (Math.random() < 0.7) { // 70% chance to restore
+                        button.innerHTML = originalHTML;
+                        // Keep the broken class for visual effects
+                        // but restore functionality
+                    }
+                }, 5000);
+                
+                // Enhanced broken button click effect
+                button.addEventListener('click', function(e) {
+                    // Add shatter effect on click
+                    button.style.animation = 'bulletImpact 0.6s ease-out, brokenGlitch 0.8s ease-out';
+                    
+                    // Create shatter particles at click point
+                    createShatterEffect(e.target, e.clientX, e.clientY);
+                    
+                    setTimeout(() => {
+                        button.style.animation = '';
+                    }, 1400);
+                });
+                
+            }, index * 800); // Longer stagger for dramatic effect
+        });
+    }, 1500); // Longer delay for suspense
+}
+
+function trackButtonClicks() {
+    const buttons = document.querySelectorAll('.cta-button');
+    const buttonClickKey = `bostify_button_clicks_${window.location.pathname}`;
+    
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            const currentClicks = parseInt(localStorage.getItem(buttonClickKey) || '0');
+            localStorage.setItem(buttonClickKey, (currentClicks + 1).toString());
+            
+            // Apply broken effect after 3 clicks on same page
+            if (currentClicks + 1 > 2) {
+                setTimeout(() => {
+                    applyBrokenEffect();
+                }, 500);
+            }
+        });
+    });
+}
+
+// Enhanced button hover effects with color transitions
+function initEnhancedButtonEffects() {
+    const buttons = document.querySelectorAll('.cta-button');
+    
+    buttons.forEach(button => {
+        // Add color transition on mouse enter
+        button.addEventListener('mouseenter', function() {
+            if (!button.classList.contains('broken')) {
+                button.style.filter = 'hue-rotate(45deg) saturate(1.2) brightness(1.1)';
+                button.style.transform = 'translateY(-3px) scale(1.02)';
+            }
+        });
+        
+        // Reset on mouse leave
+        button.addEventListener('mouseleave', function() {
+            if (!button.classList.contains('broken')) {
+                button.style.filter = '';
+                button.style.transform = '';
+            }
+        });
+        
+        // Enhanced click effect with color burst
+        button.addEventListener('click', function(e) {
+            if (!button.classList.contains('broken')) {
+                // Create color burst effect
+                createColorBurst(e.target, e.clientX, e.clientY);
+            }
+        });
+    });
+}
+
+function createColorBurst(button, x, y) {
+    const burst = document.createElement('div');
+    const rect = button.getBoundingClientRect();
+    
+    burst.style.cssText = `
+        position: fixed;
+        left: ${x}px;
+        top: ${y}px;
+        width: 4px;
+        height: 4px;
+        background: radial-gradient(circle, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        animation: colorBurstExpand 0.8s ease-out forwards;
+    `;
+    
+    document.body.appendChild(burst);
+    
+    // Create multiple burst particles
+    for (let i = 0; i < 6; i++) {
+        setTimeout(() => {
+            const particle = burst.cloneNode();
+            particle.style.left = (x + (Math.random() - 0.5) * 50) + 'px';
+            particle.style.top = (y + (Math.random() - 0.5) * 50) + 'px';
+            particle.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+            document.body.appendChild(particle);
+            
+            setTimeout(() => particle.remove(), 800);
+        }, i * 50);
+    }
+    
+    setTimeout(() => burst.remove(), 800);
+}
+
+// Enhanced shatter effect for broken buttons
+function createShatterEffect(button, x, y) {
+    const rect = button.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    // Create shatter particles from click point
+    for (let i = 0; i < 12; i++) {
+        const particle = document.createElement('div');
+        
+        // Random particle shapes (triangular debris)
+        const shapes = ['🔹', '🔸', '▪️', '▫️', '◾', '◽'];
+        const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
+        
+        particle.style.cssText = `
+            position: fixed;
+            left: ${x}px;
+            top: ${y}px;
+            font-size: ${Math.random() * 8 + 4}px;
+            color: #666;
+            pointer-events: none;
+            z-index: 9999;
+            animation: shatterParticle ${Math.random() * 2 + 1}s ease-out forwards;
+        `;
+        
+        particle.textContent = randomShape;
+        
+        // Random direction from click point
+        const angle = (Math.PI * 2 * i) / 12;
+        const velocity = Math.random() * 100 + 50;
+        const endX = x + Math.cos(angle) * velocity;
+        const endY = y + Math.sin(angle) * velocity + Math.random() * 50;
+        
+        particle.style.setProperty('--endX', endX + 'px');
+        particle.style.setProperty('--endY', endY + 'px');
+        particle.style.setProperty('--rotation', Math.random() * 720 + 'deg');
+        
+        document.body.appendChild(particle);
+        
+        setTimeout(() => particle.remove(), 2000);
+    }
+    
+    // Create crack effect from center to click point
+    createCrackEffect(centerX, centerY, x, y);
+}
+
+function createCrackEffect(startX, startY, endX, endY) {
+    const crack = document.createElement('div');
+    
+    const length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+    const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
+    
+    crack.style.cssText = `
+        position: fixed;
+        left: ${startX}px;
+        top: ${startY}px;
+        width: ${length}px;
+        height: 2px;
+        background: linear-gradient(to right, 
+            transparent 0%, 
+            rgba(255,255,255,0.8) 20%, 
+            rgba(0,0,0,0.9) 50%, 
+            rgba(255,255,255,0.6) 80%, 
+            transparent 100%
+        );
+        transform-origin: 0 50%;
+        transform: rotate(${angle}deg);
+        pointer-events: none;
+        z-index: 9998;
+        animation: crackAppear 0.3s ease-out forwards, crackFade 1s ease-out 0.3s forwards;
+    `;
+    
+    document.body.appendChild(crack);
+    
+    setTimeout(() => crack.remove(), 1500);
+}
+
+// Add color burst animation CSS
+const colorBurstCSS = `
+    @keyframes colorBurstExpand {
+        0% { 
+            transform: scale(1) translate(-50%, -50%);
+            opacity: 1;
+        }
+        100% { 
+            transform: scale(15) translate(-50%, -50%);
+            opacity: 0;
+        }
+    }
+    
+    @keyframes shatterParticle {
+        0% { 
+            transform: translate(0, 0) rotate(0deg);
+            opacity: 1;
+        }
+        100% { 
+            transform: translate(var(--endX, 100px), var(--endY, 100px)) rotate(var(--rotation, 360deg));
+            opacity: 0;
+        }
+    }
+    
+    @keyframes crackAppear {
+        0% { 
+            width: 0;
+            opacity: 0;
+        }
+        100% { 
+            opacity: 1;
+        }
+    }
+    
+    @keyframes crackFade {
+        0% { 
+            opacity: 1;
+        }
+        100% { 
+            opacity: 0;
+        }
+    }
+`;
+
+// Inject color burst styles
+if (!document.getElementById('color-burst-styles')) {
+    const burstStyleSheet = document.createElement('style');
+    burstStyleSheet.id = 'color-burst-styles';
+    burstStyleSheet.textContent = colorBurstCSS;
+    document.head.appendChild(burstStyleSheet);
+}
+
+// Initialize broken button effects
+initBrokenButtonEffect();
+initEnhancedButtonEffects();
+
+// Test function for broken button effect (remove in production)
+function testBrokenEffect() {
+    console.log('🔧 Testing enhanced broken button effect with zigzag cracking...');
+    applyBrokenEffect();
+}
+
+// Immediate test for dramatic crack effect
+function testDramaticCrack() {
+    console.log('💥 Testing dramatic button crack effect...');
+    const buttons = document.querySelectorAll('.cta-button');
+    buttons.forEach(button => {
+        // Simulate click at center of button for dramatic effect
+        const rect = button.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        button.classList.add('broken');
+        
+        // Create instant dramatic effect
+        setTimeout(() => {
+            createShatterEffect(button, centerX, centerY);
+        }, 500);
+    });
+}
+
+// Add test triggers - press Ctrl+Shift+B to test broken effect, Ctrl+Shift+C for dramatic crack
+document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && e.shiftKey && e.key === 'B') {
+        testBrokenEffect();
+    }
+    if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+        testDramaticCrack();
+    }
+});
+
+console.log('🎨 Enhanced button effects with color gradients and broken state initialized');
+console.log('💡 Press Ctrl+Shift+B to test broken button effect');
+console.log('� Press Ctrl+Shift+C to test dramatic crack effect');
+console.log('�🔄 Visit the same page again to see broken effect naturally');
