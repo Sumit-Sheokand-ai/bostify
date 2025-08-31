@@ -6,8 +6,8 @@
 
     <!-- Homepage -->
     <url>
-    <loc>https://bostify.me/</loc>
-        <lastmod>2025-08-29T00:00:00+00:00</lastmod>
+        <loc>https://bostify.me/</loc>
+        <lastmod>2025-08-30T00:00:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
         <mobile:mobile/>
@@ -15,50 +15,50 @@
 
     <!-- Core pages -->
     <url>
-    <loc>https://bostify.me/pages/services.html</loc>
-        <lastmod>2025-08-29T00:00:00+00:00</lastmod>
+        <loc>https://bostify.me/pages/services</loc>
+        <lastmod>2025-08-30T00:00:00+00:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
         <mobile:mobile/>
     </url>
     <url>
-    <loc>https://bostify.me/pages/pricing.html</loc>
-        <lastmod>2025-08-29T00:00:00+00:00</lastmod>
+        <loc>https://bostify.me/pages/pricing</loc>
+        <lastmod>2025-08-30T00:00:00+00:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
         <mobile:mobile/>
     </url>
     <url>
-    <loc>https://bostify.me/pages/monthly-audit.html</loc>
-        <lastmod>2025-08-29T00:00:00+00:00</lastmod>
+        <loc>https://bostify.me/pages/monthly-audit</loc>
+        <lastmod>2025-08-30T00:00:00+00:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <mobile:mobile/>
     </url>
     <url>
-    <loc>https://bostify.me/pages/blog.html</loc>
-        <lastmod>2025-08-29T00:00:00+00:00</lastmod>
+        <loc>https://bostify.me/pages/blog</loc>
+        <lastmod>2025-08-30T00:00:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <mobile:mobile/>
     </url>
     <url>
-    <loc>https://bostify.me/pages/case-studies.html</loc>
-        <lastmod>2025-08-29T00:00:00+00:00</lastmod>
+        <loc>https://bostify.me/pages/case-studies</loc>
+        <lastmod>2025-08-30T00:00:00+00:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
         <mobile:mobile/>
     </url>
     <url>
-    <loc>https://bostify.me/pages/about.html</loc>
-        <lastmod>2025-08-29T00:00:00+00:00</lastmod>
+        <loc>https://bostify.me/pages/about</loc>
+        <lastmod>2025-08-30T00:00:00+00:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
         <mobile:mobile/>
     </url>
     <url>
-    <loc>https://bostify.me/pages/contact.html</loc>
-        <lastmod>2025-08-29T00:00:00+00:00</lastmod>
+        <loc>https://bostify.me/pages/contact</loc>
+        <lastmod>2025-08-30T00:00:00+00:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <mobile:mobile/>
@@ -66,22 +66,22 @@
 
     <!-- Audit product pages -->
     <url>
-    <loc>https://bostify.me/pages/basic-seo-audit.html</loc>
-        <lastmod>2025-08-29T00:00:00+00:00</lastmod>
+        <loc>https://bostify.me/pages/basic-seo-audit</loc>
+        <lastmod>2025-08-30T00:00:00+00:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <mobile:mobile/>
     </url>
     <url>
-    <loc>https://bostify.me/pages/comprehensive-seo-audit.html</loc>
-        <lastmod>2025-08-29T00:00:00+00:00</lastmod>
+        <loc>https://bostify.me/pages/comprehensive-seo-audit</loc>
+        <lastmod>2025-08-30T00:00:00+00:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <mobile:mobile/>
     </url>
     <url>
-    <loc>https://bostify.me/pages/enterprise-seo-audit.html</loc>
-        <lastmod>2025-08-29T00:00:00+00:00</lastmod>
+        <loc>https://bostify.me/pages/enterprise-seo-audit</loc>
+        <lastmod>2025-08-30T00:00:00+00:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <mobile:mobile/>
@@ -89,36 +89,36 @@
 
     <!-- Service-specific pages -->
     <url>
-    <loc>https://bostify.me/pages/local-seo.html</loc>
-        <lastmod>2025-08-29T00:00:00+00:00</lastmod>
+        <loc>https://bostify.me/pages/local-seo</loc>
+        <lastmod>2025-08-30T00:00:00+00:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
         <mobile:mobile/>
     </url>
     <url>
-    <loc>https://bostify.me/pages/technical-seo.html</loc>
-        <lastmod>2025-08-29T00:00:00+00:00</lastmod>
+        <loc>https://bostify.me/pages/technical-seo</loc>
+        <lastmod>2025-08-30T00:00:00+00:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
         <mobile:mobile/>
     </url>
     <url>
-    <loc>https://bostify.me/pages/content-optimization.html</loc>
-        <lastmod>2025-08-29T00:00:00+00:00</lastmod>
+        <loc>https://bostify.me/pages/content-optimization</loc>
+        <lastmod>2025-08-30T00:00:00+00:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
         <mobile:mobile/>
     </url>
     <url>
-    <loc>https://bostify.me/pages/link-building.html</loc>
-        <lastmod>2025-08-29T00:00:00+00:00</lastmod>
+        <loc>https://bostify.me/pages/link-building</loc>
+        <lastmod>2025-08-30T00:00:00+00:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
         <mobile:mobile/>
     </url>
     <url>
-    <loc>https://bostify.me/pages/ecommerce-seo.html</loc>
-        <lastmod>2025-08-29T00:00:00+00:00</lastmod>
+        <loc>https://bostify.me/pages/ecommerce-seo</loc>
+        <lastmod>2025-08-30T00:00:00+00:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
         <mobile:mobile/>
@@ -126,36 +126,36 @@
 
     <!-- Blog posts -->
     <url>
-    <loc>https://bostify.me/blog-posts/seo-basics-beginners-guide.html</loc>
-        <lastmod>2025-08-29T00:00:00+00:00</lastmod>
+        <loc>https://bostify.me/blog-posts/seo-basics-beginners-guide</loc>
+        <lastmod>2025-08-30T00:00:00+00:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.6</priority>
         <mobile:mobile/>
     </url>
     <url>
-    <loc>https://bostify.me/blog-posts/keyword-research-guide.html</loc>
-        <lastmod>2025-08-29T00:00:00+00:00</lastmod>
+        <loc>https://bostify.me/blog-posts/keyword-research-guide</loc>
+        <lastmod>2025-08-30T00:00:00+00:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.6</priority>
         <mobile:mobile/>
     </url>
     <url>
-    <loc>https://bostify.me/blog-posts/local-seo-guide.html</loc>
-        <lastmod>2025-08-29T00:00:00+00:00</lastmod>
+        <loc>https://bostify.me/blog-posts/local-seo-guide</loc>
+        <lastmod>2025-08-30T00:00:00+00:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.6</priority>
         <mobile:mobile/>
     </url>
     <url>
-    <loc>https://bostify.me/blog-posts/link-building-strategies.html</loc>
-        <lastmod>2025-08-29T00:00:00+00:00</lastmod>
+        <loc>https://bostify.me/blog-posts/link-building-strategies</loc>
+        <lastmod>2025-08-30T00:00:00+00:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.6</priority>
         <mobile:mobile/>
     </url>
     <url>
-    <loc>https://bostify.me/blog-posts/website-speed-optimization.html</loc>
-        <lastmod>2025-08-29T00:00:00+00:00</lastmod>
+        <loc>https://bostify.me/blog-posts/website-speed-optimization</loc>
+        <lastmod>2025-08-30T00:00:00+00:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.6</priority>
         <mobile:mobile/>
@@ -163,15 +163,15 @@
 
     <!-- Legal pages -->
     <url>
-    <loc>https://bostify.me/pages/privacy-policy.html</loc>
-        <lastmod>2025-08-29T00:00:00+00:00</lastmod>
+        <loc>https://bostify.me/pages/privacy-policy</loc>
+        <lastmod>2025-08-30T00:00:00+00:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
         <mobile:mobile/>
     </url>
     <url>
-    <loc>https://bostify.me/pages/terms-of-service.html</loc>
-        <lastmod>2025-08-29T00:00:00+00:00</lastmod>
+        <loc>https://bostify.me/pages/terms-of-service</loc>
+        <lastmod>2025-08-30T00:00:00+00:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
         <mobile:mobile/>
@@ -179,15 +179,15 @@
 
     <!-- Payment pages -->
     <url>
-    <loc>https://bostify.me/pages/payment-success.html</loc>
-        <lastmod>2025-08-29T00:00:00+00:00</lastmod>
+        <loc>https://bostify.me/pages/payment-success</loc>
+        <lastmod>2025-08-30T00:00:00+00:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.2</priority>
         <mobile:mobile/>
     </url>
     <url>
-    <loc>https://bostify.me/pages/payment-cancel.html</loc>
-        <lastmod>2025-08-29T00:00:00+00:00</lastmod>
+        <loc>https://bostify.me/pages/payment-cancel</loc>
+        <lastmod>2025-08-30T00:00:00+00:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.2</priority>
         <mobile:mobile/>
