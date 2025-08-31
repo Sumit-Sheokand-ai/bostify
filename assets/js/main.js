@@ -10,11 +10,158 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize all premium features
     initPremiumAnimations();
     initScrollEffects();
-    initDynamicColors();
+    // Dynamic colors removed - keeping only gradient effects
     initFloatingElements();
     initMobileMenu();
     initCounterAnimations();
     initPerformanceOptimizations();
+    initPremiumInteractions();
+    initScrollProgress();
+    initWordAnimation();
+
+    // ================================================
+    // FLOATING WORDS ANIMATION (Now works on mobile too!)
+    // ================================================
+    
+    function initWordAnimation() {
+        const words = ['SEO', 'Marketing', 'Growth', 'Success', 'Excellence', 'Mastery', 'Premium', 'Elite', 'Fortune 500', 'Revolutionary'];
+        const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#fec78a', '#d1a3ff', '#ff9ff3', '#54a0ff'];
+        
+        function createFloatingWord() {
+            const word = words[Math.floor(Math.random() * words.length)];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            const wordElement = document.createElement('div');
+            wordElement.textContent = word;
+            
+            // Adjust size for mobile
+            const isMobile = window.innerWidth <= 768;
+            const fontSize = isMobile ? Math.random() * 12 + 10 : Math.random() * 20 + 15;
+            
+            wordElement.style.cssText = `
+                position: fixed;
+                left: ${Math.random() * (window.innerWidth - 100)}px;
+                top: ${window.innerHeight + 50}px;
+                color: ${color};
+                font-size: ${fontSize}px;
+                font-weight: 600;
+                pointer-events: none;
+                z-index: 1;
+                opacity: ${isMobile ? 0.4 : 0.6};
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+                transition: all 0.1s ease;
+            `;
+            
+            document.body.appendChild(wordElement);
+            
+            const duration = isMobile ? Math.random() * 8000 + 6000 : Math.random() * 10000 + 8000;
+            const drift = Math.random() * 150 - 75;
+            
+            wordElement.animate([
+                { 
+                    transform: 'translateY(0px) translateX(0px) rotate(0deg)',
+                    opacity: isMobile ? 0.4 : 0.6
+                },
+                { 
+                    transform: `translateY(-${window.innerHeight + 100}px) translateX(${drift}px) rotate(${Math.random() * 180}deg)`,
+                    opacity: 0
+                }
+            ], {
+                duration: duration,
+                easing: 'linear'
+            }).onfinish = () => {
+                if (wordElement.parentNode) {
+                    wordElement.remove();
+                }
+            };
+        }
+        
+        // Create words periodically - less frequent on mobile
+        const interval = window.innerWidth <= 768 ? 4000 : 3000;
+        setInterval(createFloatingWord, interval);
+        
+        // Create initial words
+        setTimeout(() => createFloatingWord(), 1000);
+        setTimeout(() => createFloatingWord(), 2000);
+        if (window.innerWidth > 768) {
+            setTimeout(() => createFloatingWord(), 3000);
+        }
+    }
+
+    // ================================================
+    // SCROLL PROGRESS INDICATOR
+    // ================================================
+    
+    function initScrollProgress() {
+        // Create scroll indicator if it doesn't exist
+        if (!document.querySelector('.scroll-indicator')) {
+            const scrollIndicator = document.createElement('div');
+            scrollIndicator.className = 'scroll-indicator';
+            scrollIndicator.innerHTML = '<div class="scroll-progress"></div>';
+            document.body.prepend(scrollIndicator);
+        }
+
+        const scrollProgress = document.querySelector('.scroll-progress');
+        
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            
+            if (scrollProgress) {
+                scrollProgress.style.width = scrollPercent + '%';
+            }
+        });
+    }
+
+    // ================================================
+    // PREMIUM INTERACTION SYSTEM
+    // ================================================
+    
+    function initPremiumInteractions() {
+        // Section reveal on scroll
+        const sections = document.querySelectorAll('.section, .service-card, .testimonial-card');
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                }
+            });
+        }, observerOptions);
+        
+        sections.forEach(section => {
+            section.classList.add('section');
+            sectionObserver.observe(section);
+        });
+        
+        // Enhanced button click effects
+        const buttons = document.querySelectorAll('.cta-button');
+        buttons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Create ripple effect
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+                ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+                ripple.classList.add('ripple-effect');
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+        
+        console.log('🎯 Premium interactions initialized');
+    }
 
     // ================================================
     // DARK THEME SYSTEM
@@ -56,10 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function initPremiumAnimations() {
         console.log('🚀 Initializing Premium Animation System...');
         
-        // Add dynamic color classes to key elements
-        addDynamicColorClasses();
-        
-        // Add floating classes to elements
+        // Add floating classes to elements (gradient effects only)
         addFloatingClasses();
         
         // Apply floating effects immediately
@@ -71,7 +215,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Force re-application after DOM fully settles
         setTimeout(() => {
             console.log('🔄 Secondary animation pass...');
-            addDynamicColorClasses();
             addFloatingClasses();
             applyFloatingEffects();
             
@@ -79,70 +222,26 @@ document.addEventListener('DOMContentLoaded', function() {
             const heroTitle = document.querySelector('.hero-title');
             if (heroTitle) {
                 console.log('🎯 Hero title content:', heroTitle.innerHTML);
-                console.log('🎨 Dynamic color elements found:', document.querySelectorAll('.dynamic-color-1, .dynamic-color-2, .dynamic-color-3, .dynamic-color-4, .dynamic-color-5, .dynamic-color-6').length);
+                console.log('🎨 Gradient elements active with enhanced animations');
             }
         }, 1000);
     }
 
-    function addDynamicColorClasses() {
-        console.log('🎨 Starting dynamic color class application...');
-        
-        // Target specific words and elements for color animation
-        const colorTargets = [
-            { selector: '.hero-title', words: ['Revolutionary', 'SEO', 'Mastery', 'Industry-Transforming', 'Search', 'Dominance'] },
-            { selector: '.gradient-text', words: ['Fortune', '500', 'Excellence'] },
-            { selector: '.hero-subtitle', words: ['Elite', 'Fortune', 'revolutionary', 'legendary', 'AI-powered', 'cutting-edge', 'unprecedented'] },
-            { selector: '.section-title, h2', words: ['Elite', 'Revolutionary', 'Premium', 'Excellence', 'Supreme', 'Mastery'] },
-            { selector: '.service-card h3', words: ['AI-Powered', 'Revolutionary', 'Fortune', 'Premium', 'Supreme', 'Elite'] },
-            { selector: '.testimonial-text', words: ['Elite', 'Fortune', 'Revolutionary', 'legendary', 'cutting-edge', 'supreme'] },
-            { selector: 'h1, h2, h3', words: ['Elite', 'Fortune', 'Revolutionary', 'Premium', 'Excellence', 'Supreme', 'Mastery'] }
-        ];
-
-        colorTargets.forEach(target => {
-            const elements = document.querySelectorAll(target.selector);
-            console.log(`🎯 Found ${elements.length} elements for selector: ${target.selector}`);
-            
-            elements.forEach((element, elementIndex) => {
-                let html = element.innerHTML;
-                const originalHtml = html;
-                
-                target.words.forEach((word, index) => {
-                    // Use 6 different color classes for more variety
-                    const colorClass = `dynamic-color-${(index % 6) + 1}`;
-                    const regex = new RegExp(`\\b${word}\\b`, 'gi');
-                    
-                    if (regex.test(html)) {
-                        html = html.replace(regex, `<span class="${colorClass}">${word}</span>`);
-                        console.log(`✅ Applied ${colorClass} to word: ${word} in ${target.selector}`);
-                    }
-                });
-                
-                if (html !== originalHtml) {
-                    element.innerHTML = html;
-                    console.log(`🔄 Updated element ${elementIndex} in ${target.selector}`);
-                }
-            });
-        });
-        
-        console.log('🎨 Dynamic color class application completed!');
-    }
+    // ================================================
+    // FLOATING CLASSES SYSTEM (Gradient Effects Only)
+    // ================================================
 
     function addFloatingClasses() {
-        // Add floating classes to different elements
+        // Add floating classes to different elements (no dynamic colors)
         const floatingElements = [
             { selector: '.service-icon', class: 'scroll-float-up' },
             { selector: '.stat-number', class: 'scroll-float-left' },
             { selector: '.testimonial-stars', class: 'scroll-float-right' },
             { selector: '.hero-image img', class: 'scroll-float-down' },
             { selector: '.cta-button', class: 'scroll-float-up' },
-            { selector: '.dynamic-color-1', class: 'scroll-float-left' },
-            { selector: '.dynamic-color-2', class: 'scroll-float-right' },
-            { selector: '.dynamic-color-3', class: 'scroll-float-up' },
-            { selector: '.dynamic-color-4', class: 'scroll-float-down' },
-            { selector: '.dynamic-color-5', class: 'scroll-float-left' },
-            { selector: '.dynamic-color-6', class: 'scroll-float-right' },
             { selector: '.section-title', class: 'scroll-float-up' },
-            { selector: '.hero-subtitle', class: 'scroll-float-down' }
+            { selector: '.hero-subtitle', class: 'scroll-float-down' },
+            { selector: '.key-phrase', class: 'scroll-float-up' }
         ];
 
         floatingElements.forEach(item => {
@@ -217,37 +316,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const offsetIntensity = intensity + Math.sin((scrollPercent + delay) * Math.PI * 3) * 3;
             element.style.transform = `translateY(${baseTransform - offsetIntensity}px) rotate(${-rotation * 0.5}deg)`;
         });
-    }
-
-    // ================================================
-    // DYNAMIC COLOR SYSTEM
-    // ================================================
-
-    function initDynamicColors() {
-        // Enhanced color animation with scroll-based variations
-        let colorIndex = 0;
-        
-        setInterval(() => {
-            updateDynamicColors(colorIndex);
-            colorIndex = (colorIndex + 1) % 4;
-        }, 4000); // Change colors every 4 seconds
-    }
-
-    function updateDynamicColors(index) {
-        const colorSets = [
-            ['#667eea', '#764ba2', '#f093fb', '#f5576c'],
-            ['#a8edea', '#fed6e3', '#667eea', '#764ba2'],
-            ['#f093fb', '#a8edea', '#667eea', '#f5576c'],
-            ['#764ba2', '#f5576c', '#a8edea', '#fed6e3']
-        ];
-        
-        const currentColors = colorSets[index];
-        
-        // Update CSS custom properties for smooth transitions
-        document.documentElement.style.setProperty('--dynamic-color-1', currentColors[0]);
-        document.documentElement.style.setProperty('--dynamic-color-2', currentColors[1]);
-        document.documentElement.style.setProperty('--dynamic-color-3', currentColors[2]);
-        document.documentElement.style.setProperty('--dynamic-color-4', currentColors[3]);
     }
 
     // ================================================
@@ -603,26 +671,9 @@ document.addEventListener('DOMContentLoaded', function() {
 // ================================================
 
 const premiumAnimationCSS = `
-    /* Enhanced Color Animation Variables */
+    /* Enhanced Scroll and Floating Animation Variables */
     :root {
-        --dynamic-color-1: #667eea;
-        --dynamic-color-2: #764ba2;
-        --dynamic-color-3: #f093fb;
-        --dynamic-color-4: #f5576c;
-    }
-
-    /* Dynamic Color Classes */
-    .dynamic-color-1 { 
-        color: var(--dynamic-color-1) !important; 
-        transition: color 1.5s ease-in-out;
-    }
-    .dynamic-color-2 { 
-        color: var(--dynamic-color-2) !important; 
-        transition: color 1.5s ease-in-out;
-    }
-    .dynamic-color-3 { 
-        color: var(--dynamic-color-3) !important; 
-        transition: color 1.5s ease-in-out;
+        --premium-gradient: linear-gradient(45deg, #ff0844, #ffb199, #ff6348, #ff9472, #ff6b9d, #c44569);
     }
 
     /* Scroll Float Elements */
