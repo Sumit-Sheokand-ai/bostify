@@ -810,9 +810,11 @@ img {
 
 @media (max-width: 480px) {
     .container { padding: 0 1rem; }
-    .header { height: 60px; }
-    .nav-menu { top: 60px; height: calc(100vh - 60px); }
-    .nav-logo h1 { font-size: 1.5rem; }
+    .header { height: 70px !important; }
+    .nav-menu { top: 70px !important; height: calc(100vh - 70px) !important; }
+    .navbar { height: 70px !important; padding: 0.5rem 0 !important; }
+    .nav-logo h1 { font-size: 1.6rem !important; }
+    .nav-logo span { font-size: 0.7rem !important; }
     .hero-title { font-size: 2.2rem; }
     .hero-subtitle { font-size: 1.1rem; }
     .hero-cta, .cta-buttons { flex-direction: column; align-items: center; }
@@ -1608,15 +1610,169 @@ img {
 }
 
 @media (max-width: 768px) {
-    .hamburger {
-        display: flex;
+    /* === MOBILE HEADER FIXES === */
+    .header {
+        height: 70px !important;
+        background: rgba(26, 32, 44, 0.95) !important;
+        backdrop-filter: blur(25px) !important;
+        border-bottom: 2px solid rgba(102, 126, 234, 0.3) !important;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3) !important;
     }
     
-    /* Navigation menu - consistent with main mobile menu system */
+    .navbar {
+        padding: 0.5rem 0 !important;
+        height: 70px !important;
+    }
+    
+    .nav-container {
+        padding: 0 1rem !important;
+        height: 100% !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+    
+    .nav-logo {
+        z-index: 1002 !important;
+    }
+    
+    .nav-logo h1 {
+        font-size: 1.8rem !important;
+        margin: 0 !important;
+        color: #ffffff !important;
+        font-weight: 700 !important;
+    }
+    
+    .nav-logo span {
+        font-size: 0.75rem !important;
+        color: rgba(255, 255, 255, 0.7) !important;
+        display: block !important;
+        margin-top: -5px !important;
+    }
+    
+    /* === MOBILE HAMBURGER MENU === */
+    .hamburger {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 50px !important;
+        height: 50px !important;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        border: 2px solid rgba(255, 255, 255, 0.3) !important;
+        border-radius: 12px !important;
+        cursor: pointer !important;
+        z-index: 1002 !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .hamburger:active {
+        transform: scale(0.95) !important;
+        background: linear-gradient(135deg, #5a6fd8 0%, #6a4c93 100%) !important;
+    }
+    
+    .bar {
+        width: 25px !important;
+        height: 3px !important;
+        background-color: #ffffff !important;
+        margin: 3px 0 !important;
+        border-radius: 2px !important;
+        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+    }
+    
+    .hamburger.active .bar:nth-child(1) {
+        transform: rotate(-45deg) translate(-6px, 6px) !important;
+    }
+    
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0 !important;
+        transform: scale(0) !important;
+    }
+    
+    .hamburger.active .bar:nth-child(3) {
+        transform: rotate(45deg) translate(-6px, -6px) !important;
+    }
+    
+    /* === MOBILE NAVIGATION MENU === */
     .nav-menu {
-        /* Position and layout maintained from main system */
-        top: 70px; /* Consistent header height */
-        padding-top: 1.5rem; /* Slightly reduced for smaller screens */
+        position: fixed !important;
+        top: 70px !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: calc(100vh - 70px) !important;
+        
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding: 2rem 1rem !important;
+        gap: 0 !important;
+        
+        background: linear-gradient(180deg, rgba(26, 32, 44, 0.98) 0%, rgba(30, 41, 59, 0.98) 100%) !important;
+        backdrop-filter: blur(30px) !important;
+        -webkit-backdrop-filter: blur(30px) !important;
+        border-top: 2px solid rgba(102, 126, 234, 0.4) !important;
+        
+        transform: translateX(-100%) !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, visibility 0s 0.4s !important;
+        
+        z-index: 999 !important;
+        overflow-y: auto !important;
+    }
+    
+    .nav-menu.active {
+        transform: translateX(0) !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, visibility 0s 0s !important;
+    }
+    
+    .nav-menu li {
+        list-style: none !important;
+        width: 90% !important;
+        max-width: 400px !important;
+        margin: 0.8rem 0 !important;
+    }
+    
+    .nav-link {
+        display: block !important;
+        width: 100% !important;
+        padding: 1.5rem 1.2rem !important;
+        text-align: center !important;
+        font-size: 1.1rem !important;
+        font-weight: 600 !important;
+        color: #ffffff !important;
+        text-decoration: none !important;
+        
+        background: rgba(255, 255, 255, 0.08) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        border-radius: 15px !important;
+        
+        transition: all 0.3s ease !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    .nav-link:hover, .nav-link:focus {
+        background: rgba(102, 126, 234, 0.3) !important;
+        border-color: rgba(102, 126, 234, 0.6) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4) !important;
+    }
+    
+    .nav-link.cta-nav {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        border: 2px solid rgba(255, 255, 255, 0.4) !important;
+        margin-top: 1rem !important;
+    }
+    
+    .nav-link.cta-nav:hover {
+        background: linear-gradient(135deg, #5a6fd8 0%, #6a4c93 100%) !important;
+        transform: translateY(-3px) !important;
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5) !important;
     }
     
     .hero-title {
