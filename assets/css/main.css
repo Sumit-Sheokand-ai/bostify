@@ -1449,94 +1449,8 @@ img {
     }
 }
 
-@media (max-width: 768px) {
-    .hamburger {
-        display: flex;
-    }
-    
-    .nav-menu {
-        position: fixed;
-        left: -100%;
-        top: 80px;
-        flex-direction: column;
-        background: rgba(26, 32, 44, 0.95);
-        backdrop-filter: blur(10px);
-        width: 100%;
-        text-align: center;
-        transition: all 0.3s ease;
-        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-        border-top: 1px solid rgba(160, 174, 192, 0.1);
-        padding: 2rem 0;
-        z-index: 1000;
-    }
-
-    .nav-menu.active {
-        left: 0;
-    }
-
-    .nav-menu li {
-        margin: 1rem 0;
-    }
-    
-    .nav-link {
-        color: var(--text-light) !important;
-        font-size: 1.1rem;
-        font-weight: 500;
-        padding: 1rem 2rem;
-        display: block;
-        transition: all 0.3s ease;
-        border-radius: 8px;
-        margin: 0 1rem;
-    }
-    
-    .nav-link:hover {
-        background: rgba(160, 174, 192, 0.1);
-        color: #ffffff !important;
-    }
-    
-    .cta-nav {
-        background: var(--services-highlight) !important;
-        color: #ffffff !important;
-        border-radius: 25px;
-    }
-    
-    .cta-nav:hover {
-        background: var(--about-highlight) !important;
-        transform: translateY(-2px);
-    }
-    
-    /* Mobile Hero Adjustments */
-    .hero-title {
-        font-size: 2.5rem;
-        line-height: 1.1;
-        margin-bottom: 1rem;
-    }
-    
-    /* Enhanced mobile visibility for key phrases */
-    .hero-title .key-phrase {
-        font-size: 2.5rem;
-        line-height: 1.1;
-        display: block;
-        margin: 0.3rem 0;
-        text-shadow: 0 0 40px rgba(160, 174, 192, 0.7);
-        font-weight: 900;
-    }
-    
-    /* Disable floating effects on mobile for performance */
-    .floating,
-    .scroll-float-left,
-    .scroll-float-right,
-    .scroll-float-up,
-    .scroll-float-down {
-        animation: none !important;
-        transform: none !important;
-    }
-    
-    .hero-stats {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-}
+/* This media query is intentionally left empty to remove conflicting styles. 
+   The correct mobile navigation styles are handled in the @media (max-width: 1024px) block. */
 
 /* ADDITIONAL MOBILE FIXES */
 @media (max-width: 480px) {
@@ -4128,5 +4042,61 @@ button:focus,
         -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
         -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+    }
+}
+/* ==============================================================================
+   FINAL MOBILE OVERRIDE & FIXES
+   This block consolidates critical mobile styles to ensure functionality.
+   ============================================================================== */
+@media (max-width: 768px) {
+    /* --- MOBILE NAVIGATION MENU FIX --- */
+    /* Hides the menu off-screen with smooth transition properties */
+    .nav-menu {
+        position: fixed;
+        top: 80px; /* Adjust to match header height */
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 80px);
+        
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 3rem;
+        
+        background: linear-gradient(135deg, rgba(26, 32, 44, 0.98) 0%, rgba(26, 35, 126, 0.98) 100%);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        
+        transform: translateX(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, visibility 0s 0.4s;
+        
+        z-index: 999;
+        border-top: 2px solid rgba(102, 126, 234, 0.5);
+    }
+
+    /* Slides the menu into view when active */
+    .nav-menu.active {
+        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, visibility 0s 0s;
+    }
+
+    /* --- MOBILE BUTTON COLOR & TOUCH FEEDBACK FIX --- */
+    /* Provides visual feedback for all interactive elements on touch */
+    .touched,
+    button:active,
+    .cta-button:active,
+    .btn:active,
+    .nav-link:active,
+    a:active {
+        transform: scale(0.97);
+        filter: brightness(1.2);
+        background-color: rgba(102, 126, 234, 0.3) !important; /* Ensures color change */
+        border-color: rgba(255, 255, 255, 0.5) !important;
+        transition: transform 0.1s ease, filter 0.1s ease, background-color 0.1s ease;
     }
 }
