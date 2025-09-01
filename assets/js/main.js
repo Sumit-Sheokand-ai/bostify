@@ -272,9 +272,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // ================================================
     function initMobileMenu() {
         const hamburger = document.querySelector('.hamburger, .nav-toggle');
-        const navMenu = document.querySelector('.nav-menu');
+        const mobileMenu = document.querySelector('.mobile-menu');
         
-        if (!hamburger || !navMenu) {
+        if (!hamburger || !mobileMenu) {
             console.error('Mobile menu elements not found.');
             return;
         }
@@ -284,9 +284,9 @@ document.addEventListener('DOMContentLoaded', function() {
             toggleMobileMenu();
         });
 
-        navMenu.querySelectorAll('.nav-link').forEach(link => {
+        mobileMenu.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
-                if (navMenu.classList.contains('active')) {
+                if (mobileMenu.classList.contains('active')) {
                     closeMobileMenu();
                 }
             });
@@ -303,18 +303,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function toggleMobileMenu() {
         const hamburger = document.querySelector('.hamburger, .nav-toggle');
-        const navMenu = document.querySelector('.nav-menu');
+        const mobileMenu = document.querySelector('.mobile-menu');
         const isActive = hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
         document.body.style.overflow = isActive ? 'hidden' : '';
         console.log(`📱 Menu is now: ${isActive ? 'OPEN' : 'CLOSED'}`);
     }
 
     function closeMobileMenu() {
         const hamburger = document.querySelector('.hamburger, .nav-toggle');
-        const navMenu = document.querySelector('.nav-menu');
+        const mobileMenu = document.querySelector('.mobile-menu');
         hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
+        mobileMenu.classList.remove('active');
         document.body.style.overflow = '';
         console.log('✅ Mobile menu closed.');
     }
