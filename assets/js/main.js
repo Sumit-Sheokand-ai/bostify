@@ -320,8 +320,11 @@ document.addEventListener('DOMContentLoaded', function() {
             e.stopPropagation();
             
             console.log('🍔 Advanced hamburger clicked!');
+            console.log('Current mobile menu display:', getComputedStyle(mobileMenu).display);
+            console.log('Current mobile menu transform:', getComputedStyle(mobileMenu).transform);
             
             const isCurrentlyActive = hamburger.classList.contains('active');
+            console.log('Menu currently active:', isCurrentlyActive);
             
             if (isCurrentlyActive) {
                 closeMobileMenu();
@@ -371,10 +374,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         function openMobileMenu() {
+            console.log('📱 Opening mobile menu...');
+            
             // Use requestAnimationFrame for smooth animations
             requestAnimationFrame(() => {
                 hamburger.classList.add('active');
                 mobileMenu.classList.add('active');
+                
+                // Force display and animate
+                mobileMenu.style.display = 'flex';
+                
+                // Small delay to ensure display is applied
+                setTimeout(() => {
+                    mobileMenu.style.transform = 'translateX(0)';
+                }, 10);
+                
                 body.style.overflow = 'hidden';
                 
                 // Modern focus management
@@ -387,14 +401,25 @@ document.addEventListener('DOMContentLoaded', function() {
                     header.style.backdropFilter = 'blur(10px)';
                 }
                 
-                console.log('📱 Menu opened with advanced animations');
+                console.log('✅ Menu opened with advanced animations');
             });
         }
 
         function closeMobileMenu() {
+            console.log('❌ Closing mobile menu...');
+            
             requestAnimationFrame(() => {
                 hamburger.classList.remove('active');
                 mobileMenu.classList.remove('active');
+                
+                // Animate out first
+                mobileMenu.style.transform = 'translateX(-100%)';
+                
+                // Hide after animation
+                setTimeout(() => {
+                    mobileMenu.style.display = 'none';
+                }, 300);
+                
                 body.style.overflow = '';
                 
                 // Reset backdrop effect
