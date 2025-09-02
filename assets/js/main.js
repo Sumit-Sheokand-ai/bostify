@@ -268,37 +268,60 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ================================================
-    // MOBILE MENU SYSTEM (REFINED)
+    // MOBILE MENU SYSTEM (REFINED & ENHANCED)
     // ================================================
     function initMobileMenu() {
+        console.log('🔧 Initializing mobile menu system...');
+        
         const hamburger = document.querySelector('.hamburger, .nav-toggle');
         const mobileMenu = document.querySelector('.mobile-menu');
+        const desktopMenu = document.querySelector('.desktop-menu');
         
-        if (!hamburger || !mobileMenu) {
-            console.error('Mobile menu elements not found.');
+        console.log('📱 Mobile menu elements found:', { 
+            hamburger: !!hamburger, 
+            mobileMenu: !!mobileMenu, 
+            desktopMenu: !!desktopMenu 
+        });
+        
+        if (!hamburger) {
+            console.error('❌ Hamburger menu not found! Check HTML structure.');
+            return;
+        }
+        
+        if (!mobileMenu) {
+            console.error('❌ Mobile menu not found! Check HTML structure.');
             return;
         }
 
+        // Add click event to hamburger
         hamburger.addEventListener('click', (e) => {
             e.preventDefault();
+            e.stopPropagation();
+            console.log('🍔 Hamburger clicked!');
             toggleMobileMenu();
         });
 
-        mobileMenu.querySelectorAll('.nav-link').forEach(link => {
+        // Add click events to mobile menu links
+        mobileMenu.querySelectorAll('.nav-link').forEach((link, index) => {
             link.addEventListener('click', () => {
+                console.log(`📱 Mobile nav link ${index + 1} clicked`);
                 if (mobileMenu.classList.contains('active')) {
                     closeMobileMenu();
                 }
             });
         });
 
+        // Close menu when clicking outside
         document.addEventListener('click', (e) => {
-            if (navMenu.classList.contains('active') && !hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+            if (mobileMenu.classList.contains('active') && 
+                !hamburger.contains(e.target) && 
+                !mobileMenu.contains(e.target)) {
+                console.log('👆 Clicked outside mobile menu, closing...');
                 closeMobileMenu();
             }
         });
         
-        console.log('✅ Mobile menu initialized.');
+        console.log('✅ Mobile menu system initialized successfully');
     }
 
     function toggleMobileMenu() {
