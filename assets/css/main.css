@@ -2947,109 +2947,500 @@ button:focus,
    This block consolidates critical mobile styles to ensure functionality.
    ============================================================================== */
 @media (max-width: 768px) {
-    /* --- MOBILE HEADER HEIGHT CONSISTENCY --- */
+    /* --- ADVANCED MOBILE HEADER WITH CONTAINER QUERIES --- */
     .header {
         height: 70px !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 1000 !important;
+        background: rgba(17, 17, 33, 0.95) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border-bottom: 1px solid rgba(102, 126, 234, 0.2) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
     
     .navbar {
         height: 70px !important;
-        padding: 0.5rem 0 !important;
+        padding: 0.5rem 1rem !important;
         display: flex !important;
         align-items: center !important;
+        justify-content: space-between !important;
+        max-width: 100% !important;
+        width: 100% !important;
     }
     
-    /* --- DESKTOP/MOBILE MENU CONTROL --- */
-    /* Hide desktop menu on mobile */
-    .desktop-menu {
+    /* --- RESPONSIVE NAV LOGO --- */
+    .nav-logo {
+        flex-shrink: 0 !important;
+        z-index: 1001 !important;
+    }
+    
+    .nav-logo h1 {
+        font-size: 1.5rem !important;
+        margin: 0 !important;
+        line-height: 1 !important;
+    }
+    
+    .nav-logo span {
+        font-size: 0.75rem !important;
+        opacity: 0.8 !important;
+    }
+
+    /* --- MODERN DESKTOP/MOBILE MENU SYSTEM --- */
+    /* Hide desktop menu on mobile with better specificity */
+    .nav-menu.desktop-menu {
         display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
     }
     
-    /* Show mobile menu structure on mobile */
-    .mobile-menu {
+    /* Advanced mobile menu with modern CSS Grid and Flexbox */
+    .nav-menu.mobile-menu {
         display: flex !important;
         position: fixed !important;
         top: 70px !important;
         left: 0 !important;
-        width: 100% !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100vw !important;
         height: calc(100vh - 70px) !important;
-        background: rgba(17, 17, 33, 0.98) !important;
+        height: calc(100dvh - 70px) !important; /* Dynamic viewport height for mobile */
+        
+        /* Modern background with better performance */
+        background: linear-gradient(180deg, 
+            rgba(17, 17, 33, 0.98) 0%, 
+            rgba(26, 32, 44, 0.98) 50%,
+            rgba(30, 41, 59, 0.98) 100%) !important;
+        backdrop-filter: blur(30px) saturate(1.5) !important;
+        -webkit-backdrop-filter: blur(30px) saturate(1.5) !important;
+        
+        /* Modern flexbox layout */
         flex-direction: column !important;
         justify-content: flex-start !important;
         align-items: center !important;
-        padding-top: 2rem !important;
-        gap: 2rem !important;
-        transform: translateX(-100%) !important;
-        transition: transform 0.3s ease !important;
-        z-index: 999 !important;
-        overflow-y: auto !important;
+        padding: 2rem 1rem 2rem 1rem !important;
+        gap: 1rem !important;
+        
+        /* Advanced transforms with GPU acceleration */
+        transform: translate3d(-100%, 0, 0) !important;
+        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                   opacity 0.3s ease,
+                   visibility 0s linear 0.4s !important;
+        
         opacity: 0 !important;
         visibility: hidden !important;
+        z-index: 999 !important;
+        
+        /* Modern scrolling with momentum */
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        overscroll-behavior: contain !important;
+        
+        /* Better touch targets */
+        touch-action: pan-y !important;
     }
     
-    /* Show mobile menu when active */
-    .mobile-menu.active {
-        transform: translateX(0) !important;
+    /* Enhanced active state with better animations */
+    .nav-menu.mobile-menu.active {
+        transform: translate3d(0, 0, 0) !important;
         opacity: 1 !important;
         visibility: visible !important;
+        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                   opacity 0.3s ease,
+                   visibility 0s linear 0s !important;
     }
     
-    /* Mobile menu link styles */
-    .mobile-menu .nav-link {
-        display: block !important;
-        width: 90% !important;
-        max-width: 300px !important;
+    /* Modern mobile menu link styles with better accessibility */
+    .nav-menu.mobile-menu .nav-link {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: min(90%, 350px) !important;
+        min-height: 48px !important; /* WCAG compliant touch target */
         padding: 1rem 1.5rem !important;
-        margin: 0.5rem 0 !important;
-        text-align: center !important;
-        font-size: 1.1rem !important;
+        margin: 0.25rem 0 !important;
+        
+        /* Modern typography */
+        font-size: clamp(1rem, 4vw, 1.2rem) !important;
         font-weight: 600 !important;
-        color: #ffffff !important;
+        letter-spacing: 0.025em !important;
+        text-align: center !important;
         text-decoration: none !important;
-        background: rgba(255, 255, 255, 0.1) !important;
-        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        color: #ffffff !important;
+        
+        /* Advanced background with better contrast */
+        background: linear-gradient(135deg, 
+            rgba(255, 255, 255, 0.08) 0%, 
+            rgba(255, 255, 255, 0.12) 100%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
         border-radius: 12px !important;
+        
+        /* Modern transitions with better performance */
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        will-change: transform, background-color, border-color !important;
+        
+        /* Better focus indicators */
+        position: relative !important;
+        isolation: isolate !important;
+    }
+    
+    /* Enhanced hover and focus states */
+    .nav-menu.mobile-menu .nav-link:hover,
+    .nav-menu.mobile-menu .nav-link:focus {
+        background: linear-gradient(135deg, 
+            rgba(102, 126, 234, 0.25) 0%, 
+            rgba(118, 75, 162, 0.25) 100%) !important;
+        border-color: rgba(102, 126, 234, 0.6) !important;
+        transform: translateY(-2px) scale(1.02) !important;
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3) !important;
+        color: #ffffff !important;
+    }
+    
+    /* Modern focus ring */
+    .nav-menu.mobile-menu .nav-link:focus {
+        outline: 2px solid rgba(102, 126, 234, 0.8) !important;
+        outline-offset: 2px !important;
+    }
+    
+    /* Enhanced CTA button styling */
+    .nav-menu.mobile-menu .nav-link.cta-nav {
+        background: linear-gradient(135deg, 
+            #667eea 0%, 
+            #764ba2 50%, 
+            #f093fb 100%) !important;
+        border: 2px solid rgba(255, 255, 255, 0.4) !important;
+        margin-top: 1rem !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4) !important;
+    }
+    
+    .nav-menu.mobile-menu .nav-link.cta-nav:hover,
+    .nav-menu.mobile-menu .nav-link.cta-nav:focus {
+        background: linear-gradient(135deg, 
+            #5a6fd8 0%, 
+            #6a4190 50%, 
+            #e081e9 100%) !important;
+        transform: translateY(-3px) scale(1.05) !important;
+        box-shadow: 0 12px 30px rgba(102, 126, 234, 0.5) !important;
+    }
+
+    /* --- ADVANCED HAMBURGER MENU WITH BETTER ACCESSIBILITY --- */
+    .hamburger,
+    .nav-toggle {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-around !important;
+        width: 28px !important;
+        height: 28px !important;
+        padding: 0 !important;
+        background: transparent !important;
+        border: none !important;
+        cursor: pointer !important;
+        z-index: 1001 !important;
+        
+        /* Better touch target */
+        position: relative !important;
+        touch-action: manipulation !important;
+        -webkit-tap-highlight-color: transparent !important;
+        
+        /* Accessibility improvements */
+        outline: none !important;
         transition: all 0.3s ease !important;
     }
     
-    .mobile-menu .nav-link:hover {
-        background: rgba(102, 126, 234, 0.3) !important;
-        border-color: rgba(102, 126, 234, 0.6) !important;
-        transform: translateY(-2px) !important;
+    /* Focus indicator for hamburger */
+    .hamburger:focus,
+    .nav-toggle:focus {
+        box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.6) !important;
+        border-radius: 4px !important;
     }
     
-    .mobile-menu .nav-link.cta-nav {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-        border: 2px solid rgba(255, 255, 255, 0.4) !important;
-        margin-top: 1rem !important;
+    /* Modern hamburger bars with better animations */
+    .hamburger .bar,
+    .nav-toggle .bar {
+        width: 100% !important;
+        height: 3px !important;
+        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%) !important;
+        border-radius: 2px !important;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        transform-origin: center !important;
+    }
+    
+    /* Enhanced active state animations */
+    .hamburger.active .bar:nth-child(1),
+    .nav-toggle.active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px) !important;
+    }
+    
+    .hamburger.active .bar:nth-child(2),
+    .nav-toggle.active .bar:nth-child(2) {
+        opacity: 0 !important;
+        transform: scale(0) !important;
+    }
+    
+    .hamburger.active .bar:nth-child(3),
+    .nav-toggle.active .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px) !important;
     }
 
-    /* --- MOBILE BUTTON COLOR & TOUCH FEEDBACK FIX --- */
-    /* Provides visual feedback for all interactive elements on hover and touch */
+    /* --- ADVANCED MOBILE TOUCH FEEDBACK & INTERACTIONS --- */
+    /* Modern touch states with better performance */
     .touched,
     button:hover,
     .cta-button:hover,
     .btn:hover,
     .nav-link:hover,
     a:hover {
-        transform: translateY(-2px);
-        filter: brightness(1.1);
-        background-color: rgba(102, 126, 234, 0.7) !important; /* Enhanced hover color */
-        border-color: rgba(255, 255, 255, 0.8) !important;
-        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4) !important;
-        transition: all 0.3s ease;
+        transform: translateY(-2px) scale(1.02) !important;
+        filter: brightness(1.1) saturate(1.2) !important;
+        background-color: rgba(102, 126, 234, 0.8) !important;
+        border-color: rgba(255, 255, 255, 0.9) !important;
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4) !important;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        will-change: transform, filter, background-color !important;
     }
     
+    /* Enhanced active states with haptic-like feedback */
     button:active,
     .cta-button:active,
     .btn:active,
     .nav-link:active,
-    a:active {
-        transform: scale(0.97);
-        filter: brightness(1.2);
-        background-color: rgba(102, 126, 234, 0.3) !important; /* Ensures color change */
-        border-color: rgba(255, 255, 255, 0.5) !important;
-        transition: transform 0.1s ease, filter 0.1s ease, background-color 0.1s ease;
+    a:active,
+    .touched:active {
+        transform: translateY(0) scale(0.98) !important;
+        filter: brightness(1.3) saturate(1.1) !important;
+        background-color: rgba(102, 126, 234, 0.9) !important;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.6) !important;
+        transition: all 0.1s ease !important;
+    }
+    
+    /* Modern focus indicators for all interactive elements */
+    button:focus,
+    .cta-button:focus,
+    .btn:focus,
+    .nav-link:focus,
+    a:focus,
+    input:focus,
+    textarea:focus,
+    select:focus {
+        outline: 2px solid rgba(102, 126, 234, 0.8) !important;
+        outline-offset: 2px !important;
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2) !important;
+    }
+    
+    /* Advanced ripple effect for touch feedback */
+    @keyframes ripple {
+        0% {
+            transform: scale(0);
+            opacity: 0.6;
+        }
+        50% {
+            opacity: 0.4;
+        }
+        100% {
+            transform: scale(2.5);
+            opacity: 0;
+        }
+    }
+    
+    .ripple-effect {
+        position: absolute !important;
+        border-radius: 50% !important;
+        background: rgba(255, 255, 255, 0.6) !important;
+        animation: ripple 0.6s ease-out !important;
+        pointer-events: none !important;
+    }
+    
+    /* --- MODERN RESPONSIVE IMPROVEMENTS --- */
+    /* Better viewport handling for mobile devices */
+    @supports (height: 100dvh) {
+        .nav-menu.mobile-menu {
+            height: calc(100dvh - 70px) !important;
+        }
+    }
+    
+    /* Container query support for future-proofing */
+    @supports (container-type: inline-size) {
+        .nav-container {
+            container-type: inline-size;
+        }
+        
+        @container (max-width: 768px) {
+            .nav-menu.desktop-menu {
+                display: none !important;
+            }
+        }
+    }
+    
+    /* Enhanced scroll behavior for mobile */
+    .nav-menu.mobile-menu {
+        scroll-behavior: smooth !important;
+        scrollbar-width: thin !important;
+        scrollbar-color: rgba(102, 126, 234, 0.3) transparent !important;
+    }
+    
+    .nav-menu.mobile-menu::-webkit-scrollbar {
+        width: 4px !important;
+    }
+    
+    .nav-menu.mobile-menu::-webkit-scrollbar-track {
+        background: transparent !important;
+    }
+    
+    .nav-menu.mobile-menu::-webkit-scrollbar-thumb {
+        background: rgba(102, 126, 234, 0.3) !important;
+        border-radius: 2px !important;
+    }
+    
+    /* --- ACCESSIBILITY IMPROVEMENTS --- */
+    /* Better reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+        .nav-menu.mobile-menu,
+        .hamburger .bar,
+        .nav-toggle .bar,
+        .nav-link,
+        button,
+        .cta-button {
+            transition: none !important;
+            animation: none !important;
+            transform: none !important;
+        }
+        
+        .nav-menu.mobile-menu.active {
+            transform: none !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+    }
+    
+    /* High contrast mode support */
+    @media (prefers-contrast: high) {
+        .nav-menu.mobile-menu {
+            background: #000000 !important;
+            border: 2px solid #ffffff !important;
+        }
+        
+        .nav-menu.mobile-menu .nav-link {
+            background: #333333 !important;
+            border: 2px solid #ffffff !important;
+            color: #ffffff !important;
+        }
+        
+        .hamburger .bar,
+        .nav-toggle .bar {
+            background: #ffffff !important;
+        }
+    }
+    
+    /* --- MODERN CSS CUSTOM PROPERTIES FOR THEMING --- */
+    :root {
+        --mobile-menu-bg: linear-gradient(180deg, 
+            rgba(17, 17, 33, 0.98) 0%, 
+            rgba(26, 32, 44, 0.98) 50%,
+            rgba(30, 41, 59, 0.98) 100%);
+        --mobile-menu-backdrop: blur(30px) saturate(1.5);
+        --mobile-transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        --mobile-touch-scale: scale(1.02);
+        --mobile-touch-color: rgba(102, 126, 234, 0.8);
+    }
+    
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --mobile-menu-bg: linear-gradient(180deg, 
+                rgba(10, 10, 20, 0.98) 0%, 
+                rgba(15, 20, 30, 0.98) 50%,
+                rgba(20, 25, 35, 0.98) 100%);
+        }
+    }
+    
+    /* --- PERFORMANCE OPTIMIZATIONS --- */
+    /* GPU acceleration for smooth animations */
+    .nav-menu.mobile-menu,
+    .hamburger,
+    .nav-toggle,
+    .nav-link {
+        will-change: transform !important;
+        backface-visibility: hidden !important;
+        -webkit-backface-visibility: hidden !important;
+        perspective: 1000px !important;
+    }
+    
+    /* Optimize repaints and reflows */
+    .nav-menu.mobile-menu.active {
+        contain: layout style paint !important;
+    }
+    
+    /* --- KEYBOARD NAVIGATION IMPROVEMENTS --- */
+    /* Hide focus indicators on touch/mouse interactions */
+    body:not(.keyboard-navigation) *:focus {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+    
+    /* Show focus indicators only during keyboard navigation */
+    .keyboard-navigation *:focus {
+        outline: 2px solid rgba(102, 126, 234, 0.8) !important;
+        outline-offset: 2px !important;
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2) !important;
+    }
+    
+    /* --- NETWORK-AWARE OPTIMIZATIONS --- */
+    /* Reduced animations for slow connections */
+    .reduced-animations * {
+        animation-duration: 0.1s !important;
+        transition-duration: 0.1s !important;
+    }
+    
+    .reduced-animations .floating-particles,
+    .reduced-animations .liquid-orbs {
+        display: none !important;
+    }
+    
+    /* --- MODERN IMAGE LOADING --- */
+    img[data-src] {
+        opacity: 0 !important;
+        transition: opacity 0.3s ease !important;
+    }
+    
+    img.loaded {
+        opacity: 1 !important;
+    }
+    
+    /* --- ENHANCED MOBILE NAVIGATION SAFETY --- */
+    /* Prevent text selection on navigation elements */
+    .nav-menu.mobile-menu,
+    .hamburger,
+    .nav-toggle {
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+        user-select: none !important;
+    }
+    
+    /* Prevent context menu on long press */
+    .nav-menu.mobile-menu .nav-link {
+        -webkit-touch-callout: none !important;
+        -webkit-user-select: none !important;
+    }
+    
+    /* Better safe area support for modern devices */
+    @supports (padding: env(safe-area-inset-top)) {
+        .header {
+            padding-top: env(safe-area-inset-top) !important;
+            height: calc(70px + env(safe-area-inset-top)) !important;
+        }
+        
+        .nav-menu.mobile-menu {
+            top: calc(70px + env(safe-area-inset-top)) !important;
+            height: calc(100vh - 70px - env(safe-area-inset-top) - env(safe-area-inset-bottom)) !important;
+            padding-bottom: env(safe-area-inset-bottom) !important;
+        }
     }
 }
 
