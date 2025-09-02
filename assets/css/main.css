@@ -548,6 +548,47 @@ img {
    DESKTOP HOVER EFFECTS (Override mobile conflicts)
    ================================================ */
 @media (min-width: 769px) {
+    /* === DESKTOP NAVIGATION FIXES === */
+    .hamburger, .nav-toggle {
+        display: none !important;
+    }
+    
+    .desktop-menu {
+        display: flex !important;
+        position: static !important;
+        width: auto !important;
+        height: auto !important;
+        flex-direction: row !important;
+        background: none !important;
+        backdrop-filter: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        padding: 0 !important;
+        gap: 2.5rem !important;
+        border: none !important;
+        box-shadow: none !important;
+        z-index: auto !important;
+    }
+    
+    /* Ensure mobile menu is hidden on desktop */
+    .mobile-menu {
+        display: none !important;
+    }
+    
+    .nav-link {
+        display: inline !important;
+        width: auto !important;
+        padding: 0.5rem 1rem !important;
+        background: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+        font-size: 1rem !important;
+        box-shadow: none !important;
+    }
+    
+    /* === DESKTOP BUTTON HOVER EFFECTS === */
     .cta-button:hover, button:hover, .btn:hover {
         transform: translateY(-3px) !important;
         transition: all 0.3s ease !important;
@@ -623,6 +664,31 @@ img {
     gap: 2.5rem;
     align-items: center;
     margin: 0;
+}
+
+/* Desktop Menu - Visible by default, hidden on mobile */
+.desktop-menu {
+    display: flex !important;
+}
+
+/* Mobile Menu - Hidden by default on all screen sizes, shown only when active on mobile */
+.mobile-menu {
+    display: none !important;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background: rgba(17, 17, 33, 0.98);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 2rem;
+    gap: 2rem;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 999;
+    overflow-y: auto;
 }
 
 .nav-link {
@@ -723,11 +789,13 @@ img {
         transform: rotate(45deg) translate(-7px, -7px);
     }
 
-    /* --- MOBILE MENU PANEL --- */
+    /* --- OLD MOBILE MENU PANEL (DISABLED) --- */
+    /* This old style is replaced by the new desktop/mobile menu system below */
+    /*
     .nav-menu {
         display: flex;
         position: fixed;
-        top: 70px; /* Match header height */
+        top: 70px;
         left: 0;
         width: 100%;
         height: calc(100vh - 70px);
@@ -757,6 +825,7 @@ img {
         visibility: visible;
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, visibility 0s 0s;
     }
+    */
 
     .nav-menu li {
         list-style: none;
@@ -1617,6 +1686,11 @@ img {
         backdrop-filter: blur(25px) !important;
         border-bottom: 2px solid rgba(102, 126, 234, 0.3) !important;
         box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3) !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 1000 !important;
     }
     
     .navbar {
@@ -1630,10 +1704,12 @@ img {
         display: flex !important;
         justify-content: space-between !important;
         align-items: center !important;
+        max-width: 100% !important;
     }
     
     .nav-logo {
         z-index: 1002 !important;
+        flex-shrink: 0 !important;
     }
     
     .nav-logo h1 {
@@ -1641,6 +1717,7 @@ img {
         margin: 0 !important;
         color: #ffffff !important;
         font-weight: 700 !important;
+        line-height: 1.2 !important;
     }
     
     .nav-logo span {
@@ -1648,7 +1725,16 @@ img {
         color: rgba(255, 255, 255, 0.7) !important;
         display: block !important;
         margin-top: -5px !important;
+        line-height: 1 !important;
     }
+    
+    /* OLD STYLE DISABLED - This was hiding ALL nav-menu elements */
+    /* Hide desktop navigation on mobile */
+    /* 
+    .nav-menu {
+        display: none !important;
+    }
+    */
     
     /* === MOBILE HAMBURGER MENU === */
     .hamburger {
@@ -1665,6 +1751,7 @@ img {
         z-index: 1002 !important;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
         transition: all 0.3s ease !important;
+        flex-shrink: 0 !important;
     }
     
     .hamburger:active {
@@ -1695,15 +1782,17 @@ img {
         transform: rotate(45deg) translate(-6px, -6px) !important;
     }
     
-    /* === MOBILE NAVIGATION MENU === */
-    .nav-menu {
+    /* === OLD MOBILE NAVIGATION MENU (DISABLED) === */
+    /* This conflicts with new desktop/mobile menu system - commented out */
+    /*
+    .nav-menu.mobile-menu {
+        display: flex !important;
         position: fixed !important;
         top: 70px !important;
         left: 0 !important;
         width: 100% !important;
         height: calc(100vh - 70px) !important;
         
-        display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         justify-content: flex-start !important;
@@ -1724,21 +1813,21 @@ img {
         overflow-y: auto !important;
     }
     
-    .nav-menu.active {
+    .nav-menu.mobile-menu.active {
         transform: translateX(0) !important;
         opacity: 1 !important;
         visibility: visible !important;
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, visibility 0s 0s !important;
     }
     
-    .nav-menu li {
+    .nav-menu.mobile-menu li {
         list-style: none !important;
         width: 90% !important;
         max-width: 400px !important;
         margin: 0.8rem 0 !important;
     }
     
-    .nav-link {
+    .nav-menu.mobile-menu .nav-link {
         display: block !important;
         width: 100% !important;
         padding: 1.5rem 1.2rem !important;
@@ -1756,24 +1845,26 @@ img {
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
     }
     
-    .nav-link:hover, .nav-link:focus {
+    .nav-menu.mobile-menu .nav-link:hover, 
+    .nav-menu.mobile-menu .nav-link:focus {
         background: rgba(102, 126, 234, 0.3) !important;
         border-color: rgba(102, 126, 234, 0.6) !important;
         transform: translateY(-2px) !important;
         box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4) !important;
     }
     
-    .nav-link.cta-nav {
+    .nav-menu.mobile-menu .nav-link.cta-nav {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
         border: 2px solid rgba(255, 255, 255, 0.4) !important;
         margin-top: 1rem !important;
     }
     
-    .nav-link.cta-nav:hover {
+    .nav-menu.mobile-menu .nav-link.cta-nav:hover {
         background: linear-gradient(135deg, #5a6fd8 0%, #6a4c93 100%) !important;
         transform: translateY(-3px) !important;
         box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5) !important;
     }
+    */
     
     .hero-title {
         font-size: 2.5rem;
@@ -2856,12 +2947,81 @@ button:focus,
    This block consolidates critical mobile styles to ensure functionality.
    ============================================================================== */
 @media (max-width: 768px) {
-    /* --- MOBILE NAVIGATION MENU FIX --- */
-    /* Navigation menu styles handled by primary mobile menu system above */
-    /* Top positioning adjusted for consistency */
-    .nav-menu {
-        top: 70px; /* Consistent with main mobile navigation system */
-        height: calc(100vh - 70px);
+    /* --- MOBILE HEADER HEIGHT CONSISTENCY --- */
+    .header {
+        height: 70px !important;
+    }
+    
+    .navbar {
+        height: 70px !important;
+        padding: 0.5rem 0 !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+    
+    /* --- DESKTOP/MOBILE MENU CONTROL --- */
+    /* Hide desktop menu on mobile */
+    .desktop-menu {
+        display: none !important;
+    }
+    
+    /* Show mobile menu structure on mobile */
+    .mobile-menu {
+        display: flex !important;
+        position: fixed !important;
+        top: 70px !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: calc(100vh - 70px) !important;
+        background: rgba(17, 17, 33, 0.98) !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        padding-top: 2rem !important;
+        gap: 2rem !important;
+        transform: translateX(-100%) !important;
+        transition: transform 0.3s ease !important;
+        z-index: 999 !important;
+        overflow-y: auto !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+    }
+    
+    /* Show mobile menu when active */
+    .mobile-menu.active {
+        transform: translateX(0) !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    /* Mobile menu link styles */
+    .mobile-menu .nav-link {
+        display: block !important;
+        width: 90% !important;
+        max-width: 300px !important;
+        padding: 1rem 1.5rem !important;
+        margin: 0.5rem 0 !important;
+        text-align: center !important;
+        font-size: 1.1rem !important;
+        font-weight: 600 !important;
+        color: #ffffff !important;
+        text-decoration: none !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        border-radius: 12px !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .mobile-menu .nav-link:hover {
+        background: rgba(102, 126, 234, 0.3) !important;
+        border-color: rgba(102, 126, 234, 0.6) !important;
+        transform: translateY(-2px) !important;
+    }
+    
+    .mobile-menu .nav-link.cta-nav {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        border: 2px solid rgba(255, 255, 255, 0.4) !important;
+        margin-top: 1rem !important;
     }
 
     /* --- MOBILE BUTTON COLOR & TOUCH FEEDBACK FIX --- */
@@ -2890,5 +3050,23 @@ button:focus,
         background-color: rgba(102, 126, 234, 0.3) !important; /* Ensures color change */
         border-color: rgba(255, 255, 255, 0.5) !important;
         transition: transform 0.1s ease, filter 0.1s ease, background-color 0.1s ease;
+    }
+}
+
+/* Desktop Media Query - Ensure proper desktop behavior */
+@media (min-width: 769px) {
+    /* Hide mobile menu on desktop */
+    .mobile-menu {
+        display: none !important;
+    }
+    
+    /* Ensure desktop menu is visible */
+    .desktop-menu {
+        display: flex !important;
+    }
+    
+    /* Hide hamburger on desktop */
+    .hamburger, .nav-toggle {
+        display: none !important;
     }
 }
