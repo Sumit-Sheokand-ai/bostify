@@ -1,8 +1,8 @@
 /*
-    main.v2.css
+    main.css
     Rewritten by GitHub Copilot
     Date: 2025-09-03
-    Purpose: A clean, structured, and error-free stylesheet for the Boostify website.
+    Purpose: A complete, clean, and error-free stylesheet for the Boostify website.
 */
 
 /* ================================================
@@ -261,15 +261,22 @@ img {
 .hero {
     padding-top: calc(var(--header-height) + 4rem);
     padding-bottom: 4rem;
-    text-align: center;
-    background: var(--light-gray);
+    background: linear-gradient(135deg, var(--light-gray) 0%, #ffffff 100%);
     position: relative;
     overflow: hidden;
 }
 
 .hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
     position: relative;
     z-index: 2;
+}
+
+.hero-content {
+    text-align: left;
 }
 
 .hero-title {
@@ -287,15 +294,15 @@ img {
 
 .hero-subtitle {
     font-size: 1.2rem;
-    max-width: 800px;
-    margin: 0 auto 2rem auto;
+    margin-bottom: 2rem;
     color: var(--text-gray);
+    line-height: 1.6;
 }
 
 .hero-cta {
     display: flex;
-    justify-content: center;
     gap: 1rem;
+    margin-bottom: 3rem;
 }
 
 .cta-button {
@@ -306,6 +313,7 @@ img {
     letter-spacing: 1px;
     transition: all 0.3s ease;
     border: 2px solid transparent;
+    display: inline-block;
 }
 
 .cta-button.primary {
@@ -316,6 +324,7 @@ img {
 .cta-button.primary:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(0, 200, 81, 0.3);
+    color: var(--white);
 }
 
 .cta-button.secondary {
@@ -328,6 +337,258 @@ img {
     background: var(--primary-blue);
     color: var(--white);
     transform: translateY(-3px);
+}
+
+.hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-green);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.glass-card img {
+    border-radius: var(--border-radius);
+    width: 100%;
+    height: auto;
+}
+
+/* ================================================
+   6. SERVICES OVERVIEW
+   ================================================ */
+.services-overview {
+    padding: 5rem 0;
+    background: var(--white);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-header h2 {
+    font-size: var(--h2-size);
+    margin-bottom: 1rem;
+}
+
+.section-header p {
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    color: var(--text-gray);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.service-card {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 2.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.service-card.glass-effect {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.service-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.service-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--dark-blue);
+}
+
+.service-card p {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.service-link {
+    color: var(--primary-blue);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.service-link:hover {
+    color: var(--primary-green);
+}
+
+/* ================================================
+   7. TESTIMONIALS
+   ================================================ */
+.testimonials {
+    padding: 5rem 0;
+    background: var(--light-gray);
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.testimonial-card {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 2.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.testimonial-card.glass-effect {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-stars {
+    color: #ffc107;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.testimonial-text {
+    font-style: italic;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    color: var(--text-gray);
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.testimonial-author img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.author-info h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--dark-blue);
+}
+
+.author-info span {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+}
+
+/* ================================================
+   8. CTA SECTION
+   ================================================ */
+.cta-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+    color: var(--white);
+    text-align: center;
+}
+
+.cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem;
+    border-radius: var(--border-radius);
+}
+
+.cta-content.glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cta-content h2 {
+    color: var(--white);
+    margin-bottom: 1rem;
+    font-size: var(--h2-size);
+}
+
+.cta-content p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.cta-button.large {
+    padding: 1.2rem 2.5rem;
+    font-size: 1.1rem;
+}
+
+.cta-guarantee p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    text-align: left;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 /* ================================================
@@ -382,7 +643,7 @@ img {
 }
 
 /* ================================================
-   7. FOOTER
+   9. FOOTER
    ================================================ */
 .footer {
     background-color: var(--dark-blue);
@@ -390,27 +651,50 @@ img {
     padding: 4rem 0 2rem 0;
 }
 
-.footer-grid {
+.footer-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    gap: 3rem;
     margin-bottom: 3rem;
 }
 
-.footer-col h4 {
+.footer-section h3,
+.footer-section h4 {
     color: var(--white);
     margin-bottom: 1.5rem;
     font-size: 1.2rem;
 }
 
-.footer-col p,
-.footer-col a {
-    color: rgba(255, 255, 255, 0.7);
+.footer-logo h3 {
+    font-size: 1.8rem;
     margin-bottom: 0.5rem;
 }
 
-.footer-col a:hover {
+.footer-logo span {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.footer-section p,
+.footer-section a {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.footer-section a:hover {
     color: var(--primary-green);
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section li {
+    margin-bottom: 0.5rem;
 }
 
 .social-links {
@@ -420,14 +704,252 @@ img {
 }
 
 .social-links a {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.footer-cta {
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+    color: var(--white);
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    display: inline-block;
+    margin-top: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.footer-cta:hover {
+    transform: translateY(-2px);
+    color: var(--white);
 }
 
 .footer-bottom {
     text-align: center;
     padding-top: 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-bottom p {
     color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+/* ================================================
+   10. UTILITY STYLES & ANIMATIONS
+   ================================================ */
+.scroll-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--primary-blue);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+    z-index: 1000;
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+    background: var(--primary-green);
+}
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+img[data-src] {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+img.loaded {
+    opacity: 1;
+}
+
+/* ================================================
+   11. RESPONSIVE DESIGN
+   ================================================ */
+@media (max-width: 992px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+    }
+    
+    .hero-content {
+        text-align: center;
+    }
+    
+    .hero-stats {
+        justify-content: center;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --h1-size: 2.5rem;
+        --h2-size: 2rem;
+    }
+    
+    .service-card,
+    .testimonial-card {
+        padding: 1.5rem;
+    }
+    
+    .cta-content {
+        padding: 2rem;
+    }
+}
+
+/* ================================================
+   12. ACCESSIBILITY & PERFORMANCE
+   ================================================ */
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Better focus visibility for keyboard navigation */
+:focus-visible {
+    outline: 3px solid var(--primary-blue);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+/* Performance optimizations */
+.nav-toggle,
+.nav-menu,
+.cta-button,
+.service-card,
+.testimonial-card,
+.nav-link.cta-nav {
+    will-change: transform;
+}
+
+/* ================================================
+   13. LIQUID ORBS (Optional Animation Elements)
+   ================================================ */
+.liquid-orb {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.1), rgba(0, 200, 81, 0.1));
+    animation: float 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.orb-1 {
+    width: 100px;
+    height: 100px;
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.orb-2 {
+    width: 60px;
+    height: 60px;
+    top: 60%;
+    right: 15%;
+    animation-delay: 2s;
+}
+
+.orb-3 {
+    width: 80px;
+    height: 80px;
+    bottom: 20%;
+    left: 60%;
+    animation-delay: 4s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    33% {
+        transform: translateY(-20px) rotate(120deg);
+    }
+    66% {
+        transform: translateY(10px) rotate(240deg);
+    }
 }
 
 /* ================================================
