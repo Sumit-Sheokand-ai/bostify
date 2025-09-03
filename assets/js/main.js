@@ -19,7 +19,123 @@ const app = {
             this.initScrollAnimations();
             this.initCounters();
             this.initRippleEffects();
-            console.log('Boostify App Initialized Successfully');
+            this.initParticleBackground();
+            this.initTypingAnimation();
+            this.initParallaxEffects();
+            this.initMagneticButtons();
+            this.initFloatingElements();
+            this.initPageLoader();
+            this.initScrollProgress();
+            this.initMouseTracker();
+            console.log('🚀 Boostify Enhanced Experience Initialized');
+        });
+    },
+
+    // --- Beautiful Page Loader ---
+    initPageLoader() {
+        // Create loader if it doesn't exist
+        if (!document.querySelector('.page-loader')) {
+            const loader = document.createElement('div');
+            loader.className = 'page-loader';
+            loader.innerHTML = `
+                <div class="loader-content">
+                    <div class="loader-spinner"></div>
+                    <div class="loader-text">Loading Amazing Experience...</div>
+                </div>
+            `;
+            document.body.appendChild(loader);
+        }
+
+        // Hide loader when page is fully loaded
+        window.addEventListener('load', () => {
+            const loader = document.querySelector('.page-loader');
+            if (loader) {
+                setTimeout(() => {
+                    loader.classList.add('hidden');
+                    setTimeout(() => {
+                        loader.remove();
+                    }, 500);
+                }, 500);
+            }
+        });
+    },
+
+    // --- Scroll Progress Indicator ---
+    initScrollProgress() {
+        // Create progress bar
+        const progressBar = document.createElement('div');
+        progressBar.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: var(--gradient-primary);
+            z-index: 9998;
+            transition: width 0.1s ease;
+            box-shadow: 0 2px 10px rgba(74, 144, 226, 0.3);
+        `;
+        document.body.appendChild(progressBar);
+
+        // Update progress on scroll
+        window.addEventListener('scroll', () => {
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (window.scrollY / scrollHeight) * 100;
+            progressBar.style.width = scrollPercent + '%';
+        });
+    },
+
+    // --- Mouse Tracker Effect ---
+    initMouseTracker() {
+        let mouseX = 0;
+        let mouseY = 0;
+        let isMoving = false;
+
+        // Create cursor glow effect
+        const cursorGlow = document.createElement('div');
+        cursorGlow.style.cssText = `
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, rgba(74, 144, 226, 0.3), transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9997;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        `;
+        document.body.appendChild(cursorGlow);
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            isMoving = true;
+
+            cursorGlow.style.left = (mouseX - 10) + 'px';
+            cursorGlow.style.top = (mouseY - 10) + 'px';
+
+            // Add interactive effects to elements under cursor
+            const elementUnderCursor = document.elementFromPoint(mouseX, mouseY);
+            if (elementUnderCursor && elementUnderCursor.matches('.btn, .nav-link, .service-card')) {
+                cursorGlow.style.transform = 'scale(2)';
+                cursorGlow.style.background = 'radial-gradient(circle, rgba(0, 200, 81, 0.4), transparent)';
+            } else {
+                cursorGlow.style.transform = 'scale(1)';
+                cursorGlow.style.background = 'radial-gradient(circle, rgba(74, 144, 226, 0.3), transparent)';
+            }
+
+            clearTimeout(isMoving);
+            isMoving = setTimeout(() => {
+                cursorGlow.style.opacity = '0.5';
+            }, 1000);
+        });
+
+        document.addEventListener('mouseenter', () => {
+            cursorGlow.style.opacity = '1';
+        });
+
+        document.addEventListener('mouseleave', () => {
+            cursorGlow.style.opacity = '0';
         });
     },
 
@@ -243,9 +359,9 @@ const app = {
         }
     },
 
-    // --- Ripple Effects ---
+    // --- Enhanced Ripple Effects ---
     initRippleEffects() {
-        document.querySelectorAll('.cta-button, .service-link, .footer-cta').forEach(button => {
+        document.querySelectorAll('.btn, .cta-button, .service-link, .footer-cta').forEach(button => {
             button.classList.add('ripple-effect-target');
             
             button.addEventListener('click', function(e) {
@@ -264,8 +380,135 @@ const app = {
                 
                 setTimeout(() => {
                     ripple.remove();
-                }, 600);
+                }, 800);
             });
+        });
+    },
+
+    // --- Floating Particle Background ---
+    initParticleBackground() {
+        const hero = document.querySelector('.hero');
+        if (!hero) return;
+
+        // Create floating particles
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'floating-particle';
+            particle.style.cssText = `
+                position: absolute;
+                width: ${Math.random() * 10 + 5}px;
+                height: ${Math.random() * 10 + 5}px;
+                background: rgba(74, 144, 226, ${Math.random() * 0.3 + 0.1});
+                border-radius: 50%;
+                left: ${Math.random() * 100}%;
+                top: ${Math.random() * 100}%;
+                pointer-events: none;
+                animation: float ${Math.random() * 10 + 10}s linear infinite;
+                z-index: 1;
+            `;
+            hero.appendChild(particle);
+        }
+    },
+
+    // --- Typing Animation for Hero Title ---
+    initTypingAnimation() {
+        const heroTitle = document.querySelector('.hero-title');
+        if (!heroTitle) return;
+
+        const text = heroTitle.textContent;
+        heroTitle.innerHTML = '';
+        let index = 0;
+
+        const typeWriter = () => {
+            if (index < text.length) {
+                heroTitle.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 100);
+            } else {
+                // Add blinking cursor
+                const cursor = document.createElement('span');
+                cursor.className = 'typing-cursor';
+                cursor.style.cssText = `
+                    display: inline-block;
+                    width: 3px;
+                    height: 1em;
+                    background: var(--primary-blue);
+                    margin-left: 5px;
+                    animation: blink 1s infinite;
+                `;
+                heroTitle.appendChild(cursor);
+            }
+        };
+
+        // Start typing animation after a delay
+        setTimeout(typeWriter, 1000);
+    },
+
+    // --- Parallax Effects ---
+    initParallaxEffects() {
+        const parallaxElements = document.querySelectorAll('[data-parallax]');
+        
+        if (parallaxElements.length > 0) {
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset;
+                
+                parallaxElements.forEach(element => {
+                    const speed = element.dataset.parallax || 0.5;
+                    const yPos = -(scrollTop * speed);
+                    element.style.transform = `translateY(${yPos}px)`;
+                });
+            });
+        }
+    },
+
+    // --- Magnetic Button Effects ---
+    initMagneticButtons() {
+        const magneticButtons = document.querySelectorAll('.btn-primary, .btn-secondary');
+        
+        magneticButtons.forEach(button => {
+            button.addEventListener('mousemove', (e) => {
+                const rect = button.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                button.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px) scale(1.05)`;
+            });
+            
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'translate(0, 0) scale(1)';
+            });
+        });
+    },
+
+    // --- Floating Elements Animation ---
+    initFloatingElements() {
+        // Add floating elements to sections
+        const sections = document.querySelectorAll('.hero, .services, .features');
+        
+        sections.forEach(section => {
+            const floatingElements = [];
+            
+            for (let i = 0; i < 3; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                element.style.cssText = `
+                    position: absolute;
+                    width: ${Math.random() * 100 + 50}px;
+                    height: ${Math.random() * 100 + 50}px;
+                    background: linear-gradient(45deg, 
+                        rgba(74, 144, 226, 0.1), 
+                        rgba(0, 200, 81, 0.1));
+                    border-radius: 50%;
+                    left: ${Math.random() * 90}%;
+                    top: ${Math.random() * 90}%;
+                    pointer-events: none;
+                    animation: floatAround ${Math.random() * 20 + 15}s ease-in-out infinite;
+                    z-index: 1;
+                `;
+                
+                section.appendChild(element);
+                floatingElements.push(element);
+            }
         });
     }
 };
