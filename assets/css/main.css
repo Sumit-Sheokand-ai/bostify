@@ -25,6 +25,64 @@
 	--shadow-medium: rgba(74, 144, 226, 0.2);
 	--shadow-dark: rgba(0, 0, 0, 0.25);
 
+
+/* Dark mode theme variables */
+:root[data-theme="light"] {
+	color-scheme: light;
+}
+:root[data-theme="dark"] {
+	color-scheme: dark;
+	--bg: #0b0e13;
+	--bg-elev: #111827;
+	--text: #e5e7eb;
+	--muted: #9ca3af;
+	--card-bg: #0f172a;
+	--border: #1f2937;
+	--accent: #60a5fa;
+	--gradient-primary: linear-gradient(90deg, #60a5fa, #a78bfa);
+	--shadow-lg: 0 10px 30px rgba(0,0,0,0.45);
+}
+
+/* Minimal fallback if CSS variables unsupported */
+.no-cssvars body {
+	background: #fff;
+	color: #111;
+}
+
+/* Floating theme toggle button */
+.theme-toggle {
+	position: fixed;
+	right: 1rem;
+	bottom: 1rem;
+	z-index: 10000;
+	width: 44px;
+	height: 44px;
+	border-radius: 999px;
+	border: 1px solid var(--border, #e5e7eb);
+	background: var(--bg-elev, #ffffffcc);
+	backdrop-filter: saturate(180%) blur(10px);
+	color: var(--text, #111);
+	display: grid;
+	place-items: center;
+	box-shadow: var(--shadow-lg, 0 10px 30px rgba(0,0,0,0.12));
+	transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.theme-toggle:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,0.18); }
+.theme-toggle:active { transform: translateY(0); }
+.theme-toggle .icon { font-size: 18px; }
+
+/* Blur-up lazy image effect */
+img.enhanced-lazy {
+	filter: blur(12px);
+	transform: scale(1.02);
+	transition: filter .5s ease, transform .5s ease, opacity .4s ease;
+	opacity: .8;
+}
+img.enhanced-lazy.loaded {
+	filter: blur(0);
+	transform: scale(1);
+	opacity: 1;
+}
 	/* Beautiful Gradients */
 	--gradient-primary: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
 	--gradient-secondary: linear-gradient(135deg, var(--accent-purple), var(--accent-orange));
