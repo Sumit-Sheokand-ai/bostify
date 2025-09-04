@@ -7,6 +7,12 @@
   <meta name="description" content="Enterprise SEO audit for large sites: technical, content, and backlink diagnostics with prioritized fixes and roadmap. Serving Toronto and all of Canada." />
   <meta name="keywords" content="enterprise SEO audit, large website SEO, technical SEO audit, content audit, backlink audit, SEO services, SEO Toronto, SEO Canada" />
   <link rel="stylesheet" href="../assets/css/main.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@700&display=swap" rel="stylesheet">
   <script src="../assets/js/config.js"></script>
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <link rel="apple-touch-icon" href="../assets/images/bostify-premium-logo.svg">
@@ -178,46 +184,86 @@
 </head>
 <body>
   <!-- Header to match other pages -->
-  <header class="header">
+  <header class="header glass-effect">
     <nav class="navbar">
-      <div class="nav-container">
-        <div class="nav-logo">
-          <h1>Bostify</h1>
-          <span>by Sumit Sheokand</span>
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html">
+                    <img src="../assets/images/bostify-premium-logo.svg" alt="Bostify Premium Logo" class="logo-premium">
+                </a>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <ul class="nav-menu desktop-menu">
+                <li><a href="../index.html#home" class="nav-link">Home</a></li>
+                <li class="nav-item dropdown">
+                    <a href="services.html" class="nav-link dropdown-toggle">Services</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="technical-seo.html">Technical SEO</a></li>
+                        <li><a href="content-optimization.html">Content Optimization</a></li>
+                        <li><a href="link-building.html">Link Building</a></li>
+                        <li><a href="local-seo.html">Local SEO</a></li>
+                        <li><a href="ecommerce-seo.html">E-commerce SEO</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="pricing.html" class="nav-link dropdown-toggle">Pricing</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="basic-seo-audit.html">Basic SEO Audit</a></li>
+                        <li><a href="comprehensive-seo-audit.html">Comprehensive SEO Audit</a></li>
+                        <li><a href="enterprise-seo-audit.html">Enterprise SEO Audit</a></li>
+                    </ul>
+                </li>
+                <li><a href="monthly-audit.html" class="nav-link">Monthly Audits</a></li>
+                <li><a href="case-studies.html" class="nav-link">Case Studies</a></li>
+                <li><a href="blog.html" class="nav-link">Blog</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link cta-nav">Contact</a></li>
+            </ul>
+            
+            <!-- Mobile Navigation -->
+            <div class="nav-toggle hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </div>
-        
-        <!-- Desktop Navigation -->
-        <ul class="nav-menu desktop-menu">
-          <li><a href="../index.html#home" class="nav-link">Home</a></li>
-          <li><a href="services.html" class="nav-link">Services</a></li>
-          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
-          <li><a href="monthly-audit.html" class="nav-link">Monthly Audits</a></li>
-          <li><a href="case-studies.html" class="nav-link">Results</a></li>
-          <li><a href="blog.html" class="nav-link">Blog</a></li>
-          <li><a href="about.html" class="nav-link">About</a></li>
-          <li><a href="contact.html" class="nav-link cta-nav">Contact</a></li>
-        </ul>
-        
-        <!-- Mobile Navigation -->
-        <ul class="nav-menu mobile-menu">
-          <li><a href="../index.html#home" class="nav-link">Home</a></li>
-          <li><a href="services.html" class="nav-link">Services</a></li>
-          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
-          <li><a href="monthly-audit.html" class="nav-link">Monthly Audits</a></li>
-          <li><a href="case-studies.html" class="nav-link">Results</a></li>
-          <li><a href="blog.html" class="nav-link">Blog</a></li>
-          <li><a href="about.html" class="nav-link">About</a></li>
-          <li><a href="contact.html" class="nav-link cta-nav">Contact</a></li>
-        </ul>
-        
-        <div class="nav-toggle hamburger">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
-      </div>
     </nav>
-  </header>
+    <div class="mobile-menu">
+        <ul>
+            <li><a href="../index.html#home">Home</a></li>
+            <li>
+                <div class="mobile-dropdown-toggle">
+                    <a href="services.html">Services</a>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="mobile-dropdown">
+                    <li><a href="technical-seo.html">Technical SEO</a></li>
+                    <li><a href="content-optimization.html">Content Optimization</a></li>
+                    <li><a href="link-building.html">Link Building</a></li>
+                    <li><a href="local-seo.html">Local SEO</a></li>
+                    <li><a href="ecommerce-seo.html">E-commerce SEO</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="mobile-dropdown-toggle">
+                    <a href="pricing.html">Pricing</a>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="mobile-dropdown">
+                    <li><a href="basic-seo-audit.html">Basic SEO Audit</a></li>
+                    <li><a href="comprehensive-seo-audit.html">Comprehensive SEO Audit</a></li>
+                    <li><a href="enterprise-seo-audit.html">Enterprise SEO Audit</a></li>
+                </ul>
+            </li>
+            <li><a href="monthly-audit.html">Monthly Audits</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+</header>
 
   <main class="wrap">
     <!-- Animated Background Orbs -->
@@ -279,9 +325,62 @@
     </div>
   </main>
 
-  <footer style="text-align: center;">
-    <p>&copy; 2025 Bostify SEO</p>
-  </footer>
+  <footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section footer-logo-section">
+                <a href="../index.html">
+                    <img src="../assets/images/bostify-premium-logo.svg" alt="Bostify Premium Logo" class="footer-logo-img">
+                </a>
+                <p>Unlock your website's potential with our data-driven SEO strategies. We help you rank higher, drive targeted traffic, and achieve your business goals.</p>
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/sumitsheokand" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://twitter.com/sumitsheokand" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://github.com/sumitsheokand" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="technical-seo.html">Technical SEO</a></li>
+                    <li><a href="content-optimization.html">Content Optimization</a></li>
+                    <li><a href="link-building.html">Link Building</a></li>
+                    <li><a href="local-seo.html">Local SEO</a></li>
+                    <li><a href="ecommerce-seo.html">E-commerce SEO</a></li>
+                    <li><a href="monthly-audit.html">Monthly Audits</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="case-studies.html">Case Studies</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-of-service.html">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Bostify by Sumit Sheokand. All rights reserved.</p>
+            <div class="payment-methods">
+                <img src="../assets/images/visa.svg" alt="Visa">
+                <img src="../assets/images/mastercard.svg" alt="Mastercard">
+                <img src="../assets/images/paypal.svg" alt="PayPal">
+            </div>
+        </div>
+    </div>
+</footer>
 
 <script>
 (function(){
@@ -361,5 +460,14 @@
 })();
 </script>
 
+
+    <!-- JavaScript -->
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/main.js"></script>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top" title="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 </body>
 </html>
