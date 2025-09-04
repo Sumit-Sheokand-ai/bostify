@@ -432,6 +432,7 @@ img {
 .header {
 	background-color: rgba(255, 255, 255, 0.95);
 	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
 	height: var(--header-height);
 	position: fixed;
 	top: 0;
@@ -446,6 +447,7 @@ img {
 .header.scrolled {
 	background-color: rgba(255, 255, 255, 0.98);
 	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
 	box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
 	transform: translateY(0);
 }
@@ -817,6 +819,7 @@ img {
 	position: relative;
 	overflow: hidden;
 	padding-top: var(--header-height);
+	z-index: 2; /* keep hero (and its children) above global particle canvas */
 }
 
 /* Animated background with multiple layers */
@@ -832,7 +835,7 @@ img {
 		radial-gradient(circle at 80% 20%, rgba(0, 200, 81, 0.1) 0%, transparent 50%),
 		radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.8) 0%, transparent 50%);
 	animation: backgroundFloat 12s ease-in-out infinite;
-	z-index: 1;
+	z-index: 0;
 }
 
 .hero::after {
@@ -847,7 +850,7 @@ img {
 		linear-gradient(-45deg, transparent 49%, rgba(0, 200, 81, 0.03) 50%, transparent 51%);
 	background-size: 80px 80px;
 	animation: patternFloat 20s linear infinite;
-	z-index: 1;
+	z-index: 0;
 }
 
 @keyframes backgroundFloat {
@@ -1515,6 +1518,7 @@ body.nav-open {
 .glass-card {
 	background: rgba(255, 255, 255, 0.25);
 	backdrop-filter: blur(15px);
+	-webkit-backdrop-filter: blur(15px);
 	border-radius: var(--border-radius);
 	padding: 2rem;
 	box-shadow: 
@@ -1603,6 +1607,7 @@ body.nav-open {
 .service-card.glass-effect {
 	background: rgba(255, 255, 255, 0.8);
 	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
 	box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
 	border: 1px solid rgba(255, 255, 255, 0.2);
 }
@@ -1664,6 +1669,7 @@ body.nav-open {
 .testimonial-card.glass-effect {
 	background: rgba(255, 255, 255, 0.8);
 	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
 	box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
 	border: 1px solid rgba(255, 255, 255, 0.2);
 }
@@ -1731,6 +1737,7 @@ body.nav-open {
 .cta-content.glass-effect {
 	background: rgba(255, 255, 255, 0.1);
 	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
 	border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -2093,6 +2100,7 @@ img.loaded {
 	background: linear-gradient(135deg, rgba(74, 144, 226, 0.1), rgba(0, 200, 81, 0.1));
 	animation: float 6s ease-in-out infinite;
 	pointer-events: none;
+	z-index: 1; /* above hero ::before/::after and particle canvas */
 }
 
 .orb-1 {
@@ -2292,6 +2300,35 @@ img.loaded {
 		transform: scale(4);
 		opacity: 0;
 	}
+}
+
+/* ================================================
+   15. GLASS MORPHISM UTILITIES (used across pages)
+   ================================================ */
+.glass-effect {
+	background: rgba(255, 255, 255, 0.6);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-morphism,
+.glass-morphism-card {
+	background: rgba(255, 255, 255, 0.35);
+	backdrop-filter: blur(12px) saturate(120%);
+	-webkit-backdrop-filter: blur(12px) saturate(120%);
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+	border-radius: var(--border-radius, 16px);
+}
+
+.glass-morphism-advanced {
+	background: linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.08));
+	backdrop-filter: blur(18px) saturate(140%);
+	-webkit-backdrop-filter: blur(18px) saturate(140%);
+	border: 1px solid rgba(255,255,255,0.25);
+	box-shadow: 0 20px 50px rgba(31, 38, 135, 0.15);
+	border-radius: var(--border-radius-large, 24px);
 }
 
 /* ================================================
