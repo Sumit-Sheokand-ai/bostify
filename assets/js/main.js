@@ -33,6 +33,8 @@ const app = {
             this.initScrollProgress();
             this.initPageLoader();
             this.initLinkPrefetch();
+            this.initTheme();
+            this.initImageEnhancements();
 
             // Heavy/visual effects (desktop only, no reduced motion)
             if (!this.flags.prefersReducedMotion) {
@@ -43,6 +45,71 @@ const app = {
                 this.initParticleBackground();
             }
             console.log('🚀 Boostify Enhanced Experience Initialized');
+        });
+    },
+
+    // Detect CSS variable support and set up theme
+    initTheme() {
+        // Guard
+        if (window.__boostifyThemeInit) return; window.__boostifyThemeInit = true;
+
+        const htmlEl = document.documentElement;
+
+        // Detect CSS variables support; add fallback class if missing
+        const cssVarsSupported = !!(window.CSS && CSS.supports && CSS.supports('color', 'var(--x)'));
+        if (!cssVarsSupported) {
+            htmlEl.classList.add('no-cssvars');
+        }
+
+        // Respect user/system preference and saved choice
+        const saved = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const initial = saved || (prefersDark ? 'dark' : 'light');
+        htmlEl.setAttribute('data-theme', initial);
+
+        // Create floating theme toggle if not present
+        if (!document.getElementById('theme-toggle')) {
+            const btn = document.createElement('button');
+            btn.id = 'theme-toggle';
+            btn.type = 'button';
+            btn.className = 'theme-toggle';
+            btn.setAttribute('aria-label', 'Toggle color theme');
+            btn.innerHTML = '<span class="icon">🌗</span>';
+            document.body.appendChild(btn);
+            btn.addEventListener('click', () => {
+                const current = htmlEl.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+                const next = current === 'dark' ? 'light' : 'dark';
+                htmlEl.setAttribute('data-theme', next);
+                try { localStorage.setItem('theme', next); } catch {}
+            });
+        }
+    },
+
+    // Progressive image enhancements with safe defaults
+    initImageEnhancements() {
+        if (window.__boostifyImgEnh) return; window.__boostifyImgEnh = true;
+        const imgs = Array.from(document.images || []);
+        imgs.forEach(img => {
+            // Idempotency marker
+            if (img.dataset.boostified) return;
+            img.dataset.boostified = '1';
+            // Progressive loading hints
+            if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
+            if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+            // Blur-up effect
+            img.classList.add('enhanced-lazy');
+            if (img.complete) {
+                // Already cached/loaded
+                img.classList.add('loaded');
+            } else {
+                img.addEventListener('load', () => {
+                    img.classList.add('loaded');
+                }, { once: true });
+                img.addEventListener('error', () => {
+                    // On error, avoid permanent blur
+                    img.classList.add('loaded');
+                }, { once: true });
+            }
         });
     },
 
