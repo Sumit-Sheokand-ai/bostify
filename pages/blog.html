@@ -59,48 +59,86 @@
 </head>
  
     <!-- Header -->
-    <header class="header">
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="nav-logo">
-                    <a href="../index.html">
-                        <h1>Bostify</h1>
-                        <span>by Sumit Sheokand</span>
-                    </a>
-                </div>
-                
-                <!-- Desktop Navigation -->
-                <ul class="nav-menu desktop-menu">
-                    <li><a href="../index.html" class="nav-link">Home</a></li>
-                    <li><a href="services.html" class="nav-link">Services</a></li>
-                    <li><a href="pricing.html" class="nav-link">Pricing</a></li>
-                    <li><a href="case-studies.html" class="nav-link">Results</a></li>
-                    <li><a href="blog.html" class="nav-link">Blog</a></li>
-                    <li><a href="about.html" class="nav-link">About</a></li>
-                    <li><a href="contact.html" class="nav-link cta-nav">Website Audit</a></li>
-                </ul>
-                
-                <!-- Mobile Navigation -->
-                <ul class="nav-menu mobile-menu">
-                    <li><a href="../index.html" class="nav-link">Home</a></li>
-                    <li><a href="services.html" class="nav-link">Services</a></li>
-                    <li><a href="pricing.html" class="nav-link">Pricing</a></li>
-                    <li><a href="case-studies.html" class="nav-link">Results</a></li>
-                    <li><a href="blog.html" class="nav-link">Blog</a></li>
-                    <li><a href="about.html" class="nav-link">About</a></li>
-                    <li><a href="contact.html" class="nav-link cta-nav">Website Audit</a></li>
-                </ul>
-                
-                <div class="nav-toggle hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
+<header class="header glass-effect">
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html">
+                    <img src="../assets/images/bostify-premium-logo.svg" alt="Bostify Premium Logo" class="logo-premium">
+                </a>
             </div>
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
+            
+            <!-- Desktop Navigation -->
+            <ul class="nav-menu desktop-menu">
+                <li><a href="../index.html#home" class="nav-link">Home</a></li>
+                <li class="nav-item dropdown">
+                    <a href="services.html" class="nav-link dropdown-toggle">Services</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="technical-seo.html">Technical SEO</a></li>
+                        <li><a href="content-optimization.html">Content Optimization</a></li>
+                        <li><a href="link-building.html">Link Building</a></li>
+                        <li><a href="local-seo.html">Local SEO</a></li>
+                        <li><a href="ecommerce-seo.html">E-commerce SEO</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="pricing.html" class="nav-link dropdown-toggle">Pricing</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="basic-seo-audit.html">Basic SEO Audit</a></li>
+                        <li><a href="comprehensive-seo-audit.html">Comprehensive SEO Audit</a></li>
+                        <li><a href="enterprise-seo-audit.html">Enterprise SEO Audit</a></li>
+                    </ul>
+                </li>
+                <li><a href="monthly-audit.html" class="nav-link">Monthly Audits</a></li>
+                <li><a href="case-studies.html" class="nav-link">Case Studies</a></li>
+                <li><a href="blog.html" class="nav-link">Blog</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link cta-nav">Contact</a></li>
+            </ul>
+            
+            <!-- Mobile Navigation -->
+            <div class="nav-toggle hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+    <div class="mobile-menu">
+        <ul>
+            <li><a href="../index.html#home">Home</a></li>
+            <li>
+                <div class="mobile-dropdown-toggle">
+                    <a href="services.html">Services</a>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="mobile-dropdown">
+                    <li><a href="technical-seo.html">Technical SEO</a></li>
+                    <li><a href="content-optimization.html">Content Optimization</a></li>
+                    <li><a href="link-building.html">Link Building</a></li>
+                    <li><a href="local-seo.html">Local SEO</a></li>
+                    <li><a href="ecommerce-seo.html">E-commerce SEO</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="mobile-dropdown-toggle">
+                    <a href="pricing.html">Pricing</a>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="mobile-dropdown">
+                    <li><a href="basic-seo-audit.html">Basic SEO Audit</a></li>
+                    <li><a href="comprehensive-seo-audit.html">Comprehensive SEO Audit</a></li>
+                    <li><a href="enterprise-seo-audit.html">Enterprise SEO Audit</a></li>
+                </ul>
+            </li>
+            <li><a href="monthly-audit.html">Monthly Audits</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+</header>    <!-- Hero Section -->
     <section class="blog-hero">
         <div class="container">
             <div class="hero-content">
@@ -377,55 +415,65 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <h3>Bostify</h3>
-                        <span>by Sumit Sheokand</span>
-                    </div>
-                    <p>Helping businesses rank higher on Google and get more customers through proven SEO strategies.</p>
+    <div class="container">
+        <div class="footer-grid">
+            <!-- Bostify Info -->
+            <div class="footer-column">
+                <div class="footer-logo">
+                    <img src="../assets/images/bostify-premium-logo.svg" alt="Bostify Premium Logo">
                 </div>
-                
-                <div class="footer-section">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="services.html#on-page">On-Page SEO</a></li>
-                        <li><a href="services.html#off-page">Off-Page SEO</a></li>
-                        <li><a href="services.html#technical">Technical SEO</a></li>
-                        <li><a href="services.html#local">Local SEO</a></li>
-                        <li><a href="services.html#content">Content SEO</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="blog.html">SEO Blog</a></li>
-                        <li><a href="case-studies.html">Case Studies</a></li>
-                        <li><a href="pricing.html">Pricing</a></li>
-                        <li><a href="contact.html">Website Audit</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>Email: sumitsheokand347@gmail.com</p>
-                    <p>Get in touch for a free consultation</p>
-                    <a href="contact.html" class="footer-cta">Schedule Website Audit</a>
+                <p class="footer-tagline">Professional SEO services to boost your website's visibility and drive organic growth. By Sumit Sheokand.</p>
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/sumit-sheokand-0336b2281" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Sumit-Sheokand" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="mailto:sumitsheokand347@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 Bostify by Sumit Sheokand. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="../index.html">Home</a>
-                    <a href="about.html">About</a>
-                    <a href="contact.html">Contact</a>
-                </div>
+
+            <!-- Quick Links -->
+            <div class="footer-column">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="../index.html#home">Home</a></li>
+                    <li><a href="about.html">About Me</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="case-studies.html">Case Studies</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+
+            <!-- Services -->
+            <div class="footer-column">
+                <h4 class="footer-heading">Our Services</h4>
+                <ul class="footer-links">
+                    <li><a href="technical-seo.html">Technical SEO</a></li>
+                    <li><a href="content-optimization.html">Content Optimization</a></li>
+                    <li><a href="link-building.html">Link Building</a></li>
+                    <li><a href="local-seo.html">Local SEO</a></li>
+                    <li><a href="ecommerce-seo.html">E-commerce SEO</a></li>
+                </ul>
+            </div>
+
+            <!-- Legal -->
+            <div class="footer-column">
+                <h4 class="footer-heading">Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-of-service.html">Terms of Service</a></li>
+                </ul>
             </div>
         </div>
-    </footer>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Bostify by Sumit Sheokand. All rights reserved.</p>
+            <div class="payment-methods">
+                <img src="../assets/images/visa.svg" alt="Visa">
+                <img src="../assets/images/mastercard.svg" alt="Mastercard">
+                <img src="../assets/images/paypal.svg" alt="PayPal">
+            </div>
+        </div>
+    </div>
+</footer>
 
     <!-- JavaScript -->
     <script src="../assets/js/main.js"></script>
