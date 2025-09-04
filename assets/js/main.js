@@ -491,7 +491,7 @@ const app = {
         const elements = document.querySelectorAll(`.${className}`);
         
         if (elements.length > 0) {
-            const observer = new IntersectionObserver((entries) => {
+            const observer = new IntersectionObserver((entries, observerInstance) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         // Add stagger delay if element has data-stagger attribute
@@ -509,7 +509,7 @@ const app = {
                             }
                         }, staggerDelay * 100);
                         
-                        observer.unobserve(entry.target);
+                        observerInstance.unobserve(entry.target);
                     }
                 });
             }, {
