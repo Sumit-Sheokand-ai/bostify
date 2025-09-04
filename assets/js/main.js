@@ -10,9 +10,6 @@ const app = {
     // Initialize all features when the DOM is ready
     init() {
         document.addEventListener('DOMContentLoaded', () => {
-            // Prevent duplicate initialization if script is included twice
-            if (window.__boostifyInit) return; 
-            window.__boostifyInit = true;
             // Accessibility and performance flags
             this.flags = {
                 isMobile: window.matchMedia('(max-width: 768px)').matches,
@@ -33,8 +30,6 @@ const app = {
             this.initScrollProgress();
             this.initPageLoader();
             this.initLinkPrefetch();
-            this.initTheme();
-            this.initImageEnhancements();
 
             // Heavy/visual effects (desktop only, no reduced motion)
             if (!this.flags.prefersReducedMotion) {
@@ -45,71 +40,6 @@ const app = {
                 this.initParticleBackground();
             }
             console.log('🚀 Boostify Enhanced Experience Initialized');
-        });
-    },
-
-    // Detect CSS variable support and set up theme
-    initTheme() {
-        // Guard
-        if (window.__boostifyThemeInit) return; window.__boostifyThemeInit = true;
-
-        const htmlEl = document.documentElement;
-
-        // Detect CSS variables support; add fallback class if missing
-        const cssVarsSupported = !!(window.CSS && CSS.supports && CSS.supports('color', 'var(--x)'));
-        if (!cssVarsSupported) {
-            htmlEl.classList.add('no-cssvars');
-        }
-
-        // Respect user/system preference and saved choice
-        const saved = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const initial = saved || (prefersDark ? 'dark' : 'light');
-        htmlEl.setAttribute('data-theme', initial);
-
-        // Create floating theme toggle if not present
-        if (!document.getElementById('theme-toggle')) {
-            const btn = document.createElement('button');
-            btn.id = 'theme-toggle';
-            btn.type = 'button';
-            btn.className = 'theme-toggle';
-            btn.setAttribute('aria-label', 'Toggle color theme');
-            btn.innerHTML = '<span class="icon">🌗</span>';
-            document.body.appendChild(btn);
-            btn.addEventListener('click', () => {
-                const current = htmlEl.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-                const next = current === 'dark' ? 'light' : 'dark';
-                htmlEl.setAttribute('data-theme', next);
-                try { localStorage.setItem('theme', next); } catch {}
-            });
-        }
-    },
-
-    // Progressive image enhancements with safe defaults
-    initImageEnhancements() {
-        if (window.__boostifyImgEnh) return; window.__boostifyImgEnh = true;
-        const imgs = Array.from(document.images || []);
-        imgs.forEach(img => {
-            // Idempotency marker
-            if (img.dataset.boostified) return;
-            img.dataset.boostified = '1';
-            // Progressive loading hints
-            if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
-            if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
-            // Blur-up effect
-            img.classList.add('enhanced-lazy');
-            if (img.complete) {
-                // Already cached/loaded
-                img.classList.add('loaded');
-            } else {
-                img.addEventListener('load', () => {
-                    img.classList.add('loaded');
-                }, { once: true });
-                img.addEventListener('error', () => {
-                    // On error, avoid permanent blur
-                    img.classList.add('loaded');
-                }, { once: true });
-            }
         });
     },
 
@@ -169,12 +99,9 @@ const app = {
 
     // --- Scroll Progress Indicator ---
     initScrollProgress() {
-        // Reuse if already exists to avoid duplicates
-        let progressBar = document.getElementById('scroll-progress');
-        if (!progressBar) {
-            progressBar = document.createElement('div');
-            progressBar.id = 'scroll-progress';
-            progressBar.style.cssText = `
+        // Create progress bar
+        const progressBar = document.createElement('div');
+        progressBar.style.cssText = `
             position: fixed;
             top: 0;
             left: 0;
@@ -185,8 +112,7 @@ const app = {
             transition: width 0.1s ease;
             box-shadow: 0 2px 10px rgba(74, 144, 226, 0.3);
         `;
-            document.body.appendChild(progressBar);
-        }
+        document.body.appendChild(progressBar);
 
         // Update progress on scroll (batched)
         this.onScroll(() => {
@@ -205,9 +131,7 @@ const app = {
         let rafId = null;
 
         // Create cursor glow effect
-    if (document.getElementById('cursor-glow')) return;
-    const cursorGlow = document.createElement('div');
-    cursorGlow.id = 'cursor-glow';
+        const cursorGlow = document.createElement('div');
         cursorGlow.style.cssText = `
             position: fixed;
             width: 20px;
@@ -254,7 +178,6 @@ const app = {
     initMobileMenu() {
         const navToggle = document.querySelector('.nav-toggle');
         const navMenu = document.querySelector('.nav-menu');
-    const htmlEl = document.documentElement;
 
         if (navToggle && navMenu) {
             navToggle.addEventListener('click', () => {
@@ -264,19 +187,9 @@ const app = {
 
                 // Prevent body scroll when menu is open
                 if (navMenu.classList.contains('active')) {
-            document.body.classList.add('nav-open');
-            htmlEl.classList.add('nav-open');
-            document.body.style.overflow = 'hidden';
-            document.body.style.height = '100dvh';
-            document.body.style.touchAction = 'none';
-            navToggle.setAttribute('aria-expanded', 'true');
+                    document.body.style.overflow = 'hidden';
                 } else {
-            document.body.classList.remove('nav-open');
-            htmlEl.classList.remove('nav-open');
-            document.body.style.overflow = '';
-            document.body.style.height = '';
-            document.body.style.touchAction = '';
-            navToggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
                 }
             });
 
@@ -286,12 +199,7 @@ const app = {
                     if (navMenu.classList.contains('active')) {
                         navToggle.classList.remove('active');
                         navMenu.classList.remove('active');
-                        document.body.classList.remove('nav-open');
-                        htmlEl.classList.remove('nav-open');
                         document.body.style.overflow = '';
-                        document.body.style.height = '';
-                        document.body.style.touchAction = '';
-                        navToggle.setAttribute('aria-expanded', 'false');
                     }
                 });
             });
@@ -302,12 +210,7 @@ const app = {
                     if (navMenu.classList.contains('active')) {
                         navToggle.classList.remove('active');
                         navMenu.classList.remove('active');
-                        document.body.classList.remove('nav-open');
-                        htmlEl.classList.remove('nav-open');
                         document.body.style.overflow = '';
-                        document.body.style.height = '';
-                        document.body.style.touchAction = '';
-                        navToggle.setAttribute('aria-expanded', 'false');
                     }
                 }
             });
@@ -316,29 +219,9 @@ const app = {
                 if (e.key === 'Escape' && navMenu.classList.contains('active')) {
                     navToggle.classList.remove('active');
                     navMenu.classList.remove('active');
-                    document.body.classList.remove('nav-open');
-                    htmlEl.classList.remove('nav-open');
                     document.body.style.overflow = '';
-                    document.body.style.height = '';
-                    document.body.style.touchAction = '';
-                    navToggle.setAttribute('aria-expanded', 'false');
                 }
             });
-            // Close menu if viewport resizes to desktop to avoid stale overlay
-            window.addEventListener('resize', () => {
-                if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
-                    navToggle.classList.remove('active');
-                    navMenu.classList.remove('active');
-                    document.body.classList.remove('nav-open');
-                    htmlEl.classList.remove('nav-open');
-                    document.body.style.overflow = '';
-                    document.body.style.height = '';
-                    document.body.style.touchAction = '';
-                    navToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
-            // Initialize ARIA state
-            navToggle.setAttribute('aria-expanded', 'false');
         }
     },
 
@@ -476,7 +359,6 @@ const app = {
         // Parallax scroll effects (desktop only, honors reduced motion)
         if (!this.flags || (!this.flags.isMobile && !this.flags.prefersReducedMotion)) {
             this.initParallaxEffects();
-            this.initHeroParallaxEffects();
         }
 
     // Section reveal variants (data-driven)
@@ -491,7 +373,7 @@ const app = {
         const elements = document.querySelectorAll(`.${className}`);
         
         if (elements.length > 0) {
-            const observer = new IntersectionObserver((entries, observerInstance) => {
+            const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         // Add stagger delay if element has data-stagger attribute
@@ -509,7 +391,7 @@ const app = {
                             }
                         }, staggerDelay * 100);
                         
-                        observerInstance.unobserve(entry.target);
+                        observer.unobserve(entry.target);
                     }
                 });
             }, {
@@ -667,19 +549,6 @@ const app = {
         });
     },
 
-    initHeroParallaxEffects() {
-        const parallaxElements = document.querySelectorAll('.hero-background, .liquid-orb');
-        
-        if (parallaxElements.length > 0) {
-            this.onScroll((scrolled) => {
-                const rate = scrolled * -0.5;
-                parallaxElements.forEach(element => {
-                    element.style.transform = `translateY(${rate}px)`;
-                });
-            });
-        }
-    },
-
     initEnhancedHoverEffects() {
         // Enhanced button hover effects
         const buttons = document.querySelectorAll('.btn, .cta-button');
@@ -773,8 +642,6 @@ const app = {
     initParticleBackground() {
         const hero = document.querySelector('.hero');
         if (!hero) return;
-    // Avoid duplicating particles if re-initialized
-    if (hero.querySelector('.floating-particle')) return;
 
     // Create floating particles (reduced on small screens)
     const isSmall = window.matchMedia('(max-width: 768px)').matches;
@@ -1001,9 +868,8 @@ const app = {
 
     // --- Background Particles ---
     initBackgroundParticles() {
-    if (document.getElementById('particle-canvas')) return;
-    const canvas = document.createElement('canvas');
-    canvas.id = 'particle-canvas';
+        const canvas = document.createElement('canvas');
+        canvas.id = 'particle-canvas';
         canvas.style.cssText = `
             position: fixed;
             top: 0;
