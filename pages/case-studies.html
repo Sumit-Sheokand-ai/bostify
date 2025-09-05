@@ -1,818 +1,359 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEO Case Studies & Results - Real Client Success Stories | Bostify</title>
-    <meta name="description" content="See real SEO results from Bostify clients. Discover how businesses improved their rankings, traffic, and revenue with proven SEO strategies by Sumit Sheokand.">
-    <meta name="keywords" content="SEO case studies, SEO results, traffic increase, ranking improvements, SEO success stories">
-    <meta name="author" content="Sumit Sheokand">
-    
-    <!-- Open Graph Meta Tags -->
-    
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="../assets/css/main.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Comprehensive SEO Audit - Complete Website Analysis | Bostify</title>
+  <meta name="description" content="Get a comprehensive SEO audit for $1000 CAD. Complete technical analysis, content audit, competitor research, and detailed optimization strategy.">
+  <link rel="stylesheet" href="../assets/css/main.css">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@700&display=swap" rel="stylesheet">
-    
-    <!-- Schema Markup -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "CollectionPage",
-        "name": "SEO Case Studies",
-        "description": "Real client success stories and SEO results achieved by Bostify"
+  <script src="../assets/js/config.js"></script>
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="apple-touch-icon" href="../assets/images/bostify-premium-logo.svg">
+  
+  <!-- Enhanced Styling for Order Forms -->
+  <style>
+    /* CSS Variables for Brand Colors */
+    :root {
+        --primary-green: #00c851;
+        --primary-blue: #007bff;
+        --white: #ffffff;
+        --dark-gray: #333333;
+        --light-gray: #f8f9fa;
+        --medium-gray: #6c757d;
     }
-    </script>
+
+    /* Enhanced Main Container */
+    .wrap {
+        margin-top: 80px !important;
+        min-height: 100vh !important;
+        background: linear-gradient(135deg, var(--primary-blue), var(--primary-green)) !important;
+        color: var(--white) !important;
+        position: relative !important;
+        overflow: hidden !important;
+        padding: 40px 20px !important;
+    }
+
+    /* Liquid Orb Animations */
+    .liquid-orb {
+        position: absolute !important;
+        border-radius: 50% !important;
+        background: linear-gradient(135deg, 
+            rgba(74, 144, 226, 0.3) 0%,
+            rgba(80, 201, 195, 0.2) 50%,
+            rgba(123, 104, 238, 0.3) 100%
+        ) !important;
+        filter: blur(40px) !important;
+        animation: floatOrb 6s ease-in-out infinite !important;
+        z-index: -1 !important;
+    }
+
+    .liquid-orb.orb-1 {
+        width: 300px !important;
+        height: 300px !important;
+        top: -150px !important;
+        right: -150px !important;
+        animation-delay: 0s !important;
+    }
+
+    .liquid-orb.orb-2 {
+        width: 200px !important;
+        height: 200px !important;
+        bottom: -100px !important;
+        left: -100px !important;
+        animation-delay: 2s !important;
+    }
+
+    @keyframes floatOrb {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        25% { transform: translateY(-20px) rotate(90deg); }
+        50% { transform: translateY(-10px) rotate(180deg); }
+        75% { transform: translateY(-15px) rotate(270deg); }
+    }
+
+    /* Enhanced Checkout Block */
+    #checkout-block {
+        background: rgba(255, 255, 255, 0.95) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        border-radius: 20px !important;
+        padding: 2rem !important;
+        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.25) !important;
+        color: var(--dark-gray) !important;
+        max-width: 600px !important;
+        margin: 2rem auto !important;
+    }
+
+    /* Form Styling */
+    #order-form {
+        text-align: left !important;
+    }
+
+    #order-form label {
+        display: block !important;
+        margin-bottom: 0.5rem !important;
+        font-weight: 600 !important;
+        color: #495057 !important;
+    }
+
+    #order-form input,
+    #order-form textarea,
+    #order-form select {
+        width: 100% !important;
+        padding: 0.8rem !important;
+        margin-bottom: 1rem !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        border-radius: 8px !important;
+        font-size: 1rem !important;
+        background: rgba(255, 255, 255, 0.8) !important;
+        backdrop-filter: blur(10px) !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+        box-sizing: border-box !important;
+    }
+
+    #order-form input:focus,
+    #order-form textarea:focus,
+    #order-form select:focus {
+        outline: none !important;
+        border-color: rgba(0, 123, 255, 0.6) !important;
+        background: rgba(255, 255, 255, 0.95) !important;
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1), 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+        transform: translateY(-1px) !important;
+    }
+
+    /* Payment Buttons Container */
+    #payment-widgets {
+        margin-top: 2rem !important;
+        padding: 1.5rem !important;
+        background: rgba(248, 249, 250, 0.5) !important;
+        border-radius: 15px !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    }
+
+    /* Enhanced Button Styling */
+    .cta-button,
+    button {
+        background: linear-gradient(135deg, rgba(0, 123, 255, 0.9), rgba(0, 200, 81, 0.9)) !important;
+        backdrop-filter: blur(10px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        color: white !important;
+        padding: 12px 30px !important;
+        border-radius: 25px !important;
+        font-weight: 600 !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3) !important;
+        margin: 0.5rem !important;
+        text-decoration: none !important;
+        display: inline-block !important;
+    }
+
+    .cta-button:hover,
+    button:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4) !important;
+        background: linear-gradient(135deg, rgba(0, 123, 255, 1), rgba(0, 200, 81, 1)) !important;
+    }
+
+    /* Page Headers */
+    h1, h2 {
+        color: white !important;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3) !important;
+        margin-bottom: 1rem !important;
+    }
+
+    /* Glass Effect for PayPal Container */
+    #paypal-button-container {
+        background: rgba(255, 255, 255, 0.1) !important;
+        backdrop-filter: blur(10px) !important;
+        border-radius: 10px !important;
+        padding: 1rem !important;
+        margin: 1rem 0 !important;
+    }
+  </style>
+  
+  <!-- PayPal SDK: Using real client ID -->
+  <script src="https://www.paypal.com/sdk/js?client-id=AQ8k0aDREdXnxFEkff8KN-YKSSfamT_JsozBGT2OU2Oaz7b41sx3gYDPfywmJjXJd4WvcH778BfzenC_&currency=CAD"></script>
 </head>
- 
-    <!-- Header -->
-<header class="header glass-effect">
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="../index.html">
-                    <img src="../assets/images/bostify-premium-logo.svg" alt="Bostify Premium Logo" class="logo-premium">
+<body>
+  <!-- Header to match other pages -->
+  <header class="header glass-effect">
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="../index.html" class="nav-logo">
+                    <h1>Bostify</h1>
                 </a>
-            </div>
-            
-            <!-- Desktop Navigation -->
-            <ul class="nav-menu desktop-menu">
-                <li><a href="../index.html#home" class="nav-link">Home</a></li>
-                <li class="nav-item dropdown">
-                    <a href="services.html" class="nav-link dropdown-toggle">Services</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="technical-seo.html">Technical SEO</a></li>
-                        <li><a href="content-optimization.html">Content Optimization</a></li>
-                        <li><a href="link-building.html">Link Building</a></li>
-                        <li><a href="local-seo.html">Local SEO</a></li>
-                        <li><a href="ecommerce-seo.html">E-commerce SEO</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a href="pricing.html" class="nav-link dropdown-toggle">Pricing</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="basic-seo-audit.html">Basic SEO Audit</a></li>
-                        <li><a href="comprehensive-seo-audit.html">Comprehensive SEO Audit</a></li>
-                        <li><a href="enterprise-seo-audit.html">Enterprise SEO Audit</a></li>
-                    </ul>
-                </li>
-                <li><a href="monthly-audit.html" class="nav-link">Monthly Audits</a></li>
-                <li><a href="case-studies.html" class="nav-link">Case Studies</a></li>
-                <li><a href="blog.html" class="nav-link">Blog</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="contact.html" class="nav-link cta-nav">Contact</a></li>
-            </ul>
-            
-            <!-- Mobile Navigation -->
-            <div class="nav-toggle hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
-    <div class="mobile-menu">
-        <ul>
-            <li><a href="../index.html#home">Home</a></li>
-            <li>
-                <div class="mobile-dropdown-toggle">
-                    <a href="services.html">Services</a>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <ul class="mobile-dropdown">
-                    <li><a href="technical-seo.html">Technical SEO</a></li>
-                    <li><a href="content-optimization.html">Content Optimization</a></li>
-                    <li><a href="link-building.html">Link Building</a></li>
-                    <li><a href="local-seo.html">Local SEO</a></li>
-                    <li><a href="ecommerce-seo.html">E-commerce SEO</a></li>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li class="nav-item--dropdown">
+                        <a href="../pages/services.html">Services</a>
+                        <div class="dropdown-menu">
+                            <a href="../pages/basic-seo-audit.html">Basic SEO Audit</a>
+                            <a href="../pages/comprehensive-seo-audit.html">Comprehensive SEO Audit</a>
+                            <a href="../pages/enterprise-seo-audit.html">Enterprise SEO Audit</a>
+                            <a href="../pages/local-seo.html">Local SEO</a>
+                            <a href="../pages/technical-seo.html">Technical SEO</a>
+                            <a href="../pages/ecommerce-seo.html">E-commerce SEO</a>
+                            <a href="../pages/content-optimization.html">Content Optimization</a>
+                            <a href="../pages/link-building.html">Link Building</a>
+                        </div>
+                    </li>
+                    <li><a href="../pages/pricing.html">Pricing</a></li>
+                    <li><a href="../pages/case-studies.html">Case Studies</a></li>
+                    <li><a href="../pages/blog.html">Blog</a></li>
+                    <li><a href="../pages/about.html">About</a></li>
+                    <li><a href="../pages/contact.html">Contact</a></li>
                 </ul>
-            </li>
-            <li>
-                <div class="mobile-dropdown-toggle">
-                    <a href="pricing.html">Pricing</a>
-                    <i class="fas fa-chevron-down"></i>
+                <div class="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
                 </div>
-                <ul class="mobile-dropdown">
-                    <li><a href="basic-seo-audit.html">Basic SEO Audit</a></li>
-                    <li><a href="comprehensive-seo-audit.html">Comprehensive SEO Audit</a></li>
-                    <li><a href="enterprise-seo-audit.html">Enterprise SEO Audit</a></li>
-                </ul>
-            </li>
-            <li><a href="monthly-audit.html">Monthly Audits</a></li>
-            <li><a href="case-studies.html">Case Studies</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </div>
-</header>    <!-- Hero Section -->
-    <section class="case-studies-hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Real SEO Results That Speak for Themselves</h1>
-                <p>See how businesses like yours have transformed their online presence with proven SEO strategies. These case studies show actual improvements in traffic, rankings, and revenue.</p>
-                <div class="results-stats">
-                    <div class="result-stat">
-                        <span class="stat-number">280%</span>
-                        <span class="stat-label">Average Traffic Increase</span>
-                    </div>
-                    <div class="result-stat">
-                        <span class="stat-number">95%</span>
-                        <span class="stat-label">Keywords Ranking Page 1</span>
-                    </div>
-                    <div class="result-stat">
-                        <span class="stat-number">6-12</span>
-                        <span class="stat-label">Months to See Results</span>
-                    </div>
-                </div>
+                <a href="../pages/contact.html" class="button-primary hero-cta">Get Free Audit</a>
             </div>
+        </nav>
+    </header>
+
+  <main class="wrap" style="margin-top: 80px; text-align: center; display: flex; flex-direction: column; align-items: center;">
+    <h1>Comprehensive Seo Audit</h1>
+    <p>Purchase this audit. Price: <strong>1000 CAD</strong></p>
+
+    <section id="checkout-block" style="width: 100%; max-width: 500px;">
+      <h2>Buy Comprehensive Seo Audit — 1000 CAD</h2>
+
+      <!-- Form with left-aligned labels for readability -->
+      <form id="order-form" style="text-align: left;">
+        <label for="name">Full name</label><br>
+        <input id="name" name="name" type="text" required style="width: 100%;"><br><br>
+
+        <label for="email">Email address</label><br>
+        <input id="email" name="email" type="email" required style="width: 100%;"><br><br>
+
+        <label for="phone">Phone number</label><br>
+        <input id="phone" name="phone" type="tel" required placeholder="+1 (555) 123-4567" style="width: 100%;"><br><br>
+
+        <label for="website">Website URL</label><br>
+        <input id="website" name="website" type="url" required placeholder="https://yourwebsite.com" style="width: 100%;"><br><br>
+
+        <label for="traffic">Monthly Website Traffic</label><br>
+        <select id="traffic" name="traffic" required style="width: 100%;">
+          <option value="" disabled selected>Select traffic range</option>
+          <option value="0-1000">0-1,000</option>
+          <option value="1000-5000">1,000-5,000</option>
+          <option value="5000-10000">5,000-10,000</option>
+          <option value="10000-50000">10,000-50,000</option>
+        </select><br><br>
+
+        <label for="message">What do you want from this audit?</label><br>
+        <textarea id="message" name="message" rows="4" required placeholder="Describe your goals or specific concerns..." style="width: 100%;"></textarea><br><br>
+
+        <button id="start-pay" type="submit" style="width: 100%;">Proceed to Payment</button>
+      </form>
+
+      <!-- After form, PayPal button and Stripe link appear here -->
+      <div id="payment-widgets" style="display:none; margin-top:1rem;">
+        <div>
+          <h3>Pay with PayPal</h3>
+          <div id="paypal-button-comprehensive"></div>
         </div>
+
+        <div style="margin-top:1rem;">
+          <h3>Pay with Card (Stripe hosted checkout)</h3>
+          <a id="stripe-link" class="cta-button" href="#" target="_blank" rel="noopener">Pay with Debit/Credit Card (Stripe)</a>
+        </div>
+      </div>
     </section>
+  </main>
 
-    <!-- Case Studies Grid -->
-    <section class="case-studies-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Client Success Stories</h2>
-                <p>Real businesses, real results. See how strategic SEO implementation drives measurable growth.</p>
-            </div>
-            
-            <div class="case-studies-grid">
-                <!-- Case Study 1: E-commerce -->
-                <div class="case-study-card glass-effect">
-                    <div class="case-study-header">
-                        <div class="client-info">
-                            <h3>TechGear Electronics</h3>
-                            <span class="industry">E-commerce • Electronics</span>
-                        </div>
-                        <div class="case-study-image">
-                            <img src="../assets/images/about-placeholder.jpg" alt="E-commerce Success" loading="lazy">
-                        </div>
-                    </div>
-                    
-                    <div class="challenge">
-                        <h4>The Challenge</h4>
-                        <p>TechGear was struggling with low organic visibility in a competitive electronics market. Their product pages weren't ranking, and organic traffic was declining by 15% year-over-year.</p>
-                    </div>
-                    
-                    <div class="solution">
-                        <h4>Our Solution</h4>
-                        <ul>
-                            <li>Complete technical SEO audit and fixes</li>
-                            <li>Product page optimization for target keywords</li>
-                            <li>Strategic link building campaign</li>
-                            <li>Content marketing for tech reviews</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="results">
-                        <h4>Results After 8 Months</h4>
-                        <div class="results-grid">
-                            <div class="result-item">
-                                <span class="result-number">320%</span>
-                                <span class="result-label">Organic Traffic Increase</span>
-                            </div>
-                            <div class="result-item">
-                                <span class="result-number">185%</span>
-                                <span class="result-label">Revenue Growth</span>
-                            </div>
-                            <div class="result-item">
-                                <span class="result-number">45</span>
-                                <span class="result-label">Keywords in Top 3</span>
-                            </div>
-                            <div class="result-item">
-                                <span class="result-number">65%</span>
-                                <span class="result-label">Conversion Rate Improvement</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="case-study-quote">
-                        <blockquote>"Sumit's SEO strategy transformed our business. We went from page 3 to dominating page 1 for our main product categories. Our organic sales tripled!"</blockquote>
-                        <cite>- Mike Chen, CEO TechGear Electronics</cite>
-                    </div>
-                </div>
+  <footer style="text-align: center;">
+    <p>&copy; 2025 Bostify SEO</p>
+  </footer>
 
-                <!-- Case Study 2: Local Service -->
-                <div class="case-study-card glass-effect">
-                    <div class="case-study-header">
-                        <div class="client-info">
-                            <h3>Metro Dental Care</h3>
-                            <span class="industry">Healthcare • Local Service</span>
-                        </div>
-                        <div class="case-study-image">
-                            <img src="../assets/images/pexels-photo-12903300.jpeg" alt="Dental Practice Success" loading="lazy">
-                        </div>
-                    </div>
-                    
-                    <div class="challenge">
-                        <h4>The Challenge</h4>
-                        <p>This dental practice had virtually no online presence. They weren't appearing in local search results and were losing patients to competitors who ranked higher on Google.</p>
-                    </div>
-                    
-                    <div class="solution">
-                        <h4>Our Solution</h4>
-                        <ul>
-                            <li>Local SEO optimization and Google Business Profile</li>
-                            <li>Location-based content creation</li>
-                            <li>Online review management strategy</li>
-                            <li>Local citation building campaign</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="results">
-                        <h4>Results After 6 Months</h4>
-                        <div class="results-grid">
-                            <div class="result-item">
-                                <span class="result-number">450%</span>
-                                <span class="result-label">Local Search Visibility</span>
-                            </div>
-                            <div class="result-item">
-                                <span class="result-number">85</span>
-                                <span class="result-label">New Patient Inquiries/Month</span>
-                            </div>
-                            <div class="result-item">
-                                <span class="result-number">#1</span>
-                                <span class="result-label">Ranking for "Dentist Near Me"</span>
-                            </div>
-                            <div class="result-item">
-                                <span class="result-number">4.9</span>
-                                <span class="result-label">Star Google Rating</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="case-study-quote">
-                        <blockquote>"We went from invisible to the #1 dental practice in our area. Our appointment book is now consistently full, and we've had to hire additional staff!"</blockquote>
-                        <cite>- Dr. Sarah Johnson, Metro Dental Care</cite>
-                    </div>
-                </div>
+<script>
+(function(){
+  const price = (window.Bostify_PAYMENT_CONFIG && window.Bostify_PAYMENT_CONFIG.pricing && window.Bostify_PAYMENT_CONFIG.pricing.oneTime && window.Bostify_PAYMENT_CONFIG.pricing.oneTime.comprehensive && window.Bostify_PAYMENT_CONFIG.pricing.oneTime.comprehensive.price) || "1000.00";
+  const stripeLink = (window.Bostify_PAYMENT_CONFIG && window.Bostify_PAYMENT_CONFIG.stripe && window.Bostify_PAYMENT_CONFIG.stripe.checkoutLinks && window.Bostify_PAYMENT_CONFIG.stripe.checkoutLinks.comprehensive) || "#";
+  const adminEmail = (window.Bostify_PAYMENT_CONFIG && window.Bostify_PAYMENT_CONFIG.adminEmail) || "sumitsheokand347@gmail.com";
+  const currency = (window.Bostify_PAYMENT_CONFIG && window.Bostify_PAYMENT_CONFIG.paypal && window.Bostify_PAYMENT_CONFIG.paypal.currency) || "CAD";
 
-                <!-- Case Study 3: SaaS -->
-                <div class="case-study-card glass-effect">
-                    <div class="case-study-header">
-                        <div class="client-info">
-                            <h3>CloudFlow SaaS</h3>
-                            <span class="industry">Technology • SaaS Platform</span>
-                        </div>
-                        <div class="case-study-image">
-                            <img src="../assets/images/pexels-photo-3756679.jpeg" alt="SaaS Platform Success" loading="lazy">
-                        </div>
-                    </div>
-                    
-                    <div class="challenge">
-                        <h4>The Challenge</h4>
-                        <p>CloudFlow was spending heavily on paid ads with diminishing returns. They needed to build organic visibility for competitive SaaS keywords and reduce customer acquisition costs.</p>
-                    </div>
-                    
-                    <div class="solution">
-                        <h4>Our Solution</h4>
-                        <ul>
-                            <li>Comprehensive keyword strategy for SaaS market</li>
-                            <li>Technical SEO for single-page application</li>
-                            <li>Authority building through thought leadership content</li>
-                            <li>Strategic internal linking architecture</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="results">
-                        <h4>Results After 10 Months</h4>
-                        <div class="results-grid">
-                            <div class="result-item">
-                                <span class="result-number">220%</span>
-                                <span class="result-label">Organic Traffic Growth</span>
-                            </div>
-                            <div class="result-item">
-                                <span class="result-number">65%</span>
-                                <span class="result-label">Reduction in CAC</span>
-                            </div>
-                            <div class="result-item">
-                                <span class="result-number">125</span>
-                                <span class="result-label">Keywords Ranking Top 10</span>
-                            </div>
-                            <div class="result-item">
-                                <span class="result-number">40%</span>
-                                <span class="result-label">Increase in Free Trials</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="case-study-quote">
-                        <blockquote>"Sumit helped us build a sustainable growth engine through SEO. We've reduced our ad spend by 50% while doubling our organic conversions."</blockquote>
-                        <cite>- David Rodriguez, Founder CloudFlow SaaS</cite>
-                    </div>
-                </div>
+  const form = document.getElementById("order-form");
+  const widgets = document.getElementById("payment-widgets");
+  const stripeAnchor = document.getElementById("stripe-link");
 
-                <!-- Case Study 4: Professional Services -->
-                <div class="case-study-card glass-effect">
-                    <div class="case-study-header">
-                        <div class="client-info">
-                            <h3>Premier Law Group</h3>
-                            <span class="industry">Legal • Professional Services</span>
-                        </div>
-                        <div class="case-study-image">
-                            <img src="../assets/images/pexels-photo-6238233.jpeg" alt="Law Firm Success" loading="lazy">
-                        </div>
-                    </div>
-                    
-                    <div class="challenge">
-                        <h4>The Challenge</h4>
-                        <p>This law firm was competing against established practices with decade-old websites. They needed to build authority and trust signals to compete for high-value legal keywords.</p>
-                    </div>
-                    
-                    <div class="solution">
-                        <h4>Our Solution</h4>
-                        <ul>
-                            <li>E-A-T (Expertise, Authority, Trust) optimization</li>
-                            <li>Legal content hub with case studies and guides</li>
-                            <li>Local citation building and reputation management</li>
-                            <li>Technical SEO for mobile-first indexing</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="results">
-                        <h4>Results After 12 Months</h4>
-                        <div class="results-grid">
-                            <div class="result-item">
-                                <span class="result-number">190%</span>
-                                <span class="result-label">Qualified Lead Increase</span>
-                            </div>
-                            <div class="result-item">
-                                <span class="result-number">75</span>
-                                <span class="result-label">New Client Consultations</span>
-                            </div>
-                            <div class="result-item">
-                                <span class="result-number">25</span>
-                                <span class="result-label">Page 1 Rankings</span>
-                            </div>
-                            <div class="result-item">
-                                <span class="result-number">300%</span>
-                                <span class="result-label">Organic Traffic Growth</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="case-study-quote">
-                        <blockquote>"The SEO strategy not only improved our rankings but positioned us as thought leaders in our practice areas. We're now the go-to firm in our region."</blockquote>
-                        <cite>- Jennifer Martinez, Managing Partner</cite>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  stripeAnchor.href = stripeLink;
 
-    <!-- Methodology Section -->
-    <section class="methodology-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Proven SEO Methodology</h2>
-                <p>Every success story follows the same systematic approach that delivers consistent results.</p>
-            </div>
-            
-            <div class="methodology-steps">
-                <div class="step-item glass-effect">
-                    <div class="step-number">01</div>
-                    <div class="step-content">
-                        <h3>Deep Audit & Analysis</h3>
-                        <p>Comprehensive website audit, competitor analysis, and market research to identify opportunities and create a data-driven strategy.</p>
-                    </div>
-                </div>
-                
-                <div class="step-item glass-effect">
-                    <div class="step-number">02</div>
-                    <div class="step-content">
-                        <h3>Strategic Implementation</h3>
-                        <p>Execute technical fixes, on-page optimization, content creation, and link building based on priority and impact assessment.</p>
-                    </div>
-                </div>
-                
-                <div class="step-item glass-effect">
-                    <div class="step-number">03</div>
-                    <div class="step-content">
-                        <h3>Monitor & Optimize</h3>
-                        <p>Continuous tracking of rankings, traffic, and conversions with regular optimizations to maximize performance and ROI.</p>
-                    </div>
-                </div>
-                
-                <div class="step-item glass-effect">
-                    <div class="step-number">04</div>
-                    <div class="step-content">
-                        <h3>Scale & Grow</h3>
-                        <p>Expand successful strategies to new keywords and markets, building long-term sustainable growth for your business.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  form.addEventListener("submit", function (ev){
+    ev.preventDefault();
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const website = document.getElementById("website").value.trim();
+    const traffic = document.getElementById("traffic").value;
+    const message = document.getElementById("message").value.trim();
 
-    <!-- Results Summary -->
-    <section class="results-summary">
-        <div class="container">
-            <div class="summary-content glass-effect">
-                <h2>Combined Client Results</h2>
-                <p>Aggregate performance across all active client campaigns</p>
-                
-                <div class="summary-stats">
-                    <div class="summary-stat">
-                        <span class="big-number">150+</span>
-                        <span class="stat-description">Websites Successfully Optimized</span>
-                    </div>
-                    <div class="summary-stat">
-                        <span class="big-number">2.5M+</span>
-                        <span class="stat-description">Additional Monthly Organic Visitors</span>
-                    </div>
-                    <div class="summary-stat">
-                        <span class="big-number">$5M+</span>
-                        <span class="stat-description">Additional Revenue Generated</span>
-                    </div>
-                    <div class="summary-stat">
-                        <span class="big-number">95%</span>
-                        <span class="stat-description">Client Retention Rate</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    if(!name || !email || !phone || !website || !traffic || !message) {
+      return alert("Please fill in all required fields.");
+    }
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content glass-effect">
-                <h2>Ready to Become Our Next Success Story?</h2>
-                <p>Join successful businesses who have transformed their online presence with proven SEO strategies. Start with a website audit to see your potential.</p>
-                <div class="cta-buttons">
-                    <a href="contact.html" class="cta-button primary large">Get Free SEO Audit</a>
-                    <a href="pricing.html" class="cta-button secondary large">View Pricing Plans</a>
-                </div>
-                <div class="guarantee-text">
-                    <p>🚀 website audit • 📞 No-Pressure Consultation • 🛡️ 30-Day Money-Back Guarantee</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    sessionStorage.setItem("order_name", name);
+    sessionStorage.setItem("order_email", email);
+    sessionStorage.setItem("order_phone", phone);
+    sessionStorage.setItem("order_website", website);
+    sessionStorage.setItem("order_traffic", traffic);
+    sessionStorage.setItem("order_message", message);
+    sessionStorage.setItem("order_amount", price);
+    sessionStorage.setItem("order_audit", "comprehensive");
 
-    <!-- Footer -->
-    <footer class="footer">
-    <div class="container">
-        <div class="footer-grid">
-            <!-- Bostify Info -->
-            <div class="footer-column">
-                <div class="footer-logo">
-                    <img src="../assets/images/bostify-premium-logo.svg" alt="Bostify Premium Logo">
-                </div>
-                <p class="footer-tagline">Professional SEO services to boost your website's visibility and drive organic growth. By Sumit Sheokand.</p>
-                <div class="social-icons">
-                    <a href="https://www.linkedin.com/in/sumit-sheokand-0336b2281" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/Sumit-Sheokand" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="mailto:sumitsheokand347@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
+    widgets.style.display = "block";
 
-            <!-- Quick Links -->
-            <div class="footer-column">
-                <h4 class="footer-heading">Quick Links</h4>
-                <ul class="footer-links">
-                    <li><a href="../index.html#home">Home</a></li>
-                    <li><a href="about.html">About Me</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="case-studies.html">Case Studies</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                </ul>
-            </div>
+    // Render PayPal button once
+    if(!window["paypalRendered_comprehensive"]) {
+      paypal.Buttons({
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{ amount: { value: price, currency_code: currency } }]
+          });
+        },
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(details) {
+            const orderId = data.orderID || ("COMPREHENSIVE-" + Math.floor(Math.random()*90000+10000));
+            const payerName = (details.payer && details.payer.name && (details.payer.name.given_name + (details.payer.name.surname ? " " + details.payer.name.surname : ""))) || sessionStorage.getItem("order_name") || "Unknown";
+            const payerEmail = (details.payer && details.payer.email_address) || sessionStorage.getItem("order_email") || "";
+            const params = new URLSearchParams({
+              order_id: orderId,
+              name: payerName,
+              email: payerEmail,
+              phone: sessionStorage.getItem("order_phone") || "",
+              website: sessionStorage.getItem("order_website"),
+              traffic: sessionStorage.getItem("order_traffic"),
+              message: sessionStorage.getItem("order_message"),
+              amount: price,
+              audit: "comprehensive"
+            });
+            window.location.href = "../pages/payment-success.html?" + params.toString();
+          });
+        },
+        onCancel: function(data) {
+          window.location.href = "../pages/payment-cancel.html";
+        },
+        onError: function(err) {
+          console.error(err);
+          alert("Payment error. Please try again.");
+        }
+      }).render('#paypal-button-comprehensive');
+      window["paypalRendered_comprehensive"] = true;
+    }
+  });
+})();
+</script>
 
-            <!-- Services -->
-            <div class="footer-column">
-                <h4 class="footer-heading">Our Services</h4>
-                <ul class="footer-links">
-                    <li><a href="technical-seo.html">Technical SEO</a></li>
-                    <li><a href="content-optimization.html">Content Optimization</a></li>
-                    <li><a href="link-building.html">Link Building</a></li>
-                    <li><a href="local-seo.html">Local SEO</a></li>
-                    <li><a href="ecommerce-seo.html">E-commerce SEO</a></li>
-                </ul>
-            </div>
-
-            <!-- Legal -->
-            <div class="footer-column">
-                <h4 class="footer-heading">Legal</h4>
-                <ul class="footer-links">
-                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                    <li><a href="terms-of-service.html">Terms of Service</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p>&copy; 2025 Bostify by Sumit Sheokand. All rights reserved.</p>
-            <div class="payment-methods">
-                <img src="../assets/images/visa.svg" alt="Visa">
-                <img src="../assets/images/mastercard.svg" alt="Mastercard">
-                <img src="../assets/images/paypal.svg" alt="PayPal">
-            </div>
-        </div>
-    </div>
-</footer>
-
-    <!-- JavaScript -->
-    <script src="../assets/js/main.js"></script>
-
-    <style>
-        /* Case Studies Page Styles */
-        .case-studies-hero {
-            padding: 140px 0 80px;
-            background: var(--gradient-secondary);
-            text-align: center;
-        }
-        
-        .case-studies-hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .case-studies-hero p {
-            font-size: 1.3rem;
-            margin-bottom: 3rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .results-stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-        
-        .result-stat {
-            text-align: center;
-        }
-        
-        .result-stat .stat-number {
-            display: block;
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--primary-green);
-            margin-bottom: 0.5rem;
-        }
-        
-        .result-stat .stat-label {
-            font-size: 0.9rem;
-            color: var(--medium-gray);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .case-studies-section {
-            padding: 100px 0;
-            background: var(--white);
-        }
-        
-        .case-studies-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
-        }
-        
-        .case-study-card {
-            padding: 3rem;
-        }
-        
-        .case-study-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 2rem;
-        }
-        
-        .client-info h3 {
-            margin-bottom: 0.5rem;
-            color: var(--dark-gray);
-        }
-        
-        .industry {
-            color: var(--primary-blue);
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-        
-        .case-study-image {
-            width: 120px;
-            height: 80px;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        
-        .case-study-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .challenge, .solution, .results {
-            margin-bottom: 2rem;
-        }
-        
-        .challenge h4, .solution h4, .results h4 {
-            color: var(--dark-gray);
-            margin-bottom: 1rem;
-        }
-        
-        .solution ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .solution li {
-            margin-bottom: 0.5rem;
-            color: var(--medium-gray);
-            position: relative;
-            padding-left: 1.5rem;
-        }
-        
-        .solution li:before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: var(--primary-green);
-            font-weight: bold;
-        }
-        
-        .results-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        
-        .result-item {
-            text-align: center;
-            background: var(--light-gray);
-            padding: 1.5rem;
-            border-radius: 15px;
-        }
-        
-        .result-number {
-            display: block;
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--primary-green);
-            margin-bottom: 0.5rem;
-        }
-        
-        .result-label {
-            font-size: 0.8rem;
-            color: var(--medium-gray);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .case-study-quote {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 2px solid var(--light-gray);
-        }
-        
-        .case-study-quote blockquote {
-            font-style: italic;
-            font-size: 1.1rem;
-            color: var(--dark-gray);
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-        
-        .case-study-quote cite {
-            color: var(--primary-blue);
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        
-        .methodology-section {
-            padding: 100px 0;
-            background: var(--gradient-secondary);
-        }
-        
-        .methodology-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-        
-        .step-item {
-            padding: 2.5rem;
-            text-align: center;
-        }
-        
-        .step-number {
-            display: inline-block;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--gradient-primary);
-            color: var(--white);
-            font-size: 1.3rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-        }
-        
-        .step-content h3 {
-            margin-bottom: 1rem;
-        }
-        
-        .results-summary {
-            padding: 100px 0;
-            background: var(--white);
-        }
-        
-        .summary-content {
-            padding: 4rem;
-            text-align: center;
-        }
-        
-        .summary-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-        
-        .summary-stat {
-            text-align: center;
-        }
-        
-        .big-number {
-            display: block;
-            font-size: 3rem;
-            font-weight: 800;
-            background: var(--gradient-primary);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
-        }
-        
-        .stat-description {
-            font-size: 1rem;
-            color: var(--medium-gray);
-            font-weight: 500;
-        }
-        
-        .guarantee-text {
-            margin-top: 2rem;
-        }
-        
-        .guarantee-text p {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1rem;
-        }
-        
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .case-studies-hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .results-stats,
-            .summary-stats {
-                flex-direction: column;
-                gap: 2rem;
-            }
-            
-            .case-studies-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .case-study-header {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .case-study-image {
-                width: 100%;
-                height: 200px;
-            }
-            
-            .results-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .methodology-steps {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 
     <!-- JavaScript -->
     <script src="../assets/js/config.js"></script>
@@ -824,4 +365,3 @@
     </button>
 </body>
 </html>
-
