@@ -14,46 +14,42 @@
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 </head>
 <body>
-  <header class="header">
+  <header class="header glass-effect">
     <nav class="navbar">
-      <div class="nav-container">
-        <div class="nav-logo">
-          <a href="../index.html">
-            <h1>Bostify</h1>
-            <span>by Sumit Sheokand</span>
-          </a>
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <h1>Bostify</h1>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li class="nav-item--dropdown">
+                    <a href="../pages/services.html">Services</a>
+                    <div class="dropdown-menu">
+                        <a href="../pages/basic-seo-audit.html">Basic SEO Audit</a>
+                        <a href="../pages/comprehensive-seo-audit.html">Comprehensive SEO Audit</a>
+                        <a href="../pages/enterprise-seo-audit.html">Enterprise SEO Audit</a>
+                        <a href="../pages/local-seo.html">Local SEO</a>
+                        <a href="../pages/technical-seo.html">Technical SEO</a>
+                        <a href="../pages/ecommerce-seo.html">E-commerce SEO</a>
+                        <a href="../pages/content-optimization.html">Content Optimization</a>
+                        <a href="../pages/link-building.html">Link Building</a>
+                    </div>
+                </li>
+                <li><a href="../pages/pricing.html">Pricing</a></li>
+                <li><a href="../pages/case-studies.html">Case Studies</a></li>
+                <li><a href="../pages/blog.html">Blog</a></li>
+                <li><a href="../pages/about.html">About</a></li>
+                <li><a href="../pages/contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <a href="../pages/contact.html" class="button-primary hero-cta">Get Free Audit</a>
         </div>
-        
-        <!-- Desktop Navigation -->
-        <ul class="nav-menu desktop-menu">
-          <li><a href="../index.html" class="nav-link">Home</a></li>
-          <li><a href="services.html" class="nav-link">Services</a></li>
-          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
-          <li><a href="case-studies.html" class="nav-link">Results</a></li>
-          <li><a href="blog.html" class="nav-link">Blog</a></li>
-          <li><a href="about.html" class="nav-link">About</a></li>
-          <li><a href="contact.html" class="nav-link cta-nav">Contact</a></li>
-        </ul>
-        
-        <!-- Mobile Navigation -->
-        <ul class="nav-menu mobile-menu">
-          <li><a href="../index.html" class="nav-link">Home</a></li>
-          <li><a href="services.html" class="nav-link">Services</a></li>
-          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
-          <li><a href="case-studies.html" class="nav-link">Results</a></li>
-          <li><a href="blog.html" class="nav-link">Blog</a></li>
-          <li><a href="about.html" class="nav-link">About</a></li>
-          <li><a href="contact.html" class="nav-link cta-nav">Contact</a></li>
-        </ul>
-        
-        <div class="nav-toggle hamburger">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
-      </div>
     </nav>
-  </header>
+</header>
 
   <main class="container">
     <h1>🎉 Thank you — Payment Successful!</h1>
@@ -70,67 +66,122 @@
     <p>If you don't receive an email within a few minutes, or have any questions, contact: <a href="mailto:sumitsheokand347@gmail.com" style="color: #007bff; font-weight: bold;">sumitsheokand347@gmail.com</a></p>
   </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <div class="footer-logo">
-            <h3>Bostify</h3>
-            <span>by Sumit Sheokand</span>
-          </div>
-          <p>Helping businesses rank higher on Google and get more customers through proven SEO strategies.</p>
+  <footer><p>&copy; 2025 Bostify SEO</p></footer>
+
+<script>
+(function(){
+  // Initialize EmailJS with your public key
+  emailjs.init("1CLi83bvtJrxPnH1m"); // <-- your public key
+
+  // Helper to read query param
+  function qp(name){ const u = new URL(window.location.href); return u.searchParams.get(name) || ""; }
+
+  // Gather values: prefer query params (from PayPal), otherwise fall back to sessionStorage (from form)
+  const orderId = qp("order_id") || qp("subscription") || ("ORD-" + Math.floor(Math.random()*90000+10000));
+  const subscriptionId = qp("subscription") || "";
+  const userName = qp("name") || sessionStorage.getItem("order_name") || "Unknown";
+  const userEmail = qp("email") || sessionStorage.getItem("order_email") || "unknown@customer.com";
+  const userPhone = qp("phone") || sessionStorage.getItem("order_phone") || "Not provided";
+  const planName = qp("plan") || sessionStorage.getItem("selectedPlan") || sessionStorage.getItem("order_audit") || "Unknown Plan";
+  
+  // Handle different plan amounts
+  let orderAmount = qp("amount") || sessionStorage.getItem("order_amount") || "N/A";
+  
+  // Map plan names to amounts if not provided
+  if (orderAmount === "N/A" && planName !== "Unknown Plan") {
+    const planAmounts = {
+      "Essential Monitoring": "$799/month",
+      "Professional Monitoring": "$1500/month", 
+      "Enterprise Monitoring": "$2000/month",
+      "Complete Monitoring": "$2500/month",
+      "Basic SEO Audit": "$500",
+      "Comprehensive SEO Audit": "$1000",
+      "Enterprise SEO Audit": "$2000"
+    };
+    orderAmount = planAmounts[planName] || "N/A";
+  }
+
+  // Determine service type
+  const isSubscription = subscriptionId !== "";
+  const serviceType = isSubscription ? "Monthly SEO Subscription" : "One-time SEO Audit";
+
+  const params = {
+    order_id: orderId,
+    subscription_id: subscriptionId,
+    email: "sumitsheokand347@gmail.com",
+    user_name: userName,
+    user_email: userEmail,
+    user_phone: userPhone,
+    plan_name: planName,
+    order_amount: orderAmount,
+    service_type: serviceType
+  };
+
+  // Update status message
+  const statusEl = document.getElementById("status");
+  statusEl.innerText = isSubscription ? 
+    "Processing your subscription confirmation..." : 
+    "Processing your order confirmation email...";
+
+  console.log("Payment Success Debug:", params);
+
+  emailjs.send("service_lqo17bk", "template_noice5r", params)
+    .then(function(){
+      statusEl.innerHTML = `
+        <div style="color: #28a745; font-weight: bold; margin-bottom: 1rem;">
+          ✅ ${isSubscription ? 'Subscription' : 'Order'} confirmed! 
         </div>
-        
-        <div class="footer-section">
-          <h4>Services</h4>
-          <ul>
-            <li><a href="local-seo.html">Local SEO</a></li>
-            <li><a href="ecommerce-seo.html">E-commerce SEO</a></li>
-            <li><a href="technical-seo.html">Technical SEO</a></li>
-            <li><a href="content-optimization.html">Content Optimization</a></li>
-            <li><a href="link-building.html">Link Building</a></li>
-            <li><a href="basic-seo-audit.html">Basic SEO Audit</a></li>
-            <li><a href="comprehensive-seo-audit.html">Comprehensive SEO Audit</a></li>
-            <li><a href="enterprise-seo-audit.html">Enterprise SEO Audit</a></li>
-          </ul>
+        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+          <h3 style="margin-top: 0; color: #495057;">Order Details:</h3>
+          <p><strong>Service:</strong> ${planName}</p>
+          <p><strong>Amount:</strong> ${orderAmount}</p>
+          <p><strong>Type:</strong> ${serviceType}</p>
+          ${subscriptionId ? `<p><strong>Subscription ID:</strong> ${subscriptionId}</p>` : ''}
+          <p><strong>Customer:</strong> ${userName}</p>
+          <p><strong>Email:</strong> ${userEmail}</p>
+          <p><strong>Phone:</strong> ${userPhone}</p>
         </div>
-        
-        <div class="footer-section">
-          <h4>Resources</h4>
-          <ul>
-            <li><a href="blog.html">SEO Blog</a></li>
-            <li><a href="case-studies.html">Case Studies</a></li>
-            <li><a href="pricing.html">Pricing</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-section">
-          <h4>Contact</h4>
-          <p>Email: <a href="mailto:sumitsheokand347@gmail.com">sumitsheokand347@gmail.com</a></p>
-          <p>Get in touch for a consultation</p>
-          <a href="contact.html" class="footer-cta">Contact Us</a>
-        </div>
-      </div>
+        <p style="color: #6c757d;">A confirmation email has been sent to both you and our team.</p>
+      `;
       
-      <div class="footer-bottom">
-        <p>&copy; 2025 Bostify by Sumit Sheokand. All rights reserved.</p>
-        <div class="footer-links">
-          <a href="../index.html">Home</a>
-          <a href="about.html">About</a>
-          <a href="contact.html">Contact</a>
+      // Clear session storage
+      sessionStorage.removeItem("order_name");
+      sessionStorage.removeItem("order_email");
+      sessionStorage.removeItem("order_phone");
+      sessionStorage.removeItem("order_amount");
+      sessionStorage.removeItem("order_audit");
+      sessionStorage.removeItem("selectedPlan");
+      sessionStorage.removeItem("selectedPlanPrice");
+      sessionStorage.removeItem("selectedPlanFeatures");
+    }, function(err){
+      console.error("EmailJS error:", err);
+      statusEl.innerHTML = `
+        <div style="color: #dc3545; font-weight: bold;">
+          ⚠️ Could not send notification email automatically.
         </div>
-      </div>
-    </div>
-  </footer>
+        <div style="background: #f8d7da; padding: 1rem; border-radius: 8px; margin: 1rem 0; color: #721c24;">
+          <p><strong>Your payment was successful!</strong></p>
+          <p>Please contact us directly with these details:</p>
+          <ul style="text-align: left;">
+            <li><strong>Order/Subscription ID:</strong> ${orderId}</li>
+            <li><strong>Plan:</strong> ${planName}</li>
+            <li><strong>Amount:</strong> ${orderAmount}</li>
+            <li><strong>Email:</strong> sumitsheokand347@gmail.com</li>
+          </ul>
+        </div>
+      `;
+    });
+})();
+</script>
+<script src="../assets/js/main.js"></script>
 
-  <!-- JavaScript -->
-  <script src="../assets/js/main.js"></script>
+    <!-- JavaScript -->
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/main.js"></script>
 
-  <!-- Scroll to Top Button -->
-  <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top" title="Scroll to top">
-      <i class="fas fa-chevron-up"></i>
-  </button>
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top" title="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 </body>
 </html>
