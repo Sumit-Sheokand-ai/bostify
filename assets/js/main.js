@@ -5,6 +5,26 @@
     Purpose: A complete, clean, and error-free script for the Boostify website.
 */
 
+// Google AdSense Integration
+(function loadGoogleAds() {
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9366786724121329';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+    
+    // Initialize ads after script loads
+    script.onload = function() {
+        if (window.adsbygoogle && document.querySelector('.adsbygoogle')) {
+            try {
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            } catch (e) {
+                console.log('AdSense initialization delayed');
+            }
+        }
+    };
+})();
+
 // Use a single object to organize all app functionality
 const app = {
     // Initialize all features when the DOM is ready
@@ -177,16 +197,16 @@ const app = {
     // --- Mobile Menu Functionality ---
     initMobileMenu() {
         const navToggle = document.querySelector('.nav-toggle');
-        const navMenu = document.querySelector('.nav-menu');
+        const mobileMenu = document.querySelector('.mobile-menu');
 
-        if (navToggle && navMenu) {
+        if (navToggle && mobileMenu) {
             navToggle.addEventListener('click', () => {
                 // Toggle the 'active' class on both the button and the menu
                 navToggle.classList.toggle('active');
-                navMenu.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
 
                 // Prevent body scroll when menu is open
-                if (navMenu.classList.contains('active')) {
+                if (mobileMenu.classList.contains('active')) {
                     document.body.style.overflow = 'hidden';
                 } else {
                     document.body.style.overflow = '';
@@ -194,11 +214,11 @@ const app = {
             });
 
             // Close menu when a link is clicked
-            navMenu.querySelectorAll('.nav-link').forEach(link => {
+            mobileMenu.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
-                    if (navMenu.classList.contains('active')) {
+                    if (mobileMenu.classList.contains('active')) {
                         navToggle.classList.remove('active');
-                        navMenu.classList.remove('active');
+                        mobileMenu.classList.remove('active');
                         document.body.style.overflow = '';
                     }
                 });
@@ -940,8 +960,379 @@ rippleCSS.textContent = `
         0% { transform: scale(0); opacity: 1; }
         100% { transform: scale(2); opacity: 0; }
     }
+    
+    /* Premium Page Loader Styles */
+    .page-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        transition: opacity 0.5s ease;
+    }
+    
+    .page-loader.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    .loader-content {
+        text-align: center;
+        color: white;
+    }
+    
+    .loader-spinner {
+        width: 60px;
+        height: 60px;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top: 4px solid white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 20px;
+    }
+    
+    .loader-text {
+        font-size: 18px;
+        font-weight: 600;
+        opacity: 0.9;
+        animation: pulse 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    @keyframes pulse {
+        0%, 100% { opacity: 0.7; }
+        50% { opacity: 1; }
+    }
+    
+    /* Premium Floating Animation */
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes floatAround {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        25% { transform: translate(10px, -15px) scale(1.1); }
+        50% { transform: translate(-5px, -25px) scale(0.9); }
+        75% { transform: translate(-15px, -5px) scale(1.05); }
+    }
+    
+    /* Premium Typing Cursor */
+    @keyframes blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+    }
+    
+    /* Premium Animation Classes */
+    .animate-float {
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    .animate-glow {
+        transition: box-shadow 0.3s ease;
+    }
+    
+    .animate-glow:hover {
+        box-shadow: 0 0 30px rgba(74, 144, 226, 0.4);
+    }
+    
+    /* Premium Ripple Effect */
+    .ripple-effect-target {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.6);
+        transform: scale(0);
+        animation: rippleEffect 0.8s ease-out;
+        pointer-events: none;
+    }
+    
+    /* Responsive optimizations */
+    @media (max-width: 768px) {
+        .floating-particle,
+        .floating-element,
+        .mouse-trail-dot {
+            display: none;
+        }
+        
+        .page-loader .loader-spinner {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .page-loader .loader-text {
+            font-size: 16px;
+        }
+    }
+    
+    /* Accessibility optimizations */
+    @media (prefers-reduced-motion: reduce) {
+        .animate-float,
+        .loader-spinner,
+        .floating-particle,
+        .floating-element {
+            animation: none !important;
+        }
+        
+        .page-loader {
+            transition: none;
+        }
+    }
 `;
 document.head.appendChild(rippleCSS);
+
+/* ================================================
+   PREMIUM ENHANCEMENTS - ADDITIONAL FEATURES
+   ================================================ */
+
+// Premium Link Prefetching for Performance
+app.initLinkPrefetch = function() {
+    const links = document.querySelectorAll('a[href^="/"], a[href^="./"]');
+    const prefetchObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const link = entry.target;
+                const prefetchLink = document.createElement('link');
+                prefetchLink.rel = 'prefetch';
+                prefetchLink.href = link.href;
+                document.head.appendChild(prefetchLink);
+                prefetchObserver.unobserve(link);
+            }
+        });
+    });
+    
+    links.forEach(link => {
+        if (!link.dataset.noPrefetch) {
+            prefetchObserver.observe(link);
+        }
+    });
+};
+
+// Premium Form Enhancements
+app.initPremiumForms = function() {
+    const forms = document.querySelectorAll('form');
+    
+    forms.forEach(form => {
+        const inputs = form.querySelectorAll('input, textarea, select');
+        
+        inputs.forEach(input => {
+            // Add floating label effect
+            if (!input.placeholder) {
+                const label = form.querySelector(`label[for="${input.id}"]`);
+                if (label) {
+                    input.placeholder = label.textContent;
+                    label.style.display = 'none';
+                }
+            }
+            
+            // Add focus animations
+            input.addEventListener('focus', () => {
+                input.style.transform = 'translateY(-2px)';
+                input.style.boxShadow = '0 8px 25px rgba(74, 144, 226, 0.15)';
+            });
+            
+            input.addEventListener('blur', () => {
+                input.style.transform = 'translateY(0)';
+                input.style.boxShadow = '';
+            });
+            
+            // Real-time validation styling
+            input.addEventListener('input', () => {
+                if (input.validity.valid) {
+                    input.style.borderColor = 'var(--primary-green)';
+                } else if (input.value.length > 0) {
+                    input.style.borderColor = '#e74c3c';
+                } else {
+                    input.style.borderColor = '';
+                }
+            });
+        });
+        
+        // Enhanced form submission
+        form.addEventListener('submit', (e) => {
+            const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+            if (submitBtn) {
+                submitBtn.style.transform = 'scale(0.95)';
+                submitBtn.innerHTML = '<span>Sending...</span>';
+                
+                setTimeout(() => {
+                    submitBtn.style.transform = 'scale(1)';
+                }, 200);
+            }
+        });
+    });
+};
+
+// Premium Performance Monitoring
+app.initPerformanceMonitoring = function() {
+    // Monitor Core Web Vitals
+    if ('PerformanceObserver' in window) {
+        // Largest Contentful Paint
+        new PerformanceObserver((entryList) => {
+            const entries = entryList.getEntries();
+            const lastEntry = entries[entries.length - 1];
+            console.log('LCP:', lastEntry.startTime);
+        }).observe({ entryTypes: ['largest-contentful-paint'] });
+        
+        // First Input Delay
+        new PerformanceObserver((entryList) => {
+            const entries = entryList.getEntries();
+            entries.forEach(entry => {
+                console.log('FID:', entry.processingStart - entry.startTime);
+            });
+        }).observe({ entryTypes: ['first-input'] });
+        
+        // Cumulative Layout Shift
+        new PerformanceObserver((entryList) => {
+            let clsValue = 0;
+            entryList.getEntries().forEach(entry => {
+                if (!entry.hadRecentInput) {
+                    clsValue += entry.value;
+                }
+            });
+            console.log('CLS:', clsValue);
+        }).observe({ entryTypes: ['layout-shift'] });
+    }
+};
+
+// Premium Error Handling
+app.initErrorHandling = function() {
+    window.addEventListener('error', (e) => {
+        console.warn('Script error caught:', e.error);
+        // In production, you might want to send this to an error tracking service
+    });
+    
+    window.addEventListener('unhandledrejection', (e) => {
+        console.warn('Unhandled promise rejection:', e.reason);
+        e.preventDefault();
+    });
+};
+
+// Premium Feature Detection and Progressive Enhancement
+app.initFeatureDetection = function() {
+    const features = {
+        intersectionObserver: 'IntersectionObserver' in window,
+        webp: false,
+        serviceWorker: 'serviceWorker' in navigator,
+        localStorage: 'localStorage' in window,
+        touch: 'ontouchstart' in window
+    };
+    
+    // Test WebP support
+    const webp = new Image();
+    webp.onload = webp.onerror = () => {
+        features.webp = (webp.height === 2);
+        document.documentElement.className += features.webp ? ' webp' : ' no-webp';
+    };
+    webp.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+    
+    // Add feature classes to HTML
+    Object.keys(features).forEach(feature => {
+        if (features[feature]) {
+            document.documentElement.classList.add(feature);
+        } else {
+            document.documentElement.classList.add('no-' + feature);
+        }
+    });
+    
+    return features;
+};
+
+// Ad Placement and Management
+app.initAdPlacements = function() {
+    // Create ad containers for different page sections
+    const adPlacements = [
+        { selector: '.hero-section', position: 'after', type: 'banner' },
+        { selector: '.services-section', position: 'after', type: 'square' },
+        { selector: '.pricing-section', position: 'before', type: 'banner' },
+        { selector: '.article-content', position: 'after', type: 'square' },
+        { selector: '.footer', position: 'before', type: 'banner' }
+    ];
+    
+    adPlacements.forEach((placement, index) => {
+        const targetElement = document.querySelector(placement.selector);
+        if (targetElement) {
+            const adContainer = this.createAdContainer(placement.type, index);
+            if (placement.position === 'after') {
+                targetElement.after(adContainer);
+            } else {
+                targetElement.before(adContainer);
+            }
+        }
+    });
+    
+    // Initialize AdSense after placements
+    setTimeout(() => {
+        if (window.adsbygoogle) {
+            try {
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            } catch (e) {
+                console.log('AdSense auto-initialization');
+            }
+        }
+    }, 1000);
+};
+
+app.createAdContainer = function(type, index) {
+    const adContainer = document.createElement('div');
+    adContainer.className = `ad-container ad-${type}`;
+    adContainer.style.cssText = `
+        margin: 20px auto;
+        text-align: center;
+        max-width: 100%;
+        padding: 10px;
+        background: rgba(255,255,255,0.05);
+        border-radius: 8px;
+        backdrop-filter: blur(10px);
+    `;
+    
+    const adElement = document.createElement('ins');
+    adElement.className = 'adsbygoogle';
+    adElement.style.display = 'block';
+    adElement.setAttribute('data-ad-client', 'ca-pub-9366786724121329');
+    adElement.setAttribute('data-ad-slot', `slot-${index}`);
+    
+    if (type === 'banner') {
+        adElement.setAttribute('data-ad-format', 'auto');
+        adElement.setAttribute('data-full-width-responsive', 'true');
+        adElement.style.cssText = 'width: 100%; height: 90px;';
+    } else {
+        adElement.style.cssText = 'width: 300px; height: 250px;';
+    }
+    
+    adContainer.appendChild(adElement);
+    return adContainer;
+};
+
+// Initialize premium features
+if (typeof app !== 'undefined') {
+    const originalInit = app.init;
+    app.init = function() {
+        originalInit.call(this);
+        
+        // Add premium features
+        this.initPremiumForms();
+        this.initPerformanceMonitoring();
+        this.initErrorHandling();
+        this.initAdPlacements(); // Add ad placements
+        this.features = this.initFeatureDetection();
+        
+        console.log('🌟 Premium features initialized');
+    };
+}
 
 // Start the application
 app.init();
