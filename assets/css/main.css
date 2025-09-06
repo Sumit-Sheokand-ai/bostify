@@ -166,9 +166,26 @@ ul {
 }
 
 img {
-    max-width: 100%;
+    width: 600px; /* Average width instead of max-width */
     height: auto;
     display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Responsive adjustments for average sizing */
+@media (max-width: 768px) {
+    img {
+        width: 90%;
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 480px) {
+    img {
+        width: 95%;
+        max-width: 400px;
+    }
 }
 
 .container {
@@ -1653,4 +1670,327 @@ img.loaded {
 
 .text-reveal.is-visible::after {
     transform: translateX(100%);
+}
+
+/* ================================================
+   PREMIUM ENHANCEMENTS - ORIGINAL IMPLEMENTATION
+   ================================================ */
+
+/* Premium Glassmorphism Cards */
+.service-card, .testimonial-card, .card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before, .testimonial-card::before, .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(74, 144, 226, 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.service-card:hover::before, .testimonial-card:hover::before, .card:hover::before {
+    left: 100%;
+}
+
+/* Premium Button Hover Effects */
+.btn:hover, .cta-button:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(74, 144, 226, 0.3);
+    filter: brightness(1.1);
+}
+
+/* Premium Text Animations */
+.hero-title, .section-title {
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-green), var(--accent-orange));
+    background-size: 300% 300%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textGradientFlow 4s ease-in-out infinite;
+}
+
+@keyframes textGradientFlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* Premium Navigation Enhancements */
+.nav-link {
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+    transition: width 0.4s ease;
+    border-radius: 2px;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Premium Image Effects */
+img {
+    transition: all 0.4s ease;
+    filter: brightness(1) contrast(1) saturate(1);
+}
+
+img:hover {
+    filter: brightness(1.1) contrast(1.1) saturate(1.2);
+    transform: scale(1.02);
+}
+
+/* Premium Form Styling */
+input, textarea, select {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(74, 144, 226, 0.2);
+    border-radius: 12px;
+    padding: 12px 16px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Premium Section Transitions */
+.section {
+    position: relative;
+    overflow: hidden;
+}
+
+.section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(74, 144, 226, 0.02) 50%,
+        transparent 70%
+    );
+    animation: sectionShimmer 8s ease-in-out infinite;
+}
+
+@keyframes sectionShimmer {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+}
+
+/* Premium Loading States */
+.loading-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeletonLoading 1.5s infinite;
+}
+
+@keyframes skeletonLoading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Premium Scroll Indicators */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+    z-index: 9999;
+    transition: width 0.1s ease;
+    box-shadow: 0 2px 10px rgba(74, 144, 226, 0.3);
+}
+
+/* Premium Mobile Optimizations */
+@media (max-width: 768px) {
+    .service-card:hover, .testimonial-card:hover, .card:hover {
+        transform: translateY(-8px) scale(1.01);
+    }
+    
+    .btn:hover, .cta-button:hover {
+        transform: translateY(-3px) scale(1.02);
+    }
+    
+    /* Reduce motion for mobile */
+    * {
+        animation-duration: 0.8s !important;
+        transition-duration: 0.3s !important;
+    }
+}
+
+/* Premium Accessibility Enhancements */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Premium Focus States */
+.btn:focus, .nav-link:focus, input:focus, textarea:focus, select:focus {
+    outline: 3px solid var(--primary-blue);
+    outline-offset: 3px;
+    border-radius: 8px;
+}
+
+/* Premium Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --white: #1a1a1a;
+        --text-color: #e0e0e0;
+        --text-gray: #b0b0b0;
+        --light-gray: #2a2a2a;
+    }
+    
+    .service-card, .testimonial-card, .card {
+        background: rgba(42, 42, 42, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    input, textarea, select {
+        background: rgba(42, 42, 42, 0.9);
+        color: var(--text-color);
+        border-color: rgba(224, 224, 224, 0.2);
+    }
+}
+
+/* Page-specific Sections */
+.image-section {
+    padding: 2rem 0;
+}
+
+.image-wrapper {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.content-image {
+    width: 100%;
+    transition: transform 0.5s ease;
+}
+
+.image-wrapper:hover .content-image {
+    transform: scale(1.02);
+}
+
+.related-services, .recommended-posts {
+    margin: 3rem 0;
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.related-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.related-link {
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 200px;
+}
+
+.related-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+}
+
+.related-link span {
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.related-link:hover span {
+    transform: translateX(3px);
+}
+
+.post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.post-card {
+    padding: 1.25rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.post-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+}
+
+.post-card h4 {
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+}
+
+/* Premium Performance Optimizations */
+.gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Apply GPU acceleration to animated elements */
+.btn, .cta-button, .service-card, .testimonial-card, .card, .nav-link {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* Premium High Contrast Mode */
+@media (forced-colors: active) {
+    .btn, .cta-button {
+        border: 2px solid ButtonText;
+        background: ButtonFace;
+        color: ButtonText;
+    }
+    
+    .service-card, .testimonial-card, .card {
+        border: 2px solid CanvasText;
+        background: Canvas;
+    }
 }
