@@ -66,77 +66,63 @@
     </script>
 </head>
 <body>
+    <!-- Header -->
     <header class="header">
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="../../index.html">
-                    <h1>Bostify</h1>
-                    <span>by Sumit Sheokand</span>
-                </a>
-            </div>
-            <ul class="nav-menu desktop-menu">
-                <li><a href="../../index.html">Home</a></li>
-                <li class="nav-item--dropdown">
-                    <a href="../../pages/services.html">Services</a>
-                    <div class="dropdown-menu">
-                        <a href="../../pages/basic-seo-audit.html">Basic SEO Audit</a>
-                        <a href="../../pages/comprehensive-seo-audit.html">Comprehensive SEO Audit</a>
-                        <a href="../../pages/enterprise-seo-audit.html">Enterprise SEO Audit</a>
-                        <a href="../../pages/local-seo.html">Local SEO</a>
-                        <a href="../../pages/technical-seo.html">Technical SEO</a>
-                        <a href="../../pages/ecommerce-seo.html">E-commerce SEO</a>
-                        <a href="../../pages/content-optimization.html">Content Optimization</a>
-                        <a href="../../pages/link-building.html">Link Building</a>
-                    </div>
-                </li>
-                <li><a href="../../pages/pricing.html">Pricing</a></li>
-                <li><a href="../../pages/case-studies.html">Case Studies</a></li>
-                <li><a href="../../pages/blog.html">Blog</a></li>
-                <li><a href="../../pages/about.html">About</a></li>
-                <li><a href="../../pages/contact.html">Contact</a></li>
-            </ul>
-            <ul class="nav-menu mobile-menu">
-                <li><a href="../../index.html">Home</a></li>
-                <li><a href="../../pages/services.html">Services</a></li>
-                <li><a href="../../pages/pricing.html">Pricing</a></li>
-                <li><a href="../../pages/case-studies.html">Case Studies</a></li>
-                <li><a href="../../pages/blog.html">Blog</a></li>
-                <li><a href="../../pages/about.html">About</a></li>
-                <li><a href="../../pages/contact.html">Contact</a></li>
-                <li><a href="../../pages/basic-seo-audit.html">Basic SEO Audit</a></li>
-                <li><a href="../../pages/comprehensive-seo-audit.html">Comprehensive SEO Audit</a></li>
-                <li><a href="../../pages/enterprise-seo-audit.html">Enterprise SEO Audit</a></li>
-                <li><a href="../../pages/local-seo.html">Local SEO</a></li>
-                <li><a href="../../pages/technical-seo.html">Technical SEO</a></li>
-                <li><a href="../../pages/ecommerce-seo.html">E-commerce SEO</a></li>
-                <li><a href="../../pages/content-optimization.html">Content Optimization</a></li>
-                <li><a href="../../pages/link-building.html">Link Building</a></li>
-            </ul>
-            <div class="nav-toggle hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="../index.html">
+                        <h1>Bostify</h1>
+                        <span>by Sumit Sheokand</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <ul class="nav-menu desktop-menu">
+                    <li><a href="../index.html" class="nav-link">Home</a></li>
+                    <li><a href="../pages/services.html" class="nav-link">Services</a></li>
+                    <li><a href="../pages/pricing.html" class="nav-link">Pricing</a></li>
+                    <li><a href="../pages/case-studies.html" class="nav-link">Results</a></li>
+                    <li><a href="../pages/blog.html" class="nav-link">Blog</a></li>
+                    <li><a href="../pages/about.html" class="nav-link">About</a></li>
+                    <li><a href="../pages/contact.html" class="nav-link cta-nav">Website Audit</a></li>
+                </ul>
+                
+                <!-- Mobile Navigation -->
+                <ul class="nav-menu mobile-menu">
+                    <li><a href="../index.html" class="nav-link">Home</a></li>
+                    <li><a href="../pages/services.html" class="nav-link">Services</a></li>
+                    <li><a href="../pages/pricing.html" class="nav-link">Pricing</a></li>
+                    <li><a href="../pages/case-studies.html" class="nav-link">Results</a></li>
+                    <li><a href="../pages/blog.html" class="nav-link">Blog</a></li>
+                    <li><a href="../pages/about.html" class="nav-link">About</a></li>
+                    <li><a href="../pages/contact.html" class="nav-link cta-nav">Website Audit</a></li>
+                </ul>
+                
+                <div class="nav-toggle hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
         </div>
     </nav>
 </header>
 
     <!-- Article Header -->
-    <section class="article-hero">
+    <section class="article-hero" data-reveal="fade">
         <div class="container">
-            <div class="breadcrumb">
+            <div class="breadcrumb animate-fade-in">
                 <a href="../pages/blog.html">Blog</a> / <a href="#">SEO Fundamentals</a> / <span>SEO Beginner's Guide</span>
             </div>
             <div class="article-header">
-                <div class="article-meta">
+                <div class="article-meta animate-slide-left" data-stagger="0">
                     <span class="category">SEO Fundamentals</span>
                     <span class="read-time">12 min read</span>
                     <span class="publish-date">December 15, 2025</span>
                 </div>
-                <h1>The Complete SEO Beginner's Guide: Rank Higher in 2025</h1>
-                <p class="article-subtitle">Master the fundamentals of SEO with this comprehensive guide. Learn everything from keyword research to technical optimization, plus the latest strategies that work in 2025.</p>
-                <div class="author-info">
+                <h1 class="animate-fade-in" data-stagger="1">The Complete SEO Beginner's Guide: Rank Higher in 2025</h1>
+                <p class="article-subtitle animate-slide-right" data-stagger="2">Master the fundamentals of SEO with this comprehensive guide. Learn everything from keyword research to technical optimization, plus the latest strategies that work in 2025.</p>
+                <div class="author-info animate-scale-up" data-stagger="3">
                     <img src="../assets/images/WhatsApp Image 2025-08-19 at 22.44.52_194800d0.jpg" alt="Sumit Sheokand" loading="lazy">
                     <div class="author-details">
                         <span class="author-name">Sumit Sheokand</span>
@@ -144,7 +130,7 @@
                     </div>
                 </div>
             </div>
-            <div class="article-image">
+            <div class="article-image animate-bounce-in" data-stagger="4">
                 <img src="../assets/images/pexels-photo-6238233.jpeg"
                     alt="Open laptop displaying SEO analytics dashboard with colorful charts and graphs, placed on a wooden desk with a notebook and pen nearby. Bright, focused workspace with a modern, productive atmosphere."
                     loading="lazy">
@@ -157,7 +143,7 @@
         <div class="container">
             <div class="content-grid">
                 <div class="article-body">
-                    <div class="table-of-contents glass-effect">
+                    <div class="table-of-contents glass-effect animate-slide-left" data-reveal="left">
                         <h3>Table of Contents</h3>
                         <ul>
                             <li><a href="#what-is-seo">What is SEO?</a></li>
@@ -172,7 +158,7 @@
                         </ul>
                     </div>
 
-                    <div class="intro-section">
+                    <div class="intro-section animate-fade-in" data-reveal="up">
                         <p>Search Engine Optimization (SEO) can seem overwhelming when you're just starting out. With constantly changing algorithms, hundreds of ranking factors, and conflicting advice everywhere you look, it's easy to feel lost.</p>
                         
                         <p>But here's the truth: <strong>SEO doesn't have to be complicated.</strong></p>
@@ -182,13 +168,13 @@
                         <p>In this comprehensive guide, you'll learn everything you need to know to start your SEO journey, from basic concepts to actionable strategies you can implement today.</p>
                     </div>
 
-                    <section id="what-is-seo">
+                    <section id="what-is-seo" data-reveal="up">
                         <h2>What is SEO?</h2>
                         <p>SEO (Search Engine Optimization) is the practice of improving your website to increase its visibility when people search for products or services related to your business in Google, Bing, and other search engines.</p>
                         
                         <p>The goal is simple: <strong>get your website to appear higher in search results</strong> so more people can find and visit your site.</p>
                         
-                        <div class="highlight-box">
+                        <div class="highlight-box animate-glow" data-reveal="right">
                             <h4>💡 Key Point</h4>
                             <p>SEO isn't about tricking search engines – it's about creating a better experience for users while making it easy for search engines to understand and recommend your content.</p>
                         </div>
@@ -196,27 +182,27 @@
                         <h3>Types of SEO</h3>
                         <p>SEO can be broken down into three main categories:</p>
                         
-                        <ul>
+                        <ul class="animate-fade-in" data-reveal="left">
                             <li><strong>On-Page SEO:</strong> Optimizing individual pages on your website (content, HTML tags, internal links)</li>
                             <li><strong>Off-Page SEO:</strong> Building authority through external signals (backlinks, mentions, reviews)</li>
                             <li><strong>Technical SEO:</strong> Ensuring your website meets technical requirements (speed, mobile-friendliness, crawlability)</li>
                         </ul>
                     </section>
 
-                    <section id="why-seo-matters">
+                    <section id="why-seo-matters" data-reveal="up">
                         <h2>Why SEO Matters for Your Business</h2>
                         <p>If you're still wondering whether SEO is worth the investment, consider these statistics:</p>
                         
-                        <div class="stats-grid">
-                            <div class="stat-card">
+                        <div class="stats-grid animate-scale-up" data-reveal="zoom">
+                            <div class="stat-card" data-stagger="0">
                                 <span class="stat-number">75%</span>
                                 <span class="stat-desc">of users never scroll past the first page of search results</span>
                             </div>
-                            <div class="stat-card">
+                            <div class="stat-card" data-stagger="1">
                                 <span class="stat-number">53%</span>
                                 <span class="stat-desc">of website traffic comes from organic search</span>
                             </div>
-                            <div class="stat-card">
+                            <div class="stat-card" data-stagger="2">
                                 <span class="stat-number">10x</span>
                                 <span class="stat-desc">higher click-through rates than paid ads</span>
                             </div>
@@ -232,26 +218,26 @@
                         </ol>
                     </section>
 
-                    <section id="how-search-engines-work">
+                    <section id="how-search-engines-work" data-reveal="up">
                         <h2>How Search Engines Work</h2>
                         <p>Understanding how search engines work is crucial for effective SEO. The process involves three main stages:</p>
                         
-                        <div class="process-steps">
-                            <div class="step">
+                        <div class="process-steps animate-fade-in" data-reveal="left">
+                            <div class="step" data-stagger="0">
                                 <div class="step-number">1</div>
                                 <div class="step-content">
                                     <h4>Crawling</h4>
                                     <p>Search engines use automated bots (called crawlers or spiders) to discover and scan web pages across the internet.</p>
                                 </div>
                             </div>
-                            <div class="step">
+                            <div class="step" data-stagger="1">
                                 <div class="step-number">2</div>
                                 <div class="step-content">
                                     <h4>Indexing</h4>
                                     <p>The information from crawled pages is analyzed, categorized, and stored in a massive database called an index.</p>
                                 </div>
                             </div>
-                            <div class="step">
+                            <div class="step" data-stagger="2">
                                 <div class="step-number">3</div>
                                 <div class="step-content">
                                     <h4>Ranking</h4>
@@ -471,7 +457,7 @@
                         </div>
                     </section>
 
-                    <div class="conclusion">
+                    <div class="conclusion animate-bounce-in" data-reveal="zoom">
                         <h2>Final Thoughts</h2>
                         <p>SEO is a marathon, not a sprint. Success comes from consistently applying best practices, creating valuable content, and staying up-to-date with search engine guidelines.</p>
                         
@@ -480,7 +466,7 @@
                         <p>Need help implementing these strategies? I'm here to help you accelerate your SEO success with personalized guidance and proven tactics.</p>
                     </div>
 
-                    <div class="article-cta glass-effect">
+                    <div class="article-cta glass-effect animate-scale-up" data-reveal="up">
                         <h3>Ready to Take Your SEO to the Next Level?</h3>
                         <p>Get a free SEO audit and see exactly what's holding your website back from ranking higher.</p>
                         <div class="cta-buttons">
@@ -491,7 +477,7 @@
                 </div>
 
                 <aside class="article-sidebar">
-                    <div class="author-card glass-effect">
+                    <div class="author-card glass-effect animate-slide-right" data-reveal="right">
                         <img src="../assets/images/WhatsApp Image 2025-08-19 at 22.44.52_194800d0.jpg" alt="Sumit Sheokand" loading="lazy">
                         <h4>Sumit Sheokand</h4>
                         <p>SEO Expert & Founder of Bostify</p>
@@ -499,7 +485,7 @@
                         <a href="../pages/about.html" class="author-link">Learn More About Me →</a>
                     </div>
 
-                    <div class="related-articles glass-effect">
+                    <div class="related-articles glass-effect animate-slide-right" data-reveal="right" data-stagger="1">
                         <h4>Related Articles</h4>
                         <div class="related-list">
                             <a href="keyword-research-guide.html" class="related-item">
@@ -517,7 +503,7 @@
                         </div>
                     </div>
 
-                    <div class="newsletter-signup glass-effect">
+                    <div class="newsletter-signup glass-effect animate-slide-right" data-reveal="right" data-stagger="2">
                         <h4>Get Weekly SEO Tips</h4>
                         <p>Join 5,000+ marketers getting actionable SEO insights delivered to their inbox.</p>
                         <form class="mini-signup">
@@ -583,7 +569,17 @@
     </footer>
 
     <!-- JavaScript -->
+    <script src="../assets/js/config.js"></script>
     <script src="../assets/js/main.js"></script>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top" title="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+    
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 
     <style>
         /* Blog Post Styles */
